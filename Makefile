@@ -10,14 +10,13 @@ EVENT		=	$(SRC_PATH)Event/
 EVENT_HANDLER	=	$(EVENT)Handler/
 EVENT_ENTITY	=	$(EVENT)Entity/
 
-SRC	=	$(EVENT_HANDLER)ActionEvent.cpp \
-		$(EVENT_HANFLER)HandleEvent.cpp \
+SRC	=	$(EVENT_HANDLER)HandleEvent.cpp \
 		$(EVENT_HANDLER)Listener.cpp \
 		$(EVENT_HANDLER)Trame.cpp \
 		$(EVENT_ENTITY)AEntity.cpp \
 		$(EVENT_ENTITY)AStaticEntity.cpp \
 		$(EVENT_ENTITY)AAnimateEntity.cpp \
-		$(SRC_PATH)main.cpp
+
 
 OBJ	=	$(SRC:.$(SRC_EXT)=.$(OBJ_EXT))
 

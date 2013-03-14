@@ -2,7 +2,7 @@
 #include	"HandleEvent.hh"
 
 HandleEvent::HandleEvent(Listener *l) :
-  listeners(l);
+  listeners(l)
 {
 
 }
