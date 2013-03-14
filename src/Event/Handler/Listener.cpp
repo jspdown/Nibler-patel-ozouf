@@ -42,15 +42,15 @@ void	Listener::removeEvent(const std::string &name)
 
 void	Listener::addChild(Listener *l)
 {
-  if (std::find(this->listened.begin(), this->listened.end(), l) == this->listened.end())
+  if (std::find(this->childs.begin(), this->childs.end(), l) == this->childs.end())
     this->childs.push_back(l);
 }
 
 void	Listener::removeChild(Listener *l)
 {
-  std::map<std::string, IActionEvent *>::iterator it = std::find(this->listened.begin(), this->listened.end(), l);
-  if (it != this->listened.end())
-    this->listened.erase(it);
+  std::deque<Listener *>::iterator it = std::find(this->childs.begin(), this->childs.end(), l);
+  if (it != this->childs.end())
+    this->childs.erase(it);
 }
 
 bool	Listener::isListening(const std::string &name)
@@ -62,9 +62,9 @@ bool	Listener::isListening(const std::string &name)
 void	Listener::broadcast(const std::string&trame)
 {
   Listener::AppliBroadcast	a(trame);
-  
+
   if (this->entity)
-    *(this->listened[Trame::getName(trame)])(trame);
+    (*(this->listened[Trame::getName(trame)]))(trame);
   std::for_each(this->childs.begin(), this->childs.end(), a);
 }
 
@@ -93,8 +93,8 @@ std::map<std::string, IActionEvent *>	Listener::getListened()	const
 
 Listener::AppliBroadcast::AppliBroadcast(const std::string &trame) :
   trame(trame)
-{  
-  
+{
+
 }
 
 Listener::AppliBroadcast::~AppliBroadcast()

@@ -1,4 +1,4 @@
-
+#include	<algorithm>
 #include	<sstream>
 #include	"Trame.hh"
 
@@ -16,7 +16,7 @@ std::vector<std::string>	Trame::split(const std::string &s, char c)
 std::string	Trame::getName(const std::string& trame)
 {
   std::vector<std::string>	s = Trame::split(trame, '|');
-  
+
   if (s.size() != 4)
     throw	Trame::TrameError("trame error, can't find a name", __LINE__);
   return (s[0]);
@@ -25,7 +25,7 @@ std::string	Trame::getName(const std::string& trame)
 std::vector<std::string>	Trame::getTargets(const std::string& trame)
 {
   std::vector<std::string>	s = Trame::split(trame, '|');
-  
+
   if (s.size() != 4)
     throw	Trame::TrameError("trame error, can't find a targets", __LINE__);
   std::vector<std::string>	r = Trame::split(s[2], ':');
@@ -35,7 +35,7 @@ std::vector<std::string>	Trame::getTargets(const std::string& trame)
 std::vector<std::string>	Trame::getArgs(const std::string& trame)
 {
   std::vector<std::string>	s = Trame::split(trame, '|');
-  
+
   if (s.size() != 4)
     throw	Trame::TrameError("trame error, can't find a args", __LINE__);
   std::vector<std::string>	r = Trame::split(s[3], ':');
@@ -64,7 +64,7 @@ std::string			buildTrame(const std::string &name,
   Trame::TrameBuffer	buff;
   std::string		tr;
   std::stringstream	ss;
-  
+
   ss << transmitter;
   ss >> tr;
   buff(name);
@@ -73,20 +73,9 @@ std::string			buildTrame(const std::string &name,
   buff.putSeparator('|');
   std::for_each(targets.begin(), targets.end(), buff);
   buff.putSeparator('|');
-  std::for_each(args.begin(), args.end(), args);
+  std::for_each(args.begin(), args.end(), buff);
   buff.putSeparator('|');
   return (buff.getBuffer());
-}
-
-void	Trame::TrameBuffer::TrameBuffer() :
-  buffer("")
-{
-
-}
-
-void	Trame::TrameBuffer::~TrameBuffer()
-{
-
 }
 
 void	Trame::TrameBuffer::operator()(std::string s)
@@ -99,15 +88,15 @@ void	Trame::TrameBuffer::putSeparator(char c)
   this->buffer[this->buffer.size() - 1] = c;
 }
 
-std::string	Trame::TrameBuffer::getBuffer()	const;
+std::string	Trame::TrameBuffer::getBuffer()	const
 {
   return (this->buffer);
 }
 
 Trame::TrameError::TrameError(const std::string &, int line)
 {
-  std::ostringstream    o;
-  
+  std::stringstream    o;
+
   o << "[Trame] Error line " << line << " : " << msg;
   this->msg = o.str();
 }

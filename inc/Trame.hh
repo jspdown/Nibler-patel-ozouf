@@ -33,7 +33,7 @@ private:
 public:
   class	TrameBuffer
   {
-    std::stringstream	ss;
+    std::string		buffer;
   public:
     void	operator()(std::string s);
     void	putSeparator(char c);

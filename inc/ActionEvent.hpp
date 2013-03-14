@@ -11,10 +11,10 @@ class	ActionEvent: public	IActionEvent
 {
   typedef	void	(T::*Action)(const std::string&);
   Action				action;
-  IEntity				aim;
+  IEntity				*aim;
 
 public:
-  ActionEvent(void (T::*func)(const std::string&) a, IEntity &i) :
+  ActionEvent(void (T::*func)(const std::string&) a, IEntity *i) :
   action(a), aim(i)
   {}
 
@@ -24,7 +24,7 @@ public:
   ActionEvent(const ActionEvent &other):
     action(other.action), aim(other.aim)
   {}
-  
+
   ActionEvent	&operator=(const ActionEvent &other)
   {
     this->action = other.getAction();
@@ -33,19 +33,19 @@ public:
 
   virtual void	operator()(const std::string &trame);
   {
-    this->aim.*action(trame);
+    (this->aim)->*action(trame);
   }
 
   Action	getAction()	const
   {
     return (this->action);
   }
-  
+
   IEntity	getAim()	const
   {
     return (this->aim);
   }
-  
+
 };
 
 #endif

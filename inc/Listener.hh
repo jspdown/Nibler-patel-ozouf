@@ -18,7 +18,7 @@ public:
   ~Listener();
   Listener(const Listener &other);
   Listener	operator=(const Listener &other);
-  
+
   void	addEvent(const std::string &name, IActionEvent *a);
   void	removeEvent(const std::string &name);
   void	addChild(Listener *l);
@@ -39,7 +39,7 @@ public:
   public:
     AppliBroadcast(const std::string &trame);
     ~AppliBroadcast();
-    
+
     void	operator()(Listener *child);
   };
 };
