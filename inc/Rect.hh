@@ -2,7 +2,7 @@
 # define __RECT_H__
 
 #include <iostream>
-#include <pair>
+#include <utility>
 
 class Rect
 {
@@ -12,11 +12,11 @@ private:
   std::string		str;
   std::string		texture;
 public:
-  Rect(int x = 0, int y = 0, int width = 0, int height = 0, std::string const &str = "", st::string const &texture = "");
+  Rect(int x = 0, int y = 0, int width = 0, int height = 0, std::string const &str = "", std::string const &texture = "");
   Rect(std::pair<int,int> const &pos, std::pair<int,int> const &size, std::string const &str = "", std::string const &texture = "");
   virtual ~Rect();
 
-  std::pair<int.int>&	getPos() const;
+  std::pair<int,int>&	getPos() const;
   std::pair<int,int>&	getSize() const;
   std::string		getStr() const;
   std::string		getTexture() const;

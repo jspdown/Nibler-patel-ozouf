@@ -5,10 +5,11 @@
 // Login   <kevin platel@epitech.net>
 //
 // Started on  Tue Mar 12 22:59:45 2013 vink
-// Last update Tue Mar 12 23:14:36 2013 vink
+// Last update Thu Mar 14 16:39:37 2013 vink
 //
 
 #include <iostream>
+#include <utility>
 #include "Rect.hh"
 
 Rect::Rect(int x, int y, int width, int height, std::string const &str, st::string const &texture)

@@ -6,6 +6,7 @@
 #include <stack>
 #include <vector>
 #include <list>
+#include <map>
 #include "Rect.hh"
 #include "Config.hh"
 
