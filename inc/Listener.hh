@@ -40,7 +40,7 @@ public:
     AppliBroadcast(const std::string &trame);
     ~AppliBroadcast();
     
-    void	operator()(const std::pair<std::string, IActionEvent *> &e);
+    void	operator()(Listener *child);
   };
 };
 

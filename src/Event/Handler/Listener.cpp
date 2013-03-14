@@ -1,4 +1,7 @@
 
+#include	<algorithm>
+#include	<iterator>
+#include	"Trame.hh"
 #include	"Listener.hh"
 
 Listener::Listener()
@@ -12,7 +15,7 @@ Listener::~Listener()
 }
 
 Listener::Listener(const Listener &other) :
-  childs(other.childs), entity(other.entity), listen(other.listen)
+  childs(other.childs), entity(other.entity), listened(other.listened)
 {
 
 }
@@ -21,7 +24,8 @@ Listener	Listener::operator=(const Listener &other)
 {
   this->childs = other.getChild();
   this->entity = other.getEntity();
-  this->listen = other.getListened();
+  this->listened = other.getListened();
+  return (*this);
 }
 
 void	Listener::addEvent(const std::string &name, IActionEvent *a)
@@ -31,7 +35,7 @@ void	Listener::addEvent(const std::string &name, IActionEvent *a)
 
 void	Listener::removeEvent(const std::string &name)
 {
-  std::map<std::string, IActionEvent *>::const_iterator	it = this->listened.find(name);
+  std::map<std::string, IActionEvent *>::iterator	it = this->listened.find(name);
   if (it != this->listened.end())
     this->listened.erase(it);
 }
@@ -44,14 +48,14 @@ void	Listener::addChild(Listener *l)
 
 void	Listener::removeChild(Listener *l)
 {
-  std::deque<Listener *>::const_iterator	it = std::find(this->listened.begin(), this->listened.end(), l);
+  std::map<std::string, IActionEvent *>::iterator it = std::find(this->listened.begin(), this->listened.end(), l);
   if (it != this->listened.end())
-    his->listened.erase(it);
+    this->listened.erase(it);
 }
 
 bool	Listener::isListening(const std::string &name)
 {
-  std::map<std::string, IActionEvent *>::const_iterator	it = this->listened.find(name);
+  std::map<std::string, IActionEvent *>::iterator	it = this->listened.find(name);
   return (it != this->listened.end());
 }
 
@@ -61,7 +65,7 @@ void	Listener::broadcast(const std::string&trame)
   
   if (this->entity)
     *(this->listened[Trame::getName(trame)])(trame);
-  for_each(this->childs.begin(), this->childs.end(), a);
+  std::for_each(this->childs.begin(), this->childs.end(), a);
 }
 
 void	Listener::update()
@@ -87,20 +91,20 @@ std::map<std::string, IActionEvent *>	Listener::getListened()	const
 
 
 
-AppliBroadcast::AppliBroadcast(std::deque<std::string, IActionEvent *> &childs) :
-  childs(childs)
+Listener::AppliBroadcast::AppliBroadcast(const std::string &trame) :
+  trame(trame)
 {  
   
 }
 
-AppliBroadcast::~AppliBroadcast()
+Listener::AppliBroadcast::~AppliBroadcast()
 {
 
 }
 
-void	AppliBroadcast::operator()(const Listener *child)
+void	Listener::AppliBroadcast::operator()(Listener *child)
 {
   if (child != 0)
-    if (child.isListening(Trame::getName(this->trame)))
-      child.broadcast(this->trame);
+    if (child->isListening(Trame::getName(this->trame)))
+      child->broadcast(this->trame);
 }
