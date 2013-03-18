@@ -16,13 +16,13 @@ SRC	=	$(EVENT_HANDLER)HandleEvent.cpp \
 		$(EVENT_ENTITY)AEntity.cpp \
 		$(EVENT_ENTITY)AStaticEntity.cpp \
 		$(EVENT_ENTITY)AAnimateEntity.cpp \
+		$(SRC_PATH)Map.cpp \
+		$(SRC_PATH)Rect.cpp \
 		$(EVENT)Snake.cpp \
 		$(EVENT)SnakePart.cpp \
 		$(EVENT)TheGame.cpp \
 		$(EVENT)Wall.cpp \
-		$(SRC_PATH)Map.cpp \
-		$(SRC_PATH)Rect.cpp \
-#		$(SRC_PATH)main.cpp
+
 
 
 OBJ	=	$(SRC:.$(SRC_EXT)=.$(OBJ_EXT))

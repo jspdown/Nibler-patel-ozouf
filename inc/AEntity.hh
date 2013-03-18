@@ -5,7 +5,6 @@
 #include	<utility>
 #include	<string>
 #include	<ctime>
-#include	"Map.hh"
 #include	"Rect.hh"
 #include	"IEntity.hh"
 
@@ -32,7 +31,6 @@ public:
   void				updateTimer();
   int				getType()	const;
   int				getUniqueId()  	const;
-  std::string	const		&getName()	const;
   Rect				getPos()	const;
   Map				*getMap()	const;
 
@@ -41,6 +39,8 @@ public:
   void	setName(const std::string &name);
   void	setPos(Rect &pos);
   void	setType(int type);
+
+  virtual const std::string &getName() const;
 };
 
 #endif

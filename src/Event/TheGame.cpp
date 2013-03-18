@@ -30,3 +30,8 @@ void	TheGame::init()
 {
   
 }
+
+TheGame *TheGame::clone(Rect &, int , Map *map, Rect *)	const
+{
+  return (new TheGame(map));
+}

@@ -15,6 +15,7 @@ public:
 
   virtual void	update();
   virtual void	init();
+  virtual TheGame *clone(Rect &pos, int type, Map *map, Rect *r)	const;
 };
 
 #endif

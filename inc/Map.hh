@@ -7,10 +7,11 @@
 #include <vector>
 #include <list>
 #include <map>
+#include "HandleEvent.hh"
 #include "Rect.hh"
 #include "Config.hh"
-#include "HandleEvent.hh"
 
+class	IEntity;
 
 class Map
 {

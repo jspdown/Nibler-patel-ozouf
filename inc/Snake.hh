@@ -4,10 +4,10 @@
 
 #include	<utility>
 #include	<vector>
-#include	"AAnimateEntity.hh"
+#include	"AStaticEntity.hh"
 #include	"SnakePart.hh"	
 
-class	Snake: public	AAnimateEntity
+class	Snake: public	AStaticEntity
 {
   enum	e_dir
     {
@@ -20,13 +20,7 @@ class	Snake: public	AAnimateEntity
   std::vector<SnakePart *>	queue;
   int				speed;
 public:
-  Snake(Rect &pos,
-	int type,
-	Map *map,
-	std::pair<int, int> unit_size,
-	std::pair<int, int> img_size,
-	unsigned int nbr_frame, 
-	int	speed);
+  Snake(Rect &pos, int type, Map *map, Rect *r);
   virtual ~Snake();
   
   void	move(const std::string &trame);
@@ -39,6 +33,7 @@ public:
 
   virtual void	update();
   virtual void	init();
+  virtual Snake *clone(Rect &pos, int type, Map *map, Rect *r)	const;
 };
 
 #endif

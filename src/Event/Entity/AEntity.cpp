@@ -68,11 +68,6 @@ int			AEntity::getUniqueId()  	const
   return (this->unique_id);
 }
 
-std::string const		&AEntity::getName()	const
-{
-  return (this->name);
-}
-
 Rect	AEntity::getPos()	const
 {
   return (this->pos);
@@ -102,4 +97,9 @@ void	AEntity::setPos(Rect &pos)
 void	AEntity::setType(int type)
 {
   this->type = type;
+}
+
+const std::string	&AEntity::getName()	const
+{
+  return (this->name);
 }

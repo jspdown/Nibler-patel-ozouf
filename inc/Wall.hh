@@ -19,6 +19,7 @@ public:
 
   virtual void	update();
   virtual void	init();
+  virtual Wall *clone(Rect &pos, int type, Map *map, Rect *r)	const;
 };
 
 #endif

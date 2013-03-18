@@ -51,3 +51,8 @@ void	Wall::init()
 {
   
 }
+
+Wall *Wall::clone(Rect &pos, int type, Map *map, Rect *r)	const
+{
+  return (new Wall(pos, type, map, r));
+}

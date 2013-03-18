@@ -3,23 +3,12 @@
 #include	"Trame.hh"
 #include	"Snake.hh"
 
-Snake::Snake(Rect &pos,
-	     int type,
-	     Map *map,
-	     std::pair<int, int> unit_size,
-	     std::pair<int, int> img_size,
-	     unsigned int nbr_frame,
-	     int speed) :
-  AAnimateEntity(std::string("snake"),
-		 pos,
-		 type,
-		 map,
-		 unit_size,
-		 img_size,
-		 nbr_frame)
+
+Snake::Snake(Rect &pos, int type, Map *map, Rect *tile):
+  AStaticEntity("snake", pos, type, map, tile)
 {
-  this->direction = Snake::LEFT;
-  this->speed = speed;
+  this->speed = 1;
+  this->direction = Snake::TOP;
 }
 
 Snake::~Snake()
@@ -112,7 +101,7 @@ void	Snake::collide(const std::string &trame)
 	{
 	  std::vector<std::string>	s_targets;
 	  std::vector<std::string>	s_args;
-	  s_targets.push_back(std::string("theGame"));
+	  s_targets.push_back(std::string("thegame"));
 	  s_args.push_back(std::string("collide with a wall"));
 
 	  this->map->getHandleEvent()->emit(Trame::buildTrame("endOfGame",
@@ -125,11 +114,16 @@ void	Snake::collide(const std::string &trame)
 
 void	Snake::addPart()
 {
-  SnakePart	n(this->pos, 0, this->map, std::pair<int, int>(32, 32), std::pair<int, int>(32, 32), 1);
+  SnakePart	n(this->pos, 0, this->map, new Rect());
   this->map->addEntity(5, &n);
 }
 
 void	Snake::init()
 {
 
+}
+
+Snake	*Snake::clone(Rect &pos, int type, Map *map, Rect *r)	const
+{
+  return (new Snake(pos, type, map, r));
 }
