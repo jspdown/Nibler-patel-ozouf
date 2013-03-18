@@ -5,7 +5,7 @@
 // Login   <kevin platel@epitech.net>
 //
 // Started on  Mon Mar 18 15:54:42 2013 vink
-// Last update Mon Mar 18 17:12:04 2013 vink
+// Last update Mon Mar 18 17:37:56 2013 kevin platel
 //
 
 #include <utility>
@@ -94,4 +94,12 @@ void		NcursesLibrary::loop(Map const *config)
 	}
       usleep(this->conf->getWaitTime());
     }
+}
+
+extern "C"
+{
+  ILibrary*	create_lib()
+  {
+    return new NcursesLib();
+  }
 }
