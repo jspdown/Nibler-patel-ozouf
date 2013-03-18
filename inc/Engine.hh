@@ -15,19 +15,22 @@ public:
   Engine(std::string const &lib);
   virtual ~Engine();
 
-  void	init(Config const *conf);
+  void	init(Config const &conf);
   void	quit();
-  void	run(Map const *map);
+  void	run(Map const &map);
 };
 
 class LibraryLoadError : public std::exception
 {
   std::string	       msg;
 public:
-  LibraryLoadError(std::string const &msg, std::string const &func, std::string const &line);
+  LibraryLoadError(std::string const &msg)
+    : msg(msg)
+  {
+  }
   virtual ~LibraryLoadError() throw();
 
-  virtual const char	*what() const throw();
+  virtual const char	*what() const throw() { return this->msg.c_str(); };
 };
 
 #endif /* !__ENGINE_H__ */
