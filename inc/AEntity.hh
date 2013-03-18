@@ -28,14 +28,14 @@ public:
 
   virtual Rect	*getRect()	const = 0;
   virtual void	state()		const;
-  
+
   double	getTimeElapse()	const;
-  void		updateTimer()	const;
+  void		updateTimer();
   int			getType()	const;
   int			getUniqueId()  	const;
-  std::string		&getName()	const;
-  std::pair<int, int>	&getPos()	const;
-  Map			&getMap()	const;
+  std::string	const	&getName()	const;
+  std::pair<int, int> const	&getPos()	const;
+  Map			*getMap()	const;
 };
 
 #endif

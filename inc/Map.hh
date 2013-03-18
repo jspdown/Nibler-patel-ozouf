@@ -9,6 +9,8 @@
 #include <map>
 #include "Rect.hh"
 #include "Config.hh"
+#include "HandleEvent.hh"
+
 
 class Map
 {
