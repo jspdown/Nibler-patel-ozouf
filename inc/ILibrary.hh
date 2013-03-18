@@ -17,7 +17,7 @@ public:
   virtual void		loop(Map const &map) = 0;
   virtual void		quit() = 0;
   virtual void		reload(Config const &config) = 0;
-  virtual void		updateEvent(std::stack<std::string> event) = 0;
+  virtual void		updateEvent(std::stack<std::string> &event) = 0;
 };
 
 class ConfigLoadError : public std::exception

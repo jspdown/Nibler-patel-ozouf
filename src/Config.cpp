@@ -11,7 +11,7 @@
 #include <iostream>
 #include "Config.hh"
 
-Config::Config(int width, int height, std::vector<std::string> &texture, std::string const &texture_path, int width_tile, int height_tile)
+Config::Config(int width, int height, std::vector<std::string> &texture, std::string const &texture_path, int width_tile, int height_tile, size_t wait_time)
 {
   this->map_size.first = with;
   this->map_size.second = height;
@@ -19,14 +19,16 @@ Config::Config(int width, int height, std::vector<std::string> &texture, std::st
   this->texture_path = texture_path;
   this->tile_size.first = width_tile;
   this->tile_size.second = height_tile;
+  this->waitTime = wait_time;
 }
 
-Config::Config(std::pair<int,int> &size, std::vector<std::string> &texture, std::string const &texture_path, std::pair<int,int> &tile_size)
+Config::Config(std::pair<int,int> &size, std::vector<std::string> &texture, std::string const &texture_path, std::pair<int,int> &tile_size, size_t wait_time)
 {
   this->map_size = size;
   this->texture = texture;
   this->texture_path = texture_path;
   this->tile_size = tile_size;
+  this->waitTime = wait_time;
 }
 
 Config::~Config()
@@ -51,4 +53,9 @@ std::string			Config::getTexturePath() const
 std::pair<int,int>		Config::getTileSize() const
 {
   return (this->tile_size);
+}
+
+size_t				Config::getWaitTime() const
+{
+  return (this->waitTime);
 }
