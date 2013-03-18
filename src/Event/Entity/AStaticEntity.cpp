@@ -10,6 +10,7 @@ AStaticEntity::~AStaticEntity()
 {
 
 }
+
 AStaticEntity::AStaticEntity(const AStaticEntity &other):
   AEntity(other), rect(other.getRect())
 {
