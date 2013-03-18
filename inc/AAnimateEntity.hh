@@ -14,10 +14,10 @@ public:
   AAnimateEntity(const std::string &name,
 		 std::pair<int, int> &pos,
 		 int type,
-		 Map *map, 
+		 Map *map,
 		 std::pair<int, int> unit_size,
 		 std::pair<int, int> img_size,
-		 int nbr_frame);
+		 unsigned int nbr_frame);
   virtual ~AAnimateEntity();
 
   virtual Rect	*getRect()	const;
@@ -25,6 +25,7 @@ public:
 
   class	DeleteFrame
   {
+  public:
     void	operator()(Rect *r);
   };
 };

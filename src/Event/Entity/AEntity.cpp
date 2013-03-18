@@ -2,6 +2,8 @@
 #include	<iostream>
 #include	"AEntity.hh"
 
+int	AEntity::id = 0;
+
 AEntity::AEntity(const std::string &name, std::pair<int, int> &pos, int type, Map *map) :
   map(map), name(name), pos(pos), type(type), unique_id(id)
 {

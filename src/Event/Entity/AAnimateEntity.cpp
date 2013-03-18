@@ -1,18 +1,18 @@
-
+#include <algorithm>
 #include	"AAnimateEntity.hh"
 
 AAnimateEntity::AAnimateEntity(const std::string &name,
 			       std::pair<int, int> &pos,
 			       int type,
-			       Map *map, 
+			       Map *map,
 			       std::pair<int, int> unit_size,
 			       std::pair<int, int> img_size,
-			       int nbr_frame) :
+			       unsigned int nbr_frame) :
   AEntity(name, pos, type, map)
 {
   int	nbr_l = img_size.first / unit_size.first;
   int	nbr_h = img_size.second / unit_size.second;
-  
+
   for (unsigned int i = 0; i < nbr_frame; ++i)
     {
       int	x = (i % nbr_l) * unit_size.first;
@@ -24,7 +24,7 @@ AAnimateEntity::AAnimateEntity(const std::string &name,
   this->offset = 0;
   this->unit_size = unit_size;
 }
-  
+
 AAnimateEntity::~AAnimateEntity()
 {
   AAnimateEntity::DeleteFrame	del;
@@ -34,7 +34,7 @@ AAnimateEntity::~AAnimateEntity()
 
 void		AAnimateEntity::nextFrame()
 {
-  if (this->offset < this->frame.dize())
+  if (this->offset < this->frame.size())
     ++(this->offset);
   this->offset = 0;
 }
@@ -48,4 +48,3 @@ void	AAnimateEntity::DeleteFrame::operator()(Rect *r)
 {
   delete r;
 }
-
