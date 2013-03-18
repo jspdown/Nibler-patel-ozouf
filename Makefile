@@ -22,7 +22,7 @@ SRC	=	$(EVENT_HANDLER)HandleEvent.cpp \
 		$(EVENT)Wall.cpp \
 		$(SRC_PATH)Map.cpp \
 		$(SRC_PATH)Rect.cpp \
-		$(SRC_PATH)main.cpp
+#		$(SRC_PATH)main.cpp
 
 
 OBJ	=	$(SRC:.$(SRC_EXT)=.$(OBJ_EXT))
