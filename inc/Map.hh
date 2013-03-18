@@ -15,9 +15,10 @@
 class Map
 {
 private:
-  std::map<int, std::deque<Rect*> >	aux_display;
-  Config*				conf;
   HandleEvent*				event;
+  Config*				conf;
+  std::string				filename;
+  std::map<int, std::deque<Rect*> >	aux_display;
   std::stack<std::string>		event_stack;
   std::vector< std::list<IEntity*> >	elements;
 public:
@@ -37,6 +38,9 @@ public:
 
   std::deque<Rect*>			getAuxDisplay(int uid) const;
   void					setAuxDisplay(int uid, std::deque<Rect*>&aux_display);
+
+  HandleEvent*				getHandleEvent() const;
+  void					getHandleEvent(HandleEvent* e);
 };
 
 #endif /* !__MAP_H__ */

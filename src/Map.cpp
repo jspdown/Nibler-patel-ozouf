@@ -82,3 +82,13 @@ void					Map::setAuxDisplay(int uid, std::deque<Rect*>&aux_display)
 {
   this->aux_display[uid] = aux_display;
 }
+
+HandleEvent*				Map::getHandleEvent() const
+{
+  return (this->event);
+}
+
+void					Map::setHandleEvent(HandleEvent *e)
+{
+  this->event = e;
+}
