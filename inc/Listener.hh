@@ -14,7 +14,7 @@ class	Listener
   IEntity				*entity;
   std::map<std::string, IActionEvent *>	listened;
 public:
-  Listener();
+  Listener(IEntity *e);
   ~Listener();
   Listener(const Listener &other);
   Listener	operator=(const Listener &other);

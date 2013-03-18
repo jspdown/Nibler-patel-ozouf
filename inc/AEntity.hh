@@ -12,30 +12,35 @@
 class	AEntity: public IEntity
 {
   static int		id;
-
+protected:
   clock_t		current_time;
   Map			*map;
   std::string		name;
-  std::pair<int, int>	pos;
+  Rect			pos;
   int			type;
   int			unique_id;
 
 public:
-  AEntity(const std::string &name, std::pair<int, int> &pos, int type, Map *map);
+  AEntity(const std::string &name, Rect &pos, int type, Map *map);
   virtual ~AEntity();
   AEntity(const AEntity &other);
   AEntity	&operator=(const AEntity &other);
 
-  virtual Rect	*getRect()	const = 0;
   virtual void	state()		const;
 
-  double	getTimeElapse()	const;
-  void		updateTimer();
-  int			getType()	const;
-  int			getUniqueId()  	const;
-  std::string	const	&getName()	const;
-  std::pair<int, int> const	&getPos()	const;
-  Map			*getMap()	const;
+  double			getTimeElapse()	const;
+  void				updateTimer();
+  int				getType()	const;
+  int				getUniqueId()  	const;
+  std::string	const		&getName()	const;
+  Rect				getPos()	const;
+  Map				*getMap()	const;
+
+  void	setCurrentTime(const clock_t &current_time);
+  void	setMap(Map *m);
+  void	setName(const std::string &name);
+  void	setPos(Rect &pos);
+  void	setType(int type);
 };
 
 #endif

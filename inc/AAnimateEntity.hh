@@ -2,17 +2,18 @@
 #ifndef		__AANIMATEENTITY_HH__
 # define	__AANIMATEENTITY_HH__
 
+#include	"Rect.hh"
 #include	"AEntity.hh"
 
 class	AAnimateEntity: public	AEntity
 {
   std::vector<Rect *>	frame;
   bool			is_running;
-  int			offset;
+  unsigned int		offset;
   std::pair<int, int>	unit_size;
 public:
   AAnimateEntity(const std::string &name,
-		 std::pair<int, int> &pos,
+		 Rect	&pos,
 		 int type,
 		 Map *map,
 		 std::pair<int, int> unit_size,

@@ -4,7 +4,8 @@
 #include	"Trame.hh"
 #include	"Listener.hh"
 
-Listener::Listener()
+Listener::Listener(IEntity *e):
+  entity(e)
 {
 
 }

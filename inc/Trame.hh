@@ -27,9 +27,10 @@ public:
 						   int transmitter,
 						   std::vector<std::string> targets,
 						   std::vector<std::string> args);
+  static int				toInt(const std::string &str);
 private:
   static std::vector<std::string>	split(const std::string &s, char c);
-
+  
 public:
   class	TrameBuffer
   {

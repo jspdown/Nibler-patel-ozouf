@@ -1,7 +1,7 @@
 #include	"AStaticEntity.hh"
 
-AStaticEntity::AStaticEntity(const std::string &name, std::pair<int, int> &pos, int type, Map *map, Rect *r):
-  AEntity(name, pos, type, map), rect(r)
+AStaticEntity::AStaticEntity(const std::string &name, Rect &pos, int type, Map *map, Rect *tile):
+  AEntity(name, pos, type, map), rect(tile)
 {
 
 }

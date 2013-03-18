@@ -56,7 +56,7 @@ int				Trame::getTransmitter(const std::string& trame)
 }
 
 
-std::string			buildTrame(const std::string &name,
+std::string			Trame::buildTrame(const std::string &name,
 					   int transmitter,
 					   std::vector<std::string> targets,
 					   std::vector<std::string> args)
@@ -76,6 +76,16 @@ std::string			buildTrame(const std::string &name,
   std::for_each(args.begin(), args.end(), buff);
   buff.putSeparator('|');
   return (buff.getBuffer());
+}
+
+int				Trame::toInt(const std::string &str)
+{
+  int	res;
+  std::stringstream	ss;
+
+  ss << str;
+  ss >> res;
+  return (res);
 }
 
 void	Trame::TrameBuffer::operator()(std::string s)

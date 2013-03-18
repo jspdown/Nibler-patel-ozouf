@@ -34,9 +34,12 @@ public:
   void					delEntity(unsigned int layer, IEntity* item);
   void					delEntity(IEntity* item);
   std::vector< std::list<IEntity*> > &	getElements() const;
-
+  
   std::deque<Rect*>			getAuxDisplay(int uid) const;
   void					setAuxDisplay(int uid, std::deque<Rect*>&aux_display);
+  HandleEvent				*getHandleEvent()	const;
+
+  void					setEventHandler(HandleEvent *e);
 };
 
 #endif /* !__MAP_H__ */

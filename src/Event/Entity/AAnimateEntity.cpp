@@ -2,7 +2,7 @@
 #include	"AAnimateEntity.hh"
 
 AAnimateEntity::AAnimateEntity(const std::string &name,
-			       std::pair<int, int> &pos,
+			       Rect &pos,
 			       int type,
 			       Map *map,
 			       std::pair<int, int> unit_size,

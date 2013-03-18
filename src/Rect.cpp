@@ -96,3 +96,34 @@ void			Rect::state()
   std::cout << ", width = " << this->size.first << ", height = " << this->size.second;
   std::cout << ", str = [" << this->str << "], texture = [" << this->texture << "];" << std::endl;
 }
+
+bool			Rect::is_inside(const Rect &other)
+{
+  if ((this->pos.first >= other.getPos().first + other.getSize().first) ||
+      (this->pos.first + this->size.first <= other.getPos().first) || 
+      (this->pos.second >= other.getPos().second + other.getSize().second) ||
+      (this->pos.second + this->size.second <= other.getPos().second))
+    return (false);
+  return (true);
+}
+
+std::vector<std::string>	Rect::posStr()	const
+{
+  std::stringstream	ss;
+  std::string		l;
+  std::vector<std::string>	res;
+
+  ss << this->pos.first;
+  ss >> l;
+  res.push_back(l);
+  ss << this->pos.second;
+  ss >> l;
+  res.push_back(l);
+  ss << this->size.first;
+  ss >> l;
+  res.push_back(l);
+  ss << this->size.second;
+  ss >> l;
+  res.push_back(l);
+  return (res);
+}

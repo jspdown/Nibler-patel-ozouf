@@ -12,12 +12,12 @@ class AStaticEntity : public AEntity
 {
   Rect	*rect;
 public:
-  AStaticEntity(const std::string &name, std::pair<int, int> &pos, int type, Map *map, Rect *r);
+  AStaticEntity(const std::string &name, Rect &pos, int type, Map *map, Rect *tile);
   virtual ~AStaticEntity();
   AStaticEntity(const AStaticEntity &other);
   AStaticEntity	&operator=(const AStaticEntity &other);
 
-  virtual Rect	*getRect()	const = 0;
+  virtual Rect	*getRect()	const;
 };
 
 #endif

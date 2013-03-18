@@ -4,7 +4,7 @@
 
 int	AEntity::id = 0;
 
-AEntity::AEntity(const std::string &name, std::pair<int, int> &pos, int type, Map *map) :
+AEntity::AEntity(const std::string &name, Rect &pos, int type, Map *map) :
   map(map), name(name), pos(pos), type(type), unique_id(id)
 {
   ++id;
@@ -39,9 +39,9 @@ void	AEntity::state()	const
 	    << "] name = "
 	    << this->name
 	    << ", pos = ("
-	    << this->pos.first
+	    << this->pos.getPos().first
 	    << ","
-	    << this->pos.second
+	    << this->pos.getPos().second
 	    << "), type "
 	    << this->type
 	    << " ."
@@ -73,7 +73,7 @@ std::string const		&AEntity::getName()	const
   return (this->name);
 }
 
-std::pair<int, int> const	&AEntity::getPos()	const
+Rect	AEntity::getPos()	const
 {
   return (this->pos);
 }
@@ -81,4 +81,25 @@ std::pair<int, int> const	&AEntity::getPos()	const
 Map			*AEntity::getMap()	const
 {
   return (this->map);
+}
+
+void	AEntity::setCurrentTime(const clock_t &current_time)
+{
+  this->current_time = current_time;
+}
+void	AEntity::setMap(Map *m)
+{
+  this->map = m;
+}
+void	AEntity::setName(const std::string &name)
+{
+  this->name = name;
+}
+void	AEntity::setPos(Rect &pos)
+{
+  this->pos = pos;
+}
+void	AEntity::setType(int type)
+{
+  this->type = type;
 }
