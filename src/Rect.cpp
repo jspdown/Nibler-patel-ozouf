@@ -5,14 +5,16 @@
 // Login   <kevin platel@epitech.net>
 //
 // Started on  Tue Mar 12 22:59:45 2013 vink
-// Last update Mon Mar 18 16:11:46 2013 vink
+// Last update Mon Mar 18 22:20:11 2013 vink
 //
 
 #include <iostream>
 #include <utility>
+#include <sstream>
+
 #include "Rect.hh"
 
-Rect::Rect(int x, int y, int width, int height, std::string const &str, st::string const &texture)
+Rect::Rect(int x, int y, int width, int height, std::string const &str, std::string const &texture)
 {
   this->pos.first = x;
   this->pos.second = y;
@@ -38,12 +40,12 @@ Rect::~Rect()
 {
 }
 
-std::pair<int,int>&	Rect::getPos() const
+std::pair<int,int> const &	Rect::getPos() const
 {
   return (this->pos);
 }
 
-std::pair<int,int>&	Rect::getSize() const
+std::pair<int,int> const &	Rect::getSize() const
 {
   return (this->size);
 }
@@ -100,7 +102,7 @@ void			Rect::state()
 bool			Rect::is_inside(const Rect &other)
 {
   if ((this->pos.first >= other.getPos().first + other.getSize().first) ||
-      (this->pos.first + this->size.first <= other.getPos().first) || 
+      (this->pos.first + this->size.first <= other.getPos().first) ||
       (this->pos.second >= other.getPos().second + other.getSize().second) ||
       (this->pos.second + this->size.second <= other.getPos().second))
     return (false);

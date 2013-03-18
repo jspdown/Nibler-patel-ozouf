@@ -7,6 +7,7 @@
 // Started on  Wed Mar 13 09:54:24 2013 vink
 //
 
+#include <algorithm>
 #include <iostream>
 #include "Map.hh"
 
@@ -45,37 +46,35 @@ void					Map::addEntity(unsigned int line, IEntity* item)
 
       this->elements.push_back(tmp);
     }
-  this->elements[line].push_bask(item);
+  this->elements[line].push_back(item);
 }
 
 void					Map::delEntity(unsigned int layer, IEntity* item)
 {
   if (layer >= this->elements.size())
     return ;
-  this->elements[layer].erase(find(this->elements[layer], item));
+  (this->elements[layer]).erase(std::find(this->elements[layer].begin(), this->elements[layer].end(), item));
 }
 
 void					Map::delEntity(IEntity* item)
 {
-  if (layer >= this->elements.size())
-    return ;
   for (unsigned int i = 0; i < this->elements.size() ; i++)
-    this->elements[i].erase(find(this->elements[layer], item));
+    this->elements[i].erase(std::find(this->elements[i].begin(), this->elements[i].end(), item));
 }
 
 bool					Map::eventIsEmpty() const
 {
-  return this->event_stack.empty()
+  return this->event_stack.empty();
 }
 
-std::vector< std::list<IEntity*> > &	Map::getElements() const
+std::vector< std::list<IEntity*> > const &	Map::getElements() const
 {
   return (this->elements);
 }
 
-std::deque<Rect*>			Map::getAuxDisplay(int uid) const
+std::deque<Rect*> const &			Map::getAuxDisplay(int uid)
 {
-  return (this->aux_display[uid]);
+  return ((this->aux_display[uid]));
 }
 
 void					Map::setAuxDisplay(int uid, std::deque<Rect*>&aux_display)
