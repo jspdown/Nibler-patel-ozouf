@@ -5,7 +5,7 @@
 // Login   <kevin platel@epitech.net>
 //
 // Started on  Mon Mar 18 14:36:41 2013 vink
-// Last update Tue Mar 19 14:29:59 2013 vink
+// Last update Tue Mar 19 14:59:38 2013 vink
 //
 
 #include "MainWindow.hh"
@@ -22,6 +22,7 @@ ncurses::MainWindow::MainWindow()
   initscr();
   cbreak();
   noecho();
+  curs_set(0);
 }
 
 ncurses::MainWindow::~MainWindow()

@@ -61,7 +61,6 @@ void	ncurses::Window::setColor(unsigned int foreground, unsigned int background)
 void	ncurses::Window::update()
 {
   wrefresh(this->win);
-  refresh();
 }
 
 void	ncurses::Window::clean()

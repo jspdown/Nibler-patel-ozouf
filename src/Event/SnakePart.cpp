@@ -2,7 +2,7 @@
 #include	"SnakePart.hh"
 
 SnakePart::SnakePart(Rect &pos, int type, Map *map, Rect *r):
-  AStaticEntity(std::string("snakepart"), pos, type, map, r)
+  AStaticEntity("snakepart", pos, type, map, r)
 {
 
 }

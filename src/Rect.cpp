@@ -5,7 +5,7 @@
 // Login   <kevin platel@epitech.net>
 //
 // Started on  Tue Mar 12 22:59:45 2013 vink
-// Last update Mon Mar 18 22:20:11 2013 vink
+// Last update Tue Mar 19 16:37:12 2013 vink
 //
 
 #include <iostream>
@@ -89,7 +89,7 @@ void			Rect::setStr(std::string const &str)
 
 void			Rect::setTexture(std::string const &texture)
 {
-  this->texture = texture;
+  this->texture = std::string(texture);
 }
 
 void			Rect::state()

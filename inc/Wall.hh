@@ -13,7 +13,6 @@ public:
   virtual ~Wall();
   Wall(const Wall &other);
   Wall	&operator=(const Wall &other);
-  
 
   void	collide(const std::string &trame);
 

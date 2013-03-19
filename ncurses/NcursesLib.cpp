@@ -5,12 +5,13 @@
 // Login   <kevin platel@epitech.net>
 //
 // Started on  Mon Mar 18 15:54:42 2013 vink
-// Last update Tue Mar 19 14:33:07 2013 vink
+// Last update Tue Mar 19 17:26:09 2013 vink
 //
 
 #include <utility>
 #include <fstream>
 #include <unistd.h>
+#include <ncurses.h>
 
 #include "Trame.hh"
 
@@ -41,19 +42,17 @@ void		NcursesLibrary::init(std::string const &texture_path, std::vector<std::str
       (this->aff)[texture[i]] = tmp;
       file.close();
     }
+  this->win.resize(80, 80);
+  this->mWin.addWindow(&this->win);
 }
 
 void		NcursesLibrary::drawRect(std::pair<int,int> const &pos, std::pair<int,int> const &size, std::string const &texture)
 {
-  ncurses::Window	*new_win = new ncurses::Window();
   char	str[2];
 
   str[1] = 0;
-  new_win->move(pos.first, pos.second);
-  new_win->resize(size.first, size.second);
   str[0] = this->aff[texture].first;
-  new_win->print(str, this->aff[texture].second);
-  this->mWin.addWindow(new_win);
+  this->win.print(str, pos.first, pos.second);
 }
 
 void		NcursesLibrary::quit()

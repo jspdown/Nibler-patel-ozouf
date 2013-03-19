@@ -10,14 +10,14 @@
 
 class AStaticEntity : public AEntity
 {
-  Rect	*rect;
+  Rect	rect;
 public:
   AStaticEntity(const std::string &name, Rect &pos, int type, Map *map, Rect *tile);
   virtual ~AStaticEntity();
   AStaticEntity(const AStaticEntity &other);
   AStaticEntity	&operator=(const AStaticEntity &other);
 
-  virtual Rect	*getRect()	const;
+  virtual Rect const	*getRect()	const;
 };
 
 #endif

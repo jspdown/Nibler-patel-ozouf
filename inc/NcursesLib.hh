@@ -9,6 +9,7 @@ class NcursesLibrary : public ILibrary
 {
 private:
   ncurses::MainWindow				mWin;
+  ncurses::Window				win;
   std::map< std::string, std::pair<char, int> >	aff;
 public:
   NcursesLibrary();
