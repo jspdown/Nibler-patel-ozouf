@@ -6,11 +6,11 @@
 #include <utility>
 #include <vector>
 #include <algorithm>
+#include <ncurses.h>
 #include "Window.hh"
 
 namespace ncurses
 {
-#include <ncurses.h>
 
   class MainWindow
   {

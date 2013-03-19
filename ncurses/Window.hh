@@ -2,10 +2,10 @@
 # define __IWINDOW_H__
 
 #include <iostream>
+#include <ncurses.h>
 
 namespace ncurses
 {
-#include <ncurses.h>
   class Window
   {
   private:

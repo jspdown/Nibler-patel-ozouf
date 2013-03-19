@@ -5,21 +5,29 @@
 // Login   <kevin platel@epitech.net>
 //
 // Started on  Mon Mar 18 22:29:46 2013 vink
-// Last update Mon Mar 18 22:42:24 2013 vink
+// Last update Tue Mar 19 01:17:16 2013 vink
 //
 
 #include <iostream>
+
+#include "Wall.hh"
+#include "SnakePart.hh"
+#include "TheGame.hh"
+
 #include "EntityFactory.hh"
 
 EntityFactory::EntityFactory()
 {
+  this->learnEntity(new SnakePart(*(new Rect()), 0, 0, 0));
+  this->learnEntity(new Wall(*(new Rect()), 0, 0, 0));
+  this->learnEntity(new TheGame(0));
 }
 
 EntityFactory::~EntityFactory()
 {
-  while (!this->entity.isEmpty())
+  while (!(this->entity.empty()))
     {
-      delete entity.top();
+      delete entity.front();
       entity.pop_front();
     }
 }
@@ -39,13 +47,12 @@ void	EntityFactory::unlearnEntity(IEntity *n)
     }
 }
 
-IEntity*	EntityFactory::newEntity(std::string const &name,
-					 Rect &pos, int type, Map *map, Rect *tile);
+IEntity*	EntityFactory::newEntity(std::string const &name, Rect &pos, int type, Map *map, Rect *tile)
 {
-    std::deque<IEntity*>::iterator it;
-  if ((it = std::find(this->entity.begin(), this->entity.end(), n)) != this->entity.end())
+  for (unsigned int i = 0; i < entity.size(); i++)
     {
-      return (*it)->clone(pos, type, map, tile);
+      if (name == (entity[i])->getName())
+	return (entity[i])->clone(pos, type, map, tile);
     }
   return 0;
 }

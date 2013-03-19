@@ -4,9 +4,11 @@
 #include <iostream>
 #include <deque>
 #include <algorithm>
-#include "IEntity"
+#include "IEntity.hh"
 #include "Rect.hh"
-#include "Map.hh"
+//#include "Map.hh"
+
+class Map;
 
 class EntityFactory
 {
@@ -17,8 +19,7 @@ public:
 
   void		learnEntity(IEntity *n);
   void		unlearnEntity(IEntity *n);
-  IEntity*	newEntity(std::string const &name,
-			  Rect &pos, int type, Map *map, Rect *tile);
+  IEntity*	newEntity(std::string const &name, Rect &pos, int type, Map *map, Rect *tile);
 };
 
 #endif /* !__ENTITYFACTORY_H__ */

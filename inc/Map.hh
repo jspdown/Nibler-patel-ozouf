@@ -10,6 +10,7 @@
 #include "HandleEvent.hh"
 #include "Rect.hh"
 #include "Config.hh"
+#include "EntityFactory.hh"
 
 class	IEntity;
 
@@ -22,6 +23,9 @@ private:
   std::map<int, std::deque<Rect*> >	aux_display;
   std::stack<std::string>		event_stack;
   std::vector< std::list<IEntity*> >	elements;
+  EntityFactory				fact;
+
+  IEntity*				getEntity(std::string const &line);
 public:
   Map(HandleEvent* event, Config *conf, std::string const &filename);
   virtual ~Map();

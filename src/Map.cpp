@@ -9,17 +9,49 @@
 
 #include <algorithm>
 #include <iostream>
+#include <sstream>
+#include <fstream>
 #include "Map.hh"
 
 Map::Map(HandleEvent* event, Config *conf, std::string const &filename)
 {
+  std::fstream file(filename.c_str());
+  std::string	str;
+
   this->conf = conf;
   this->event = event;
   this->filename = filename;
+  while (std::getline(file, str, '\n'))
+    {
+      this->getEntity(str);
+    }
 }
 
 Map::~Map()
 {
+}
+
+IEntity				       *Map::getEntity(std::string const &line)
+{
+  std::stringstream ss;
+  std::string name;
+  int	x;
+  int	y;
+  int	width;
+  int	height;
+  int	layer;
+  IEntity *tmp;
+
+  ss << line;
+  std::getline(ss, name, ' ');
+  ss >> layer;
+  ss >> x;
+  ss >> y;
+  ss >> width;
+  ss >> height;
+  tmp = this->fact.newEntity(name, *(new Rect(x, y)), 0, this, new Rect(width, height));
+  this->addEntity(layer, tmp);
+  return (tmp);
 }
 
 void					Map::pushEvent(std::string const &event)
@@ -40,7 +72,7 @@ std::string				Map::popEvent()
 
 void					Map::addEntity(unsigned int line, IEntity* item)
 {
-  while (line < this->elements.size())
+  while (line >= this->elements.size())
     {
       std::list<IEntity*> tmp;
 

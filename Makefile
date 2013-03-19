@@ -9,19 +9,24 @@ SRC_PATH	=	./src/
 EVENT		=	$(SRC_PATH)Event/
 EVENT_HANDLER	=	$(EVENT)Handler/
 EVENT_ENTITY	=	$(EVENT)Entity/
+LIBRARY		=	$(SRC_PATH)Library/
 
 SRC	=	$(EVENT_HANDLER)HandleEvent.cpp \
 		$(EVENT_HANDLER)Listener.cpp \
 		$(EVENT_HANDLER)Trame.cpp \
 		$(EVENT_ENTITY)AEntity.cpp \
+		$(EVENT_ENTITY)EntityFactory.cpp \
 		$(EVENT_ENTITY)AStaticEntity.cpp \
 		$(EVENT_ENTITY)AAnimateEntity.cpp \
 		$(SRC_PATH)Map.cpp \
 		$(SRC_PATH)Rect.cpp \
+		$(SRC_PATH)Config.cpp \
 		$(EVENT)Snake.cpp \
 		$(EVENT)SnakePart.cpp \
 		$(EVENT)TheGame.cpp \
 		$(EVENT)Wall.cpp \
+		$(SRC_PATH)main.cpp \
+		$(LIBRARY)Engine.cpp \
 
 
 
@@ -31,7 +36,7 @@ INC	=	-I $(INC_PATH)
 
 CC	=	g++
 
-CPPFLAGS	+=	-Wall -W $(INC) -g
+CPPFLAGS	+=	-Wall -W $(INC) -g -ldl
 
 
 # Rules
