@@ -4,7 +4,6 @@
 Wall::Wall(Rect &pos, int type, Map *map, Rect *tile) :
   AStaticEntity("wall", pos, type, map, tile)
 {
-
 }
 
 Wall::~Wall()
@@ -15,7 +14,7 @@ Wall::~Wall()
 Wall::Wall(const Wall &other):
   AStaticEntity(other)
 {
-  
+
 }
 
 void	Wall::collide(const std::string &trame)
@@ -24,9 +23,9 @@ void	Wall::collide(const std::string &trame)
 
   if (args.size() == 4)
     {
-      if (this->pos.is_inside(Rect(Trame::toInt(args[0]), 
-				   Trame::toInt(args[1]), 
-				   Trame::toInt(args[2]), 
+      if (this->pos.is_inside(Rect(Trame::toInt(args[0]),
+				   Trame::toInt(args[1]),
+				   Trame::toInt(args[2]),
 				   Trame::toInt(args[3]))))
 	{
 	  std::vector<std::string>	s_targets;
@@ -44,12 +43,12 @@ void	Wall::collide(const std::string &trame)
 
 void	Wall::update()
 {
-  
+
 }
 
 void	Wall::init()
 {
-  
+
 }
 
 Wall *Wall::clone(Rect &pos, int type, Map *map, Rect *r)	const

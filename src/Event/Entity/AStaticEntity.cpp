@@ -4,6 +4,8 @@ AStaticEntity::AStaticEntity(const std::string &name, Rect &pos, int type, Map *
   AEntity(name, pos, type, map)
 {
   this->rect.setPos(pos.getPos());
+  if (tile)
+    this->rect.setSize(tile->getPos());
   this->rect.setTexture(name);
 }
 
