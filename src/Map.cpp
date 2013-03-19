@@ -49,7 +49,6 @@ IEntity				       *Map::getEntity(std::string const &line)
   ss >> y;
   ss >> width;
   ss >> height;
-  std::cout << "-> " << width << " " << height << std::endl;
   tmp = this->fact.newEntity(name, *(new Rect(x, y)), 0, this, new Rect(width, height));
   this->addEntity(layer, tmp);
   return (tmp);

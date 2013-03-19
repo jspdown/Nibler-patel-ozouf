@@ -39,7 +39,6 @@ void	SfmlLibrary::drawRect(std::pair<int,int> const &pos, std::pair<int,int> con
 
   s.setPosition(pos.first, pos.second);
   s.setTextureRect(sf::IntRect(0, 0, size.first, size.second));
-  std::cout << size.first << " " << size.second << std::endl;
   this->mWin.draw(s);
 }
 
