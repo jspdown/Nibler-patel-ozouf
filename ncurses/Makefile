@@ -5,6 +5,7 @@ OBJ_EXT	=	o
 
 INC_PATH	=	../inc/
 SRC_PATH	=	./
+SRC_AUX		=	../src/
 
 SRC	=	$(SRC_PATH)MainWindow.cpp \
 		$(SRC_PATH)NcursesLib.cpp \

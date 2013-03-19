@@ -9,19 +9,17 @@ class NcursesLibrary : public ILibrary
 {
 private:
   ncurses::MainWindow				mWin;
-  const Config					*conf;
-  Map						*map;
   std::map< std::string, std::pair<char, int> >	aff;
 public:
   NcursesLibrary();
   virtual ~NcursesLibrary();
 
-  void		drawRect(Rect* rec);
-  void		init(Config const &config);
-  void		loop(Map const &config);
-  void		quit();
-  void		reload(Config const &config);
-  void		updateEvent(std::stack<std::string> &event);
+  virtual void		drawRect(std::pair<int,int> const &pos, std::pair<int,int> const &size, std::string const &texture);
+  virtual void		init(std::string const &texture_path, std::vector<std::string> const &texture);
+  virtual void		update();
+  virtual void		quit();
+  virtual void		reload(std::string const &texture_path, std::vector<std::string> const &texture);
+  virtual void		updateEvent(std::stack<std::string> &event);
 };
 
 #endif /* !__NCURSESLIB_H__ */

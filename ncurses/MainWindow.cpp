@@ -5,7 +5,7 @@
 // Login   <kevin platel@epitech.net>
 //
 // Started on  Mon Mar 18 14:36:41 2013 vink
-// Last update Mon Mar 18 15:39:50 2013 vink
+// Last update Tue Mar 19 14:29:59 2013 vink
 //
 
 #include "MainWindow.hh"
@@ -71,6 +71,12 @@ ncurses::Window*	ncurses::MainWindow::delWindow( ncurses::Window *win)
 int	ncurses::MainWindow::getCh()
 {
   return (getch());
+}
+
+void	ncurses::MainWindow::update()
+{
+  std::for_each(this->sub_win.begin(), this->sub_win.end(), updateWindow);
+  refresh();
 }
 
 void	ncurses::MainWindow::mainLoop()

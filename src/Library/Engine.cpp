@@ -5,9 +5,12 @@
 // Login   <platel_k@epitech.net>
 //
 // Started on  Mon Mar 18 17:25:26 2013 kevin platel
-// Last update Mon Mar 18 21:54:55 2013 vink
+// Last update Tue Mar 19 14:44:16 2013 vink
 //
 
+#include <unistd.h>
+
+#include "Trame.hh"
 #include "Engine.hh"
 
 Engine::Engine(std::string const &lib)
@@ -24,7 +27,8 @@ Engine::Engine(std::string const &lib)
 
 void	Engine::init(Config const &conf)
 {
-  this->lib->init(conf);
+  this->conf = &conf;
+  this->lib->init(conf.getTexturePath(), conf.getTexture());
 }
 
 void	Engine::quit()
@@ -33,5 +37,23 @@ void	Engine::quit()
 
 void	Engine::run(Map const &map)
 {
-  this->lib->loop(map);
+  std::vector< std::list<IEntity*> > const &  toAff = map.getElements();
+
+  while (1) // change to quit event
+    {
+      for (unsigned int i = 0; i < toAff.size(); ++i)
+	{
+	  std::list<IEntity*>::const_iterator it = toAff[i].begin();
+	  while (it != toAff[i].end())
+	    {
+	      (*it)->update();
+	      this->lib->drawRect((*it)->getRect()->getPos(),
+			     (*it)->getRect()->getSize(),
+			     (*it)->getRect()->getTexture());
+	      it++;
+	    }
+	}
+      this->lib->update();
+      usleep(this->conf->getWaitTime());
+    }
 }

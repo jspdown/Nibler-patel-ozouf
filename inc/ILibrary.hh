@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <exception>
-
+#include <utility>
 #include "Map.hh"
 #include "Config.hh"
 
@@ -12,11 +12,11 @@ class ILibrary
 public:
   virtual ~ILibrary() {};
 
-  virtual void		drawRect(Rect* rec) = 0;
-  virtual void		init(Config const &config) = 0;
-  virtual void		loop(Map const &map) = 0;
+  virtual void		drawRect(std::pair<int,int> const &pos, std::pair<int,int> const &size, std::string const &texture) = 0;
+  virtual void		init(std::string const &texture_path, std::vector<std::string> const &texture) = 0;
+  virtual void		update() = 0;
   virtual void		quit() = 0;
-  virtual void		reload(Config const &config) = 0;
+  virtual void		reload(std::string const &texture_path, std::vector<std::string> const &texture) = 0;
   virtual void		updateEvent(std::stack<std::string> &event) = 0;
 };
 

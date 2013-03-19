@@ -5,7 +5,7 @@
 // Login   <kevin platel@epitech.net>
 //
 // Started on  Mon Mar 18 15:54:42 2013 vink
-// Last update Tue Mar 19 01:37:01 2013 vink
+// Last update Tue Mar 19 14:33:07 2013 vink
 //
 
 #include <utility>
@@ -19,18 +19,14 @@
 
 NcursesLibrary::NcursesLibrary()
 {
-  this->conf = NULL;
-  this->map = NULL;
 }
 
 NcursesLibrary::~NcursesLibrary()
 {
 }
 
-void		NcursesLibrary::init(Config const &conf)
+void		NcursesLibrary::init(std::string const &texture_path, std::vector<std::string> const &texture)
 {
-  std::string texture_path = conf.getTexturePath();
-  std::vector<std::string> texture = conf.getTexture();
   char	c;
   int	col;
 
@@ -47,57 +43,35 @@ void		NcursesLibrary::init(Config const &conf)
     }
 }
 
-void		NcursesLibrary::drawRect(Rect *rec)
+void		NcursesLibrary::drawRect(std::pair<int,int> const &pos, std::pair<int,int> const &size, std::string const &texture)
 {
   ncurses::Window	*new_win = new ncurses::Window();
-  std::pair<int, int> const	&tmpPos = rec->getPos();
   char	str[2];
 
   str[1] = 0;
-  new_win->move(tmpPos.first, tmpPos.second);
-  std::pair<int, int> const	&tmpSize = rec->getSize();
-  new_win->resize(tmpSize.first, tmpSize.second);
-  str[0] = this->aff[rec->getTexture()].first;
-  new_win->print(str, this->aff[rec->getTexture()].second);
+  new_win->move(pos.first, pos.second);
+  new_win->resize(size.first, size.second);
+  str[0] = this->aff[texture].first;
+  new_win->print(str, this->aff[texture].second);
   this->mWin.addWindow(new_win);
 }
 
 void		NcursesLibrary::quit()
 {
-
 }
 
-void		NcursesLibrary::reload(Config const &config)
+void		NcursesLibrary::reload(std::string const &texture_path, std::vector<std::string> const &texture)
 {
-  this->init(config);
+  this->init(texture_path, texture);
 }
 
 void		NcursesLibrary::updateEvent(std::stack<std::string> &)
 {
-
 }
 
-void		NcursesLibrary::loop(Map const &map)
+void		NcursesLibrary::update()
 {
-  std::vector< std::list<IEntity*> > const &  toAff = map.getElements();
-  char	c[2];
-
-  c[1] = 0;
-  while ((c[0] = this->mWin.getCh()) != 'q')
-    {
-      map.getHandleEvent()->emit(Trame::buildTrame(c, -1, std::vector<std::string>(), std::vector<std::string>()));
-      for (unsigned int i = 0; i < toAff.size(); ++i)
-	{
-	  std::list<IEntity*>::const_iterator it = toAff[i].begin();
-	  while (it != toAff[i].end())
-	    {
-	      (*it)->update();
-	      this->drawRect((*it)->getRect());
-	      it++;
-	    }
-	}
-      usleep(this->conf->getWaitTime());
-    }
+  this->mWin.update();
 }
 
 extern "C"

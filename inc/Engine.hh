@@ -11,7 +11,7 @@ class Engine
 {
   ILibrary*	lib;
   void		*dhandle;
-
+  Config const	*conf;
 public:
   Engine(std::string const &lib);
   virtual ~Engine() {};

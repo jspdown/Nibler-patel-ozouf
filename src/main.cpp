@@ -5,7 +5,7 @@
 // Login   <kevin platel@epitech.net>
 //
 // Started on  Mon Mar 18 22:07:15 2013 vink
-// Last update Tue Mar 19 01:38:01 2013 vink
+// Last update Tue Mar 19 14:44:47 2013 vink
 //
 
 #include <iostream>
@@ -27,5 +27,8 @@ int main(int argc, char *argv[])
   texture.push_back("snakepart");
   Config	conf(10,10, texture, "./ressource/texture", 1, 1, 50);
   Map		map(&e, &conf, "./ressource/map/map-1.conf");
+
+  eng.init(conf);
+  eng.run(map);
   return 0;
 }
