@@ -5,7 +5,7 @@
 // Login   <platel_k@epitech.net>
 //
 // Started on  Mon Mar 18 17:25:26 2013 kevin platel
-// Last update Wed Mar 20 21:06:40 2013 vink
+// Last update Wed Mar 20 21:20:58 2013 vink
 //
 
 #include <unistd.h>
@@ -13,6 +13,7 @@
 #include "Trame.hh"
 #include "Engine.hh"
 
+#include	"Debug.hh"
 Engine::Engine(std::string const &lib)
 {
   ILibrary*	(*new_lib)();
@@ -42,6 +43,7 @@ void	Engine::run(Map &map)
   while (1) // change to quit event
     {
       this->lib->updateEvent(map.getEvent());
+      Debug::write("inside loop");
       for (unsigned int i = 0; i < toAff.size(); ++i)
 	{
 	  std::list<IEntity*>::const_iterator it = toAff[i].begin();

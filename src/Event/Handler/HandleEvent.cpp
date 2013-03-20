@@ -16,11 +16,8 @@ HandleEvent::HandleEvent(Map *m)
 	  Listener	*child = new Listener(0);
 	  for (std::list<IEntity *>::const_iterator it = elms[i].begin(); it != elms[i].end(); ++it)
 	    {
-	      std::cout << i << std::endl;
 	      Listener	*sub_child = new Listener(*it);
 	      sub_child->setEvents((*it)->generateEventListened());
-	      if (sub_child)
-		std::cout << i << " not null" << std::endl;
 	      child->addChild(sub_child);
 	    }
 	  child->setEvents((*(elms[i].begin()))->generateEventListened());
