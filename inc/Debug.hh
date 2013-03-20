@@ -7,7 +7,7 @@
 class	Debug
 {
 public:
-  static	void write(char *);
+  static	void write(const char *);
 };
 
 #endif

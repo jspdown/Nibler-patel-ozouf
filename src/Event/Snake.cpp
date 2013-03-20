@@ -79,13 +79,16 @@ void	Snake::update()
 {
   std::vector<std::string>	s_targets;
   std::vector<std::string>	s_args;
-  //  Debug::write(
+  Debug::write("create trame collide");
   s_targets.push_back(std::string("*"));
+  Debug::write("init pos");
   s_args = this->pos.posStr();  
+  Debug::write("prepare trame");
   this->map->getHandleEvent()->emit(Trame::buildTrame("collide",
 						     this->unique_id,
 						     s_targets,
 						     s_args));
+  Debug::write("sended");
   this->move();
 }
 

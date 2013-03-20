@@ -111,6 +111,8 @@ Listener::AppliBroadcast::~AppliBroadcast()
 void	Listener::AppliBroadcast::operator()(Listener *child)
 {
   if (child != 0)
-    if (child->isListening(Trame::getName(this->trame)))
-      child->broadcast(this->trame);
+    {
+      if (child->isListening(Trame::getName(this->trame)))
+	child->broadcast(this->trame);
+    }
 }
