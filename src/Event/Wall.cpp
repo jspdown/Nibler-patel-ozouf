@@ -3,6 +3,8 @@
 #include	"Trame.hh"
 #include	"Wall.hh"
 
+#include	"Debug.hh"
+
 Wall::Wall(Rect &pos, int type, Map *map, Rect *tile) :
   AStaticEntity("wall", pos, type, map, tile)
 {
@@ -21,6 +23,8 @@ Wall::Wall(const Wall &other):
 
 void	Wall::collide(const std::string &trame)
 {
+  Debug::write("wall collide");
+	  
   std::vector<std::string> args = Trame::getArgs(trame);
 
   if (args.size() == 4)

@@ -4,6 +4,8 @@
 #include	"Trame.hh"
 #include	"Listener.hh"
 
+#include	"Debug.hh"
+
 Listener::Listener(IEntity *e):
   entity(e)
 {
@@ -69,8 +71,10 @@ void	Listener::broadcast(const std::string&trame)
 {
   Listener::AppliBroadcast	a(trame);
 
-  if (this->entity)
-    (*(this->listened[Trame::getName(trame)]))(trame);
+  if (this->entity && this->isListening(Trame::getName(trame)))
+    {
+      (*(this->listened[Trame::getName(trame)]))(trame);
+    }
   std::for_each(this->childs.begin(), this->childs.end(), a);
 }
 
@@ -112,7 +116,10 @@ void	Listener::AppliBroadcast::operator()(Listener *child)
 {
   if (child != 0)
     {
+      Debug::write("child");
       if (child->isListening(Trame::getName(this->trame)))
-	child->broadcast(this->trame);
+	{
+	  child->broadcast(this->trame);
+	}
     }
 }

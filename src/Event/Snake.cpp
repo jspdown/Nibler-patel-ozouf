@@ -94,6 +94,8 @@ void	Snake::update()
 
 void	Snake::collide(const std::string &trame)
 {
+  Debug::write("snake collide");
+	  
   if (Trame::getTransmitter(trame) == this->unique_id)
     return ;
   std::vector<std::string> args = Trame::getArgs(trame);
