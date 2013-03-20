@@ -23,7 +23,7 @@ public:
   Snake(Rect &pos, int type, Map *map, Rect *r);
   virtual ~Snake();
   
-  void	move(const std::string &trame);
+  void	move();
   void	setDirection(e_dir d);
   void	updateQueue();
   void	addPart();

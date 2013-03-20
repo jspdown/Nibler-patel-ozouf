@@ -52,9 +52,11 @@ void	Engine::run(Map &map)
 	    {
 	      Debug::write("something to aff");
 	      (*it)->update();
+	      Debug::write("entity update");
 	      this->lib->drawRect((*it)->getRect()->getPos(),
 			     (*it)->getRect()->getSize(),
 			     (*it)->getRect()->getTexture());
+	      Debug::write("draw");
 	      it++;
 	    }
 	}

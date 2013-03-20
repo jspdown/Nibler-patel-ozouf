@@ -4,6 +4,7 @@
 #include	"Trame.hh"
 #include	"Snake.hh"
 
+#include	"Debug.hh"
 
 Snake::Snake(Rect &pos, int type, Map *map, Rect *tile):
   AStaticEntity("snake", pos, type, map, tile)
@@ -58,7 +59,7 @@ void	Snake::updateQueue()
     }
 }
 
-void	Snake::move(const std::string &)
+void	Snake::move()
 {
   int	x = this->pos.getPos().first;
   int	y = this->pos.getPos().second;
@@ -78,13 +79,14 @@ void	Snake::update()
 {
   std::vector<std::string>	s_targets;
   std::vector<std::string>	s_args;
+  //  Debug::write(
   s_targets.push_back(std::string("*"));
   s_args = this->pos.posStr();  
   this->map->getHandleEvent()->emit(Trame::buildTrame("collide",
 						     this->unique_id,
 						     s_targets,
 						     s_args));
-  this->move("now");
+  this->move();
 }
 
 void	Snake::collide(const std::string &trame)
@@ -121,7 +123,6 @@ void	Snake::addPart()
 
 void	Snake::init()
 {
-
 }
 
 Snake	*Snake::clone(Rect &pos, int type, Map *map, Rect *r)	const
@@ -139,4 +140,3 @@ std::map<std::string, IActionEvent *> Snake::generateEventListened()
   //  event["eat"] = ActionEvent(Snake::collide, this);
   return (events);
 }
-
