@@ -35,7 +35,6 @@ int main(int argc, char *argv[])
       Map		map(&conf, "./ressource/map/map-1.conf");
       Debug::write("map ok");
       
-      return (1);
       Debug::write("prepare init");
       eng.init(conf);
       Debug::write("init ok");
