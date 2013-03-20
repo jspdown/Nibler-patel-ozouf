@@ -5,7 +5,7 @@
 // Login   <kevin platel@epitech.net>
 //
 // Started on  Mon Mar 18 15:54:42 2013 vink
-// Last update Tue Mar 19 20:08:11 2013 kevin platel
+// Last update Wed Mar 20 20:57:30 2013 vink
 //
 
 #include <utility>
@@ -64,8 +64,17 @@ void		NcursesLibrary::reload(std::string const &texture_path, std::vector<std::s
   this->init(texture_path, texture);
 }
 
-void		NcursesLibrary::updateEvent(std::stack<std::string> &)
+void		NcursesLibrary::updateEvent(std::stack<std::string> &e)
 {
+  int	c;
+
+  c = this->win.getKey();
+  if (c == 'q')
+    e.push("quit|id|thegame||");
+  else if (c == KEY_LEFT)
+    e.push("left|id|snake||");
+  else if (c == KEY_RIGHT)
+    e.push("right|id|snake||");
 }
 
 void		NcursesLibrary::update()
