@@ -20,6 +20,7 @@ public:
   Listener	operator=(const Listener &other);
 
   void	addEvent(const std::string &name, IActionEvent *a);
+  void	setEvents(const std::map<std::string, IActionEvent *> &e);
   void	removeEvent(const std::string &name);
   void	addChild(Listener *l);
   void	removeChild(Listener *l);

@@ -26,3 +26,9 @@ SnakePart *SnakePart::clone(Rect &pos, int type, Map *map, Rect *r)	const
 {
   return (new SnakePart(pos, type, map, r));
 }
+
+std::map<std::string, IActionEvent *> SnakePart::generateEventListened()
+{
+  std::map<std::string, IActionEvent *>	events;
+  return (events);
+}

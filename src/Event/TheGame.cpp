@@ -1,4 +1,5 @@
 
+#include	"ActionEvent.hpp"
 #include	"TheGame.hh"
 
 TheGame::TheGame(Map *map):
@@ -35,3 +36,12 @@ TheGame *TheGame::clone(Rect &, int , Map *map, Rect *)	const
 {
   return (new TheGame(map));
 }
+
+std::map<std::string, IActionEvent *> TheGame::generateEventListened()
+{
+  std::map<std::string, IActionEvent *>	events;
+
+  events["endofgame"] = new ActionEvent<TheGame>(&TheGame::endOfGame, this);
+  return (events);
+}
+

@@ -29,6 +29,11 @@ Listener	Listener::operator=(const Listener &other)
   return (*this);
 }
 
+void	Listener::setEvents(const std::map<std::string, IActionEvent *> &e)
+{
+  this->listened = e;
+}
+
 void	Listener::addEvent(const std::string &name, IActionEvent *a)
 {
   this->listened[name] = a;
