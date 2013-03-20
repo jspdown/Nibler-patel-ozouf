@@ -12,15 +12,15 @@
 
 #include "Wall.hh"
 #include "SnakePart.hh"
-#include "TheGame.hh"
+#include "Snake.hh"
 
 #include "EntityFactory.hh"
 
 EntityFactory::EntityFactory()
 {
+  this->learnEntity(new Snake(*(new Rect()), 0, 0, 0));
   this->learnEntity(new SnakePart(*(new Rect()), 0, 0, 0));
   this->learnEntity(new Wall(*(new Rect()), 0, 0, 0));
-  this->learnEntity(new TheGame(0));
 }
 
 EntityFactory::~EntityFactory()
@@ -54,5 +54,5 @@ IEntity*	EntityFactory::newEntity(std::string const &name, Rect &pos, int type, 
       if (name == (entity[i])->getName())
 	return (entity[i])->clone(pos, type, map, tile);
     }
-  return 0;
+  return (0);
 }

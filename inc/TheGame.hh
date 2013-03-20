@@ -12,6 +12,7 @@ public:
   virtual ~TheGame();
 
   void	endOfGame(const std::string &trame);
+  void	quit(const std::string &trame);
 
   virtual void	update();
   virtual void	init();
