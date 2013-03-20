@@ -13,7 +13,7 @@
 #include <fstream>
 #include "Map.hh"
 
-Map::Map(HandleEvent* event, Config *conf, std::string const &filename)
+Map::Map(Config *conf, std::string const &filename)
 {
   std::fstream file(filename.c_str());
   std::string	str;
@@ -25,6 +25,7 @@ Map::Map(HandleEvent* event, Config *conf, std::string const &filename)
     {
       this->getEntity(str);
     }
+  this->event = new HandleEvent(this);
 }
 
 Map::~Map()
@@ -50,6 +51,8 @@ IEntity				       *Map::getEntity(std::string const &line)
   ss >> width;
   ss >> height;
   tmp = this->fact.newEntity(name, *(new Rect(x, y)), 0, this, new Rect(width, height));
+  if (!tmp)
+    return (0);
   this->addEntity(layer, tmp);
   return (tmp);
 }

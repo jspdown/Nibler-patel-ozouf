@@ -1,4 +1,5 @@
 
+#include	"ActionEvent.hpp"
 #include	"TheGame.hh"
 
 TheGame::TheGame(Map *map):
@@ -21,6 +22,11 @@ void	TheGame::endOfGame(const std::string &)
   this->map->setAuxDisplay(this->unique_id, menu);
 }
 
+void	TheGame::quit(const std::string &)
+{
+  std::cout << "je quit" << std::endl;
+}
+
 void	TheGame::update()
 {
   
@@ -35,3 +41,13 @@ TheGame *TheGame::clone(Rect &, int , Map *map, Rect *)	const
 {
   return (new TheGame(map));
 }
+
+std::map<std::string, IActionEvent *> TheGame::generateEventListened()
+{
+  std::map<std::string, IActionEvent *>	events;
+
+  events["endofgame"] = new ActionEvent<TheGame>(&TheGame::endOfGame, this);
+  events["quit"] = new ActionEvent<TheGame>(&TheGame::quit, this);
+  return (events);
+}
+

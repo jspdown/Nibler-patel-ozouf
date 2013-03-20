@@ -27,7 +27,7 @@ private:
 
   IEntity*				getEntity(std::string const &line);
 public:
-  Map(HandleEvent* event, Config *conf, std::string const &filename);
+  Map(Config *conf, std::string const &filename);
   virtual ~Map();
 
   void					open(std::string const &filename);

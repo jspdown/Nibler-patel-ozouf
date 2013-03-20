@@ -6,7 +6,6 @@
 #include <algorithm>
 #include "IEntity.hh"
 #include "Rect.hh"
-//#include "Map.hh"
 
 class Map;
 

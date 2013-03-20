@@ -1,4 +1,5 @@
 
+#include	"ActionEvent.hpp"
 #include	"SnakePart.hh"
 #include	"Trame.hh"
 #include	"Snake.hh"
@@ -127,3 +128,15 @@ Snake	*Snake::clone(Rect &pos, int type, Map *map, Rect *r)	const
 {
   return (new Snake(pos, type, map, r));
 }
+
+std::map<std::string, IActionEvent *> Snake::generateEventListened()
+{
+  std::map<std::string, IActionEvent *>	events;
+
+  events["collide"] = new ActionEvent<Snake>(&Snake::collide, this);
+  events["left"] = new ActionEvent<Snake>(&Snake::move_left, this);
+  events["right"] = new ActionEvent<Snake>(&Snake::move_right, this);
+  //  event["eat"] = ActionEvent(Snake::collide, this);
+  return (events);
+}
+

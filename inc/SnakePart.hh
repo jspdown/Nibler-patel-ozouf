@@ -13,6 +13,7 @@ public:
   virtual void	update();
   virtual void	init();
   virtual SnakePart *clone(Rect &pos, int type, Map *map, Rect *r)	const;
+  virtual std::map<std::string, IActionEvent *> generateEventListened();
 };
 
 #endif

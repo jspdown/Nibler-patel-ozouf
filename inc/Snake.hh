@@ -24,16 +24,20 @@ public:
   virtual ~Snake();
   
   void	move(const std::string &trame);
-  void	move_left(const std::string &trame);
-  void	move_right(const std::string &trame);
   void	setDirection(e_dir d);
   void	updateQueue();
   void	addPart();
+
   void	collide(const std::string &trame);
+  void	move_left(const std::string &trame);
+  void	move_right(const std::string &trame);
 
   virtual void	update();
   virtual void	init();
   virtual Snake *clone(Rect &pos, int type, Map *map, Rect *r)	const;
+
+  virtual std::map<std::string, IActionEvent *> generateEventListened();
+
 };
 
 #endif

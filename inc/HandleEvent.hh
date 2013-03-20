@@ -2,6 +2,8 @@
 #ifndef		__HANDLEEVENT_HH__
 # define	__HANDLEEVENT_HH__
 
+#include	<vector>
+#include	<list>
 #include	<string>
 #include	<stack>
 #include	"Listener.hh"
@@ -10,7 +12,7 @@ class	HandleEvent
 {
   Listener	*listeners;
 public:
-  HandleEvent(Listener *l);
+  HandleEvent(Map *m);
   ~HandleEvent();
   HandleEvent(const HandleEvent &other);
   HandleEvent	&operator=(const HandleEvent &other);

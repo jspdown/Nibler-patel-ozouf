@@ -1,3 +1,5 @@
+
+#include	"ActionEvent.hpp"
 #include	"Trame.hh"
 #include	"Wall.hh"
 
@@ -54,4 +56,12 @@ void	Wall::init()
 Wall *Wall::clone(Rect &pos, int type, Map *map, Rect *r)	const
 {
   return (new Wall(pos, type, map, r));
+}
+
+std::map<std::string, IActionEvent *> Wall::generateEventListened()
+{
+  std::map<std::string, IActionEvent *>	events;
+
+  events["collide"] = new ActionEvent<Wall>(&Wall::collide, this);
+  return (events);
 }
