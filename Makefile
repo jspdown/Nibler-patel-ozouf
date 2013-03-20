@@ -26,6 +26,7 @@ SRC	=	$(EVENT_HANDLER)HandleEvent.cpp \
 		$(EVENT)TheGame.cpp \
 		$(EVENT)Wall.cpp \
 		$(SRC_PATH)main.cpp \
+		$(SRC_PATH)Debug.cpp \
 		$(LIBRARY)Engine.cpp \
 
 

@@ -13,6 +13,7 @@
 #include "Trame.hh"
 #include "Engine.hh"
 
+#include	"Debug.hh"
 Engine::Engine(std::string const &lib)
 {
   ILibrary*	(*new_lib)();
@@ -38,9 +39,10 @@ void	Engine::quit()
 void	Engine::run(Map const &map)
 {
   std::vector< std::list<IEntity*> > const &  toAff = map.getElements();
-
+  
   while (1) // change to quit event
     {
+      Debug::write("inside loop");
       for (unsigned int i = 0; i < toAff.size(); ++i)
 	{
 	  std::list<IEntity*>::const_iterator it = toAff[i].begin();
