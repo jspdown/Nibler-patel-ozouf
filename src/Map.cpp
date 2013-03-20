@@ -73,6 +73,11 @@ std::string				Map::popEvent()
   return (tmp);
 }
 
+std::stack<std::string>	&		Map::getEvent()
+{
+  return (this->event_stack);
+}
+
 void					Map::addEntity(unsigned int line, IEntity* item)
 {
   while (line >= this->elements.size())

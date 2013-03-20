@@ -18,7 +18,7 @@ public:
 
   void	init(Config const &conf);
   void	quit();
-  void	run(Map const &map);
+  void	run(Map &map);
 };
 
 class LibraryLoadError : public std::exception

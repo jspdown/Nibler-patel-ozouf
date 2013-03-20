@@ -35,6 +35,7 @@ public:
   void					pushEvent(std::string const &event);
   std::string				popEvent();
   bool					eventIsEmpty() const;
+  std::stack<std::string> &		getEvent();
 
   void					addEntity(unsigned int layer, IEntity* item);
   void					delEntity(unsigned int layer, IEntity* item);

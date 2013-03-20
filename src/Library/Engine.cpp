@@ -5,7 +5,7 @@
 // Login   <platel_k@epitech.net>
 //
 // Started on  Mon Mar 18 17:25:26 2013 kevin platel
-// Last update Tue Mar 19 14:44:16 2013 vink
+// Last update Wed Mar 20 21:06:40 2013 vink
 //
 
 #include <unistd.h>
@@ -35,12 +35,13 @@ void	Engine::quit()
 {
 }
 
-void	Engine::run(Map const &map)
+void	Engine::run(Map &map)
 {
   std::vector< std::list<IEntity*> > const &  toAff = map.getElements();
 
   while (1) // change to quit event
     {
+      this->lib->updateEvent(map.getEvent());
       for (unsigned int i = 0; i < toAff.size(); ++i)
 	{
 	  std::list<IEntity*>::const_iterator it = toAff[i].begin();
