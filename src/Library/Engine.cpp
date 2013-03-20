@@ -45,9 +45,11 @@ void	Engine::run(Map const &map)
       Debug::write("inside loop");
       for (unsigned int i = 0; i < toAff.size(); ++i)
 	{
+	  Debug::write("Layer");
 	  std::list<IEntity*>::const_iterator it = toAff[i].begin();
 	  while (it != toAff[i].end())
 	    {
+	      Debug::write("something to aff");
 	      (*it)->update();
 	      this->lib->drawRect((*it)->getRect()->getPos(),
 			     (*it)->getRect()->getSize(),
@@ -55,7 +57,11 @@ void	Engine::run(Map const &map)
 	      it++;
 	    }
 	}
+      Debug::write("prepare lib update");
       this->lib->update();
+      Debug::write("lib update ok");
+      Debug::write("begin timer");
       usleep(this->conf->getWaitTime());
+      Debug::write("end timer");
     }
 }
