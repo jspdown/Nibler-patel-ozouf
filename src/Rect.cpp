@@ -101,12 +101,9 @@ void			Rect::state()
 
 bool			Rect::is_inside(const Rect &other)
 {
-  if ((this->pos.first >= other.getPos().first + other.getSize().first) ||
-      (this->pos.first + this->size.first <= other.getPos().first) ||
-      (this->pos.second >= other.getPos().second + other.getSize().second) ||
-      (this->pos.second + this->size.second <= other.getPos().second))
-    return (false);
-  return (true);
+  if (this->pos.first == other.getPos().first && this->pos.second == other.getPos().second)
+    return (true);
+  return (false);
 }
 
 std::vector<std::string>	Rect::posStr()	const

@@ -74,15 +74,11 @@ void	Listener::broadcast(const std::string&trame)
 {
   Listener::AppliBroadcast	a(trame);
 
-  Debug::write("Start broad\n");
   if (this->entity && this->isListening(Trame::getName(trame)))
     {
-      Debug::write(std::string("pass isListen on " + trame).c_str());
       (*(this->listened[Trame::getName(trame)]))(trame);
     }
-  Debug::write(std::string("pass if on " + trame).c_str());
   std::for_each(this->childs.begin(), this->childs.end(), a);
-  Debug::write("end broad");
 }
 
 void	Listener::update()

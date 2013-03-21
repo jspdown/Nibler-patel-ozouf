@@ -24,20 +24,22 @@ Wall::Wall(const Wall &other):
 void	Wall::collide(const std::string &trame)
 {
   std::vector<std::string> args = Trame::getArgs(trame);
-
   if (args.size() == 4)
     {
+      Debug::write("WALL ", this->pos->getPos().first, this->pos->getPos().first);
+      Debug::write("SNAKE ", Trame::toInt(args[0]), Trame::toInt(args[1]));
       if (this->pos->is_inside(Rect(Trame::toInt(args[0]),
 				   Trame::toInt(args[1]),
 				   Trame::toInt(args[2]),
 				   Trame::toInt(args[3]))))
 	{
+	  Debug::write("COLLIDE#############################");
 	  std::vector<std::string>	s_targets;
 	  std::vector<std::string>	s_args;
 	  s_targets.push_back(std::string("theGame"));
 	  s_args.push_back(std::string("collide with a wall"));
 
-	  this->map->getHandleEvent()->emit(Trame::buildTrame("endOfGame",
+	  this->map->getHandleEvent()->emit(Trame::buildTrame(/*"endOfGame"*/ "quit",
 							     this->unique_id,
 							     s_targets,
 							     s_args));
