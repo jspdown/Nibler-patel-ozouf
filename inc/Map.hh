@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <deque>
+#include <utility>
 #include <stack>
 #include <vector>
 #include <list>
@@ -27,7 +28,11 @@ private:
   std::stack<std::string>		event_stack;
   std::vector< std::list<IEntity*> >	elements;
   EntityFactory				fact;
+<<<<<<< HEAD
   Engine				*engine;
+=======
+  std::pair<int, int>			size;
+>>>>>>> 350999d876b22e7c8e418eeb16a87dde0ab0d2d1
 
   IEntity*				getEntity(std::string const &line);
 public:
@@ -43,6 +48,8 @@ public:
   std::string				popEvent();
   bool					eventIsEmpty() const;
   std::stack<std::string> &		getEvent();
+
+  std::pair<int, int> const &			getSize() const;
 
   void					addEntity(unsigned int layer, IEntity* item);
   void					delEntity(unsigned int layer, IEntity* item);

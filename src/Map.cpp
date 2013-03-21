@@ -17,10 +17,15 @@ Map::Map(Config *conf, std::string const &filename)
 {
   std::fstream file(filename.c_str());
   std::string	str;
+  std::stringstream ss;
 
   this->conf = conf;
   this->event = event;
   this->filename = filename;
+  std::getline(file, str, '\n');
+  ss << str;
+  ss >> this->size.first;
+  ss >> this->size.second;
   while (std::getline(file, str, '\n'))
     {
       this->getEntity(str);
@@ -30,6 +35,11 @@ Map::Map(Config *conf, std::string const &filename)
 
 Map::~Map()
 {
+}
+
+std::pair<int, int> const &		Map::getSize() const
+{
+  return (this->size);
 }
 
 IEntity				       *Map::getEntity(std::string const &line)

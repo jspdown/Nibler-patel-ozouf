@@ -5,7 +5,7 @@
 // Login   <kevin platel@epitech.net>
 //
 // Started on  Mon Mar 18 15:54:42 2013 vink
-// Last update Thu Mar 21 09:28:13 2013 vink
+// Last update Thu Mar 21 12:38:19 2013 kevin platel
 //
 
 #include <utility>
@@ -49,9 +49,12 @@ void		NcursesLibrary::init(std::string const &texture_path, std::vector<std::str
 void		NcursesLibrary::drawRect(std::pair<int,int> const &pos, std::pair<int,int> const &size, std::string const &texture)
 {
   char	str[2];
-  
+
   str[1] = 0;
-  str[0] = this->aff[texture].first;
+  if (this->aff.find(texture) != this->aff.end())
+    str[0] = this->aff[texture]->second;
+  else
+    str[0] = 'U';
   this->win.print(str, pos.first, pos.second);
 }
 
