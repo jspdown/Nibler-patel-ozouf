@@ -16,6 +16,6 @@ Trame:
 
 	snake:
 		-collide(send): "collide|id|*|x:y:h:w|"
-		-move left(send): "left|id|snake||"		from graphic engine(a|<-)
+		-move left(send): "left|id|snake#0|"		from graphic engine(a|<-)
 		-move right(send): "right|id|snake||"		from graphic engine(d|->)
 		-eat(send): "eat|id|snake|nbr_points|"
