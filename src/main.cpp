@@ -5,7 +5,7 @@
 // Login   <kevin platel@epitech.net>
 //
 // Started on  Mon Mar 18 22:07:15 2013 vink
-// Last update Tue Mar 19 20:21:06 2013 kevin platel
+// Last update Thu Mar 21 09:21:02 2013 vink
 //
 
 #include <iostream>
@@ -26,15 +26,16 @@ int main(int argc, char *argv[])
       std::vector<std::string> texture;
       Engine	eng(argv[1]);
       Debug::write("init engine");
-      
+
       texture.push_back("wall");
       texture.push_back("snakepart");
+      texture.push_back("snake");
       Debug::write("push des texture ok");
       Config	conf(10,10, texture, "./ressource/ntexture/", 1, 1, 50000);
       Debug::write("config ok");
       Map		map(&conf, "./ressource/map/map-1.conf");
       Debug::write("map ok");
-      
+
       Debug::write("prepare init");
       eng.init(conf);
       Debug::write("init ok");

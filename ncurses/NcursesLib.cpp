@@ -5,7 +5,7 @@
 // Login   <kevin platel@epitech.net>
 //
 // Started on  Mon Mar 18 15:54:42 2013 vink
-// Last update Wed Mar 20 20:57:30 2013 vink
+// Last update Thu Mar 21 09:28:13 2013 vink
 //
 
 #include <utility>
@@ -68,7 +68,7 @@ void		NcursesLibrary::updateEvent(std::stack<std::string> &e)
 {
   int	c;
 
-  c = this->win.getKey();
+  c = this->mWin.getCh();
   if (c == 'q')
     e.push("quit|id|thegame||");
   else if (c == KEY_LEFT)

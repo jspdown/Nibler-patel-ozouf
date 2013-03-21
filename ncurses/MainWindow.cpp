@@ -5,7 +5,7 @@
 // Login   <kevin platel@epitech.net>
 //
 // Started on  Mon Mar 18 14:36:41 2013 vink
-// Last update Tue Mar 19 14:59:38 2013 vink
+// Last update Thu Mar 21 09:25:45 2013 vink
 //
 
 #include "MainWindow.hh"
@@ -20,8 +20,8 @@ void	updateWindow(ncurses::Window *win)
 ncurses::MainWindow::MainWindow()
 {
   initscr();
-  cbreak();
   noecho();
+  keypad(stdscr, TRUE);
   curs_set(0);
 }
 
@@ -71,6 +71,7 @@ ncurses::Window*	ncurses::MainWindow::delWindow( ncurses::Window *win)
 
 int	ncurses::MainWindow::getCh()
 {
+  timeout(0);
   return (getch());
 }
 
