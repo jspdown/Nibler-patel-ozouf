@@ -12,7 +12,6 @@ TheGame::TheGame(Map *map):
 
 TheGame::~TheGame()
 {
-
 }
 
 void	TheGame::endOfGame(const std::string &)
@@ -27,6 +26,7 @@ void	TheGame::endOfGame(const std::string &)
 void	TheGame::quit(const std::string &)
 {
   Debug::write("quit");
+  this->map->getEngine()->setTheEnd(true);
 }
 
 void	TheGame::update()

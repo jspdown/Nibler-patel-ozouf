@@ -25,6 +25,7 @@ Engine::Engine(std::string const &lib)
   if (new_lib == NULL)
     throw LibraryLoadError("Error when loding creation symbol");
   this->lib = new_lib();
+  this->the_end = false;
 }
 
 Engine::~Engine()
@@ -46,13 +47,13 @@ void	Engine::quit()
 
 void	Engine::run(Map &map)
 {
-
-  while (1) // change to quit event
+  map.setEngine(this);
+  while (!(this->the_end))
     {
       std::vector< std::list<IEntity*> > const &  toAff = map.getElements();
-       this->lib->updateEvent(map.getEvent());
-       map.updateEvent();
-       
+      this->lib->updateEvent(map.getEvent());
+      map.updateEvent();
+      
       for (unsigned int i = 0; i < toAff.size(); ++i)
 	{
 	  
@@ -61,14 +62,19 @@ void	Engine::run(Map &map)
 	    {
 	      (*it)->update();
 	      
-	      this->lib->drawRect((*it)->getRect()->getPos(),
+	      this->lib->drawRect((*it)->getPos()->getPos(),
 			     (*it)->getRect()->getSize(),
 			     (*it)->getRect()->getTexture());
-	      Debug::write("rect", (*it)->getRect()->getPos().first, (*it)->getRect()->getPos().second);
+	      Debug::write("rect", (*it)->getPos()->getPos().first, (*it)->getPos()->getPos().second);
 	      it++;
 	    }
 	}
       this->lib->update();
        usleep(this->conf->getWaitTime());
     }
+}
+
+void		Engine::setTheEnd(bool state)
+{
+  this->the_end = state;
 }

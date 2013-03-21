@@ -11,6 +11,9 @@
 #include "Rect.hh"
 #include "Config.hh"
 #include "EntityFactory.hh"
+#include "Engine.hh"
+
+class	Engine;
 
 class	IEntity;
 
@@ -24,11 +27,15 @@ private:
   std::stack<std::string>		event_stack;
   std::vector< std::list<IEntity*> >	elements;
   EntityFactory				fact;
+  Engine				*engine;
 
   IEntity*				getEntity(std::string const &line);
 public:
   Map(Config *conf, std::string const &filename);
   virtual ~Map();
+
+  void					setEngine(Engine *e);
+  Engine				*getEngine()	const;
 
   void					open(std::string const &filename);
 

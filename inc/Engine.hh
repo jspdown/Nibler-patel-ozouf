@@ -7,11 +7,14 @@
 #include "ILibrary.hh"
 #include "Config.hh"
 
+class	Map;
+
 class Engine
 {
   ILibrary*	lib;
   void		*dhandle;
   Config const	*conf;
+  bool		the_end;
 public:
   Engine(std::string const &lib);
   virtual ~Engine();
@@ -19,7 +22,9 @@ public:
   void	init(Config const &conf);
   void	quit();
   void	run(Map &map);
+  void		setTheEnd(bool state);
 };
+
 
 class LibraryLoadError : public std::exception
 {

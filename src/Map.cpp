@@ -137,3 +137,12 @@ void					Map::updateEvent()
   while (!this->event_stack.empty())
     this->event->emit(this->popEvent());
 }
+
+void					Map::setEngine(Engine *e)
+{
+  this->engine = e;
+}
+Engine					*Map::getEngine()	const
+{
+  return (this->engine);
+}

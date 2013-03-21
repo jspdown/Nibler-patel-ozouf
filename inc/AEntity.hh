@@ -37,7 +37,7 @@ public:
   void	setCurrentTime(const clock_t &current_time);
   void	setMap(Map *m);
   void	setName(const std::string &name);
-  void	setPos(Rect *pos);
+  virtual void	setPos(Rect *pos);
   void	setType(int type);
 
   virtual const std::string &getName() const;
