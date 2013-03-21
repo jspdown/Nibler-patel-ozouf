@@ -5,7 +5,7 @@
 // Login   <kevin platel@epitech.net>
 //
 // Started on  Mon Mar 18 22:07:15 2013 vink
-// Last update Thu Mar 21 17:34:36 2013 kevin platel
+// Last update Thu Mar 21 19:24:04 2013 kevin platel
 //
 
 #include <iostream>
@@ -28,6 +28,7 @@ int main(int argc, char *argv[])
       texture.push_back("snakepart");
       texture.push_back("snake");
       texture.push_back("floor");
+      texture.push_back("food");
 
       Config	conf(10,10, texture, "./ressource/ntexture/", 1, 1, 500000);
       Map		map(&conf, "./ressource/map/map-1.conf");

@@ -47,8 +47,14 @@ void	SfmlLibrary::reload(std::string const &texture_path, std::vector<std::strin
   this->init(texture_path, texture);
 }
 
-void		SfmlLibrary::updateEvent(std::stack<std::string> &)
+void		SfmlLibrary::updateEvent(std::stack<std::string> &e)
 {
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    e.push("left|id|snake||");
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    e.push("right|id|snake||");
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+    e.push("quit|id|thegame||");
 }
 
 void		SfmlLibrary::update()

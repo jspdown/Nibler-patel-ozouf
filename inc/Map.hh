@@ -58,6 +58,7 @@ public:
   HandleEvent*				getHandleEvent() const;
   void					setHandleEvent(HandleEvent *e);
   void					updateEvent();
+  Config*				getConf();
 };
 
 #endif /* !__MAP_H__ */
