@@ -15,12 +15,12 @@ protected:
   clock_t		current_time;
   Map			*map;
   std::string		name;
-  Rect			pos;
+  Rect			*pos;
   int			type;
   int			unique_id;
 
 public:
-  AEntity(const std::string &name, Rect &pos, int type, Map *map);
+  AEntity(const std::string &name, Rect *pos, int type, Map *map);
   virtual ~AEntity();
   AEntity(const AEntity &other);
   AEntity	&operator=(const AEntity &other);
@@ -31,13 +31,13 @@ public:
   void				updateTimer();
   int				getType()	const;
   int				getUniqueId()  	const;
-  Rect				getPos()	const;
+  Rect				*getPos()	const;
   Map				*getMap()	const;
 
   void	setCurrentTime(const clock_t &current_time);
   void	setMap(Map *m);
   void	setName(const std::string &name);
-  void	setPos(Rect &pos);
+  void	setPos(Rect *pos);
   void	setType(int type);
 
   virtual const std::string &getName() const;

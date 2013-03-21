@@ -12,7 +12,7 @@ class AStaticEntity : public AEntity
 {
   Rect	rect;
 public:
-  AStaticEntity(const std::string &name, Rect &pos, int type, Map *map, Rect *tile);
+  AStaticEntity(const std::string &name, Rect *pos, int type, Map *map, Rect *tile);
   virtual ~AStaticEntity();
   AStaticEntity(const AStaticEntity &other);
   AStaticEntity	&operator=(const AStaticEntity &other);

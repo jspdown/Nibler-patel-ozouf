@@ -5,7 +5,7 @@
 // Login   <platel_k@epitech.net>
 //
 // Started on  Mon Mar 18 17:25:26 2013 kevin platel
-// Last update Thu Mar 21 14:54:37 2013 vink
+// Last update Thu Mar 21 15:17:28 2013 vink
 //
 
 #include <unistd.h>
@@ -18,13 +18,15 @@
 Engine::Engine(std::string const &lib)
 {
   ILibrary*	(*new_lib)();
+
+  this->lib = NULL;
   this->dhandle = dlopen(lib.c_str(), RTLD_LAZY);
   if (this->dhandle == NULL)
     throw LibraryLoadError("Error when loding library");
   new_lib = reinterpret_cast<ILibrary *(*)()>(dlsym(dhandle, "create_lib"));
   if (new_lib == NULL)
     throw LibraryLoadError("Error when loding creation symbol");
-  this->lib = new_lib();
+  //  this->lib = new_lib();
 }
 
 Engine::~Engine()
@@ -37,7 +39,8 @@ Engine::~Engine()
 void	Engine::init(Config const &conf)
 {
   this->conf = &conf;
-  this->lib->init(conf.getTexturePath(), conf.getTexture());
+  if (this->lib)
+    this->lib->init(conf.getTexturePath(), conf.getTexture());
 }
 
 void	Engine::quit()
@@ -50,10 +53,10 @@ void	Engine::run(Map &map)
 
   while (1) // change to quit event
     {
-      this->lib->updateEvent(map.getEvent());
+      //       this->lib->updateEvent(map.getEvent());
+       map.updateEvent();
       for (unsigned int i = 0; i < toAff.size(); ++i)
 	{
-
 	  map.updateEvent();
 	  std::list<IEntity*>::const_iterator it = toAff[i].begin();
 	  while (it != toAff[i].end())
@@ -62,10 +65,11 @@ void	Engine::run(Map &map)
 	      this->lib->drawRect((*it)->getRect()->getPos(),
 			     (*it)->getRect()->getSize(),
 			     (*it)->getRect()->getTexture());
+	      Debug::write("rect", (*it)->getRect()->getPos().first, (*it)->getRect()->getPos().second);
 	      it++;
 	    }
 	}
-      this->lib->update();
+      //      this->lib->update();
       usleep(this->conf->getWaitTime());
     }
 }

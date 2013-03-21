@@ -18,9 +18,9 @@
 
 EntityFactory::EntityFactory()
 {
-  this->learnEntity(new Snake(*(new Rect()), 0, 0, 0));
-  this->learnEntity(new SnakePart(*(new Rect()), 0, 0, 0));
-  this->learnEntity(new Wall(*(new Rect()), 0, 0, 0));
+  this->learnEntity(new Snake(new Rect(), 0, 0, 0));
+  this->learnEntity(new SnakePart(new Rect(), 0, 0, 0));
+  this->learnEntity(new Wall(new Rect(), 0, 0, 0));
 }
 
 EntityFactory::~EntityFactory()
@@ -47,7 +47,7 @@ void	EntityFactory::unlearnEntity(IEntity *n)
     }
 }
 
-IEntity*	EntityFactory::newEntity(std::string const &name, Rect &pos, int type, Map *map, Rect *tile)
+IEntity*	EntityFactory::newEntity(std::string const &name, Rect *pos, int type, Map *map, Rect *tile)
 {
   for (unsigned int i = 0; i < entity.size(); i++)
     {

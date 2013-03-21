@@ -6,7 +6,7 @@
 
 #include	"Debug.hh"
 
-Snake::Snake(Rect &pos, int type, Map *map, Rect *tile):
+Snake::Snake(Rect *pos, int type, Map *map, Rect *tile):
   AStaticEntity("snake", pos, type, map, tile)
 {
   this->speed = 1;
@@ -51,30 +51,31 @@ void	Snake::move_right(const std::string &)
 
 void	Snake::updateQueue()
 {
-  std::pair<int, int>	prev = this->pos.getPos();
+  std::pair<int, int>	prev = this->pos->getPos();
   std::pair<int, int>	tmp;
   for (unsigned int i = 1; i < this->queue.size(); ++i)
     {
-      tmp = this->queue[i]->getPos().getPos();
-      this->queue[i]->getPos().setPos(prev);
+      tmp = this->queue[i]->getPos()->getPos();
+      this->queue[i]->getPos()->setPos(prev);
       prev = tmp;
     }
 }
 
 void	Snake::move()
 {
-  int	x = this->pos.getPos().first;
-  int	y = this->pos.getPos().second;
+  int	x = this->pos->getPos().first;
+  int	y = this->pos->getPos().second;
   
   if (this->direction == Snake::LEFT)
-    this->pos.setPos(x - this->speed, y);
+    this->pos->setPos(x - this->speed, y);
   else if (this->direction == Snake::RIGHT)
-    this->pos.setPos(x + this->speed, y);
+    this->pos->setPos(x + this->speed, y);
   else if (this->direction == Snake::TOP)
-    this->pos.setPos(x, y - this->speed);
+    this->pos->setPos(x, y - this->speed);
   else
-    this->pos.setPos(x, y + this->speed);
+    this->pos->setPos(x, y + this->speed);
   this->updateQueue();
+  Debug::write("snake", this->pos->getPos().first, this->pos->getPos().second);
 }
 
 void	Snake::update()
@@ -84,13 +85,15 @@ void	Snake::update()
 
   s_targets.push_back(std::string("*"));
 
-  s_args = this->pos.posStr();  
-
+  s_args = this->pos->posStr();  
+  Debug::write("before collide");
   this->map->getHandleEvent()->emit(Trame::buildTrame("collide",
 						     this->unique_id,
 						     s_targets,
 						     s_args));
+  Debug::write("before move");
   this->move();
+  Debug::write("after move");
 }
 
 void	Snake::collide(const std::string &trame)
@@ -102,7 +105,7 @@ void	Snake::collide(const std::string &trame)
 
   if (args.size() == 4)
     {
-      if (this->pos.is_inside(Rect(Trame::toInt(args[0]), 
+      if (this->pos->is_inside(Rect(Trame::toInt(args[0]), 
 				    Trame::toInt(args[1]), 
 				    Trame::toInt(args[2]), 
 				    Trame::toInt(args[3]))))
@@ -130,7 +133,7 @@ void	Snake::init()
 {
 }
 
-Snake	*Snake::clone(Rect &pos, int type, Map *map, Rect *r)	const
+Snake	*Snake::clone(Rect *pos, int type, Map *map, Rect *r)	const
 {
   return (new Snake(pos, type, map, r));
 }

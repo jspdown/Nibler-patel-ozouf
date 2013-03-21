@@ -24,10 +24,10 @@ HandleEvent::HandleEvent(Map *m)
 	  root->addChild(child);
 	}
     }
-  TheGame	g(m);
-  Listener	game(&g);
-  game.setEvents(g.generateEventListened());
-  root->addChild(&game);
+  TheGame	*g = new TheGame(m);
+  Listener	*game = new Listener(g);
+  game->setEvents(g->generateEventListened());
+  root->addChild(game);
   root->addEvent("*", 0);
   this->listeners = root;
 }
