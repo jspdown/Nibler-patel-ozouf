@@ -75,7 +75,6 @@ void	Snake::move()
   else
     this->pos->setPos(x, y + this->speed);
   this->updateQueue();
-  std::cout << "->" << this->pos << std::endl;
   Debug::write("snake", this->pos->getPos().first, this->pos->getPos().second);
 }
 

@@ -28,11 +28,8 @@ private:
   std::stack<std::string>		event_stack;
   std::vector< std::list<IEntity*> >	elements;
   EntityFactory				fact;
-<<<<<<< HEAD
   Engine				*engine;
-=======
   std::pair<int, int>			size;
->>>>>>> 350999d876b22e7c8e418eeb16a87dde0ab0d2d1
 
   IEntity*				getEntity(std::string const &line);
 public:

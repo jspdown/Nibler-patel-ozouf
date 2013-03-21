@@ -26,12 +26,8 @@ Engine::Engine(std::string const &lib)
   new_lib = reinterpret_cast<ILibrary *(*)()>(dlsym(dhandle, "create_lib"));
   if (new_lib == NULL)
     throw LibraryLoadError("Error when loding creation symbol");
-<<<<<<< HEAD
   this->lib = new_lib();
   this->the_end = false;
-=======
-  //  this->lib = new_lib();
->>>>>>> 350999d876b22e7c8e418eeb16a87dde0ab0d2d1
 }
 
 Engine::~Engine()
@@ -57,15 +53,9 @@ void	Engine::run(Map &map)
   map.setEngine(this);
   while (!(this->the_end))
     {
-      //       this->lib->updateEvent(map.getEvent());
-      std::vector< std::list<IEntity*> > const &  toAff = map.getElements();
-<<<<<<< HEAD
       this->lib->updateEvent(map.getEvent());
+      std::vector< std::list<IEntity*> > const &  toAff = map.getElements();
       map.updateEvent();
-      
-=======
-       map.updateEvent();
->>>>>>> 350999d876b22e7c8e418eeb16a87dde0ab0d2d1
       for (unsigned int i = 0; i < toAff.size(); ++i)
 	{
 	  map.updateEvent();
@@ -73,24 +63,14 @@ void	Engine::run(Map &map)
 	  while (it != toAff[i].end())
 	    {
 	      (*it)->update();
-<<<<<<< HEAD
-	      
 	      this->lib->drawRect((*it)->getPos()->getPos(),
 			     (*it)->getRect()->getSize(),
 			     (*it)->getRect()->getTexture());
 	      Debug::write("rect", (*it)->getPos()->getPos().first, (*it)->getPos()->getPos().second);
-=======
-	      if ((*it)->getRect()->getTexture() == "snake")
-		std::cout << (*it)->getPos() << std::endl;
-	      //	      this->lib->drawRect((*it)->getRect()->getPos(),
-	      //		     (*it)->getRect()->getSize(),
-	      //		     (*it)->getRect()->getTexture());
-	      Debug::write("rect", (*it)->getRect()->getPos().first, (*it)->getRect()->getPos().second);
->>>>>>> 350999d876b22e7c8e418eeb16a87dde0ab0d2d1
 	      it++;
 	    }
 	}
-      //      this->lib->update();
+      this->lib->update();
       usleep(this->conf->getWaitTime());
     }
 }
