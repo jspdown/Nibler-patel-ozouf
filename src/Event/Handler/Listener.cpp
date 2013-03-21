@@ -6,10 +6,10 @@
 #include	"Trame.hh"
 #include	"Listener.hh"
 
-Listener::Listener(IEntity *e):
+Listener::Listener(IEntity *e, const std::string &name):
   entity(e)
 {
-
+  this->name = name;
 }
 
 Listener::~Listener()
@@ -17,7 +17,7 @@ Listener::~Listener()
 
 }
 
-Listener::Listener(const Listener &other, const std::string &name) :
+Listener::Listener(const Listener &other) :
   childs(other.childs), entity(other.entity), listened(other.listened), name(name)
 {
   
@@ -59,13 +59,23 @@ void	Listener::removeChild(Listener *l)
   std::deque<Listener *>::iterator it = std::find(this->childs.begin(), this->childs.end(), l);
   if (it != this->childs.end())
     this->childs.erase(it);
-}
 
+}
+void	Listener::removeChild(Listener *father, IEntity *l)
+{
+  if (this->entity == l)
+    father->removeChild(this);
+  else
+    for (unsigned int i = 0; i < this->childs.size(); ++i)
+      this->childs[i]->removeChild(this, l);
+}
 bool	Listener::isListening(const std::string &name)
 {
   for (std::map<std::string, IActionEvent *>::const_iterator it = this->listened.begin(); it != this->listened.end(); ++it)
-    if ((*it).first == name)
-      return (true);
+    {
+      if ((*it).first == name)
+	return (true);
+    }
   return (false);
 }
 
@@ -79,7 +89,9 @@ void	Listener::broadcast(const std::string&trame)
   for (unsigned int i = 0; i < this->childs.size(); ++i)
     {
       if (this->childs[i]->isListening(Trame::getName(trame)))
-	this->childs[i]->broadcast(trame);
+	{
+	  this->childs[i]->broadcast(trame);
+	}
     }
 }
 

@@ -40,6 +40,36 @@ void	Food::init()
 
 }
 
+void	Food::collide(const std::string &trame)
+{
+  std::vector<std::string> args = Trame::getArgs(trame);
+
+  if (args.size() == 4)
+    {
+      if (this->pos->is_inside(Rect(Trame::toInt(args[0]),
+				    Trame::toInt(args[1]),
+				    Trame::toInt(args[2]),
+				    Trame::toInt(args[3]))))
+	{
+	  std::vector<std::string>	s_targets;
+	  std::vector<std::string>	s_args;
+	  s_targets.push_back(std::string("snake"));
+	  s_args.push_back(std::string("1"));
+	  
+	  this->map->getHandleEvent()->emit(Trame::buildTrame("eat",
+							     this->unique_id,
+							     s_targets,
+							     s_args));
+	  Debug::write("PPPPP");
+	  this->map->getHandleEvent()->getListeners()->removeChild(map->getHandleEvent()->getListeners(), this);
+	  Debug::write("AAA");
+	  this->map->delEntity(this);
+	  Debug::write("BBB");
+	}
+    }
+}
+
+
 Food *Food::clone(Rect *pos, int type, Map *map, Rect *r)	const
 {
   return (new Food(pos, type, map, r));
@@ -48,6 +78,6 @@ Food *Food::clone(Rect *pos, int type, Map *map, Rect *r)	const
 std::map<std::string, IActionEvent *> Food::generateEventListened()
 {
   std::map<std::string, IActionEvent *>	events;
-
+  events["collide"] = new ActionEvent<Food>(&Food::collide, this);
   return (events);
 }

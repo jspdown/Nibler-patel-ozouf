@@ -6,6 +6,7 @@
 #include	<list>
 #include	<string>
 #include	<stack>
+#include	<map>
 #include	"Listener.hh"
 
 class	HandleEvent
@@ -17,6 +18,9 @@ public:
   HandleEvent(const HandleEvent &other);
   HandleEvent	&operator=(const HandleEvent &other);
 
+  std::map<std::string, Listener *>	generateListeners(std::vector<std::list<IEntity *> > &elms);
+
+  Listener	*getListeners() const;
   void	emit(const std::string &trame);
   void	update(std::stack<std::string> &s);
   void	init();

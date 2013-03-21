@@ -14,6 +14,8 @@ public:
   virtual void	init();
   virtual SnakePart *clone(Rect *pos, int type, Map *map, Rect *r)	const;
   virtual std::map<std::string, IActionEvent *> generateEventListened();
+
+  void	collide(const std::string &trame);
 };
 
 #endif

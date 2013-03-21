@@ -15,9 +15,9 @@ class	Listener
   std::map<std::string, IActionEvent *>	listened;
   std::string				name;
 public:
-  Listener(IEntity *e);
+  Listener(IEntity *e, const std::string &name);
   ~Listener();
-  Listener(const Listener &other, const std::string &name);
+  Listener(const Listener &other);
   Listener	operator=(const Listener &other);
 
   void	init();
@@ -26,6 +26,7 @@ public:
   void	setEvents(const std::map<std::string, IActionEvent *> &e);
   void	removeEvent(const std::string &name);
   void	addChild(Listener *l);
+  void	removeChild(Listener *father, IEntity *i);
   void	removeChild(Listener *l);
   void	broadcast(const std::string &trame);
 

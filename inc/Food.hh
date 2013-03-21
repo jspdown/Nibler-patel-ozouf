@@ -18,6 +18,8 @@ public:
   virtual void	init();
   virtual Food *clone(Rect *pos, int type, Map *map, Rect *r)	const;
   virtual std::map<std::string, IActionEvent *> generateEventListened();
+
+  void	collide(const std::string &trame);
 };
 
 

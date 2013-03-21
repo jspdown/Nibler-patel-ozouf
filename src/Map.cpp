@@ -128,7 +128,10 @@ void					Map::delEntity(unsigned int layer, IEntity* item)
 void					Map::delEntity(IEntity* item)
 {
   for (unsigned int i = 0; i < this->elements.size() ; i++)
-    this->elements[i].erase(std::find(this->elements[i].begin(), this->elements[i].end(), item));
+    {
+      if (std::find(this->elements[i].begin(), this->elements[i].end(), item) != this->elements[i].end())
+	this->elements[i].erase(std::find(this->elements[i].begin(), this->elements[i].end(), item));
+    }
 }
 
 bool					Map::eventIsEmpty() const

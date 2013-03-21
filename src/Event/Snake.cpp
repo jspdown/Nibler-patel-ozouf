@@ -24,7 +24,7 @@ void	Snake::setDirection(e_dir d)
   this->direction = d;
 }
 
-void	Snake::move_left(const std::string &)
+void	Snake::move_right(const std::string &)
 {
   if (this->direction == Snake::LEFT)
     setDirection(Snake::BOTTOM);
@@ -36,7 +36,7 @@ void	Snake::move_left(const std::string &)
     setDirection(Snake::RIGHT);
 }
 
-void	Snake::move_right(const std::string &)
+void	Snake::move_left(const std::string &)
 {
   if (this->direction == Snake::LEFT)
     setDirection(Snake::TOP);
@@ -64,26 +64,44 @@ void	Snake::move()
 {
   int	x = this->pos->getPos().first;
   int	y = this->pos->getPos().second;
+  
+  int	tmpx, tmpy;
 
   this->updateQueue();
   if (this->direction == Snake::LEFT)
-    this->pos->setPos(x - this->speed, y);
+    {
+      tmpx = x - this->speed;
+      tmpy = y;
+    }
   else if (this->direction == Snake::RIGHT)
-    this->pos->setPos(x + this->speed, y);
+    {
+      tmpx = x + this->speed;
+      tmpy = y;
+    }
   else if (this->direction == Snake::TOP)
-    this->pos->setPos(x, y - this->speed);
+    {
+      tmpx = x;
+      tmpy = y - this->speed;
+    }
   else
-    this->pos->setPos(x, y + this->speed);
+    {
+      tmpx = x;
+      tmpy = y + this->speed;
+    }
   
   std::vector<std::string>	s_targets;
   std::vector<std::string>	s_args;
-
+  
   s_targets.push_back(std::string("*"));
-  s_args = this->pos->posStr();  
-  this->map->getHandleEvent()->emit(Trame::buildTrame("collide",
-						     this->unique_id,
-						     s_targets,
-						     s_args));  
+  s_args = (new Rect(tmpx, tmpy))->posStr();  
+  std::string	trame(Trame::buildTrame("collide",
+					this->unique_id,
+					s_targets,
+					s_args));
+  this->map->getHandleEvent()->emit(trame);
+  for (unsigned int i = 0; i < this->queue.size(); ++i)
+    this->queue[i]->collide(trame);
+  this->pos->setPos(tmpx, tmpy);
 }
 
 void	Snake::update()
@@ -119,13 +137,28 @@ void	Snake::collide(const std::string &trame)
 
 void	Snake::addPart()
 {
-  SnakePart	*n = new SnakePart(this->pos, 0, this->map, new Rect());
-  this->map->addEntity(5, n);
-  this->queue.push_back(n);
+  if (this->queue.size() > 0)
+    {
+      SnakePart	*n = new SnakePart(new Rect(), 0, this->map, new Rect());
+      this->map->addEntity(5, n);
+      this->queue.push_back(n);
+    }
+  else
+    {
+      SnakePart	*n = new SnakePart(new Rect(this->pos->getPos().first, this->pos->getPos().second + 1), 0, this->map, new Rect());
+      this->map->addEntity(5, n);
+      this->queue.push_back(n);
+    }
+}
+
+void	Snake::eat(const std::string &trame)
+{
+  this->addPart();
 }
 
 void	Snake::init()
 {
+  // a ameliorer
   SnakePart *s = new SnakePart(new Rect(9, 10, 0 ,0, "snakepart", "snakepart"), 5, this->map, NULL);
   SnakePart *s1 = new SnakePart(new Rect(8, 10, 0 ,0, "snakepart", "snakepart"), 5, this->map, NULL);
   SnakePart *s2 = new SnakePart(new Rect(7, 10, 0 ,0, "snakepart", "snakepart"), 5, this->map, NULL);
@@ -149,7 +182,7 @@ std::map<std::string, IActionEvent *> Snake::generateEventListened()
   events["collide"] = new ActionEvent<Snake>(&Snake::collide, this);
   events["left"] = new ActionEvent<Snake>(&Snake::move_left, this);
   events["right"] = new ActionEvent<Snake>(&Snake::move_right, this);
-  //  event["eat"] = ActionEvent(Snake::collide, this);
+  events["eat"] = new ActionEvent<Snake>(&Snake::eat, this);
   return (events);
 }
 
