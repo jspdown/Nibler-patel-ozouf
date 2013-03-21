@@ -74,16 +74,16 @@ void	Snake::move()
     this->pos->setPos(x, y - this->speed);
   else
     this->pos->setPos(x, y + this->speed);
-  
+
   std::vector<std::string>	s_targets;
   std::vector<std::string>	s_args;
 
   s_targets.push_back(std::string("*"));
-  s_args = this->pos->posStr();  
+  s_args = this->pos->posStr();
   this->map->getHandleEvent()->emit(Trame::buildTrame("collide",
 						     this->unique_id,
 						     s_targets,
-						     s_args));  
+						     s_args));
 }
 
 void	Snake::update()
@@ -126,9 +126,9 @@ void	Snake::addPart()
 
 void	Snake::init()
 {
-  SnakePart *s = new SnakePart(new Rect(9, 10, 0 ,0, "snakepart", "snakepart"), 5, this->map, NULL);
-  SnakePart *s1 = new SnakePart(new Rect(8, 10, 0 ,0, "snakepart", "snakepart"), 5, this->map, NULL);
-  SnakePart *s2 = new SnakePart(new Rect(7, 10, 0 ,0, "snakepart", "snakepart"), 5, this->map, NULL);
+  SnakePart *s = new SnakePart(new Rect(9, 10, 0 ,0, "snakepart", "snakepart"), 5, this->map, new Rect(32,32,32,32,"bite", "wall"));
+  SnakePart *s1 = new SnakePart(new Rect(8, 10, 0 ,0, "snakepart", "snakepart"), 5, this->map, new Rect(32,32,32,32,"bite", "wall"));
+  SnakePart *s2 = new SnakePart(new Rect(7, 10, 0 ,0, "snakepart", "snakepart"), 5, this->map, new Rect(32,32,32,32,"bite", "wall"));
   this->queue.push_back(s);
   this->queue.push_back(s1);
   this->queue.push_back(s2);
@@ -152,4 +152,3 @@ std::map<std::string, IActionEvent *> Snake::generateEventListened()
   //  event["eat"] = ActionEvent(Snake::collide, this);
   return (events);
 }
-
