@@ -18,8 +18,9 @@ void	TheGame::endOfGame(const std::string &)
 {
   std::deque<Rect *>	menu;
 
-  menu.push_back(new Rect(50, 50, 500, 500, "", "black.png"));
-  menu.push_back(new Rect(150, 150, 150, 150, "Game Over", "white.png"));
+  Debug::write("endOfGame");
+  menu.push_back(new Rect(50, 50, 500, 500, "", "wall"));
+  menu.push_back(new Rect(150, 150, 150, 150, "Game Over", "snake"));
   this->map->setAuxDisplay(this->unique_id, menu);
 }
 
