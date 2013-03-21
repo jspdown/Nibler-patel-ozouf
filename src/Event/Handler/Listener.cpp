@@ -133,3 +133,11 @@ std::string	Listener::getName()	const
 {
   return (this->name);
 }
+
+void		Listener::init()
+{
+  if (this->entity)
+    this->entity->init();
+  for (unsigned int i = 0; i < this->childs.size(); ++i)
+    this->childs[i]->init();
+}

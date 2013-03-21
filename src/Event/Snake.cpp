@@ -14,7 +14,6 @@ Snake::Snake(Rect *pos, int type, Map *map, Rect *tile):
     this->speed = tile->getPos().first;
   this->direction = Snake::TOP;
 }
-
 Snake::~Snake()
 {
 
@@ -53,7 +52,7 @@ void	Snake::updateQueue()
 {
   std::pair<int, int>	prev = this->pos->getPos();
   std::pair<int, int>	tmp;
-  for (unsigned int i = 1; i < this->queue.size(); ++i)
+  for (unsigned int i = 0; i < this->queue.size(); ++i)
     {
       tmp = this->queue[i]->getPos()->getPos();
       this->queue[i]->getPos()->setPos(prev);
@@ -66,6 +65,7 @@ void	Snake::move()
   int	x = this->pos->getPos().first;
   int	y = this->pos->getPos().second;
 
+  this->updateQueue();
   if (this->direction == Snake::LEFT)
     this->pos->setPos(x - this->speed, y);
   else if (this->direction == Snake::RIGHT)
@@ -84,7 +84,6 @@ void	Snake::move()
 						     this->unique_id,
 						     s_targets,
 						     s_args));  
-  this->updateQueue();
 }
 
 void	Snake::update()
@@ -120,12 +119,22 @@ void	Snake::collide(const std::string &trame)
 
 void	Snake::addPart()
 {
-  SnakePart	n(this->pos, 0, this->map, new Rect());
-  this->map->addEntity(5, &n);
+  SnakePart	*n = new SnakePart(this->pos, 0, this->map, new Rect());
+  this->map->addEntity(5, n);
+  this->queue.push_back(n);
 }
 
 void	Snake::init()
 {
+  SnakePart *s = new SnakePart(new Rect(9, 10, 0 ,0, "snakepart", "snakepart"), 5, this->map, NULL);
+  SnakePart *s1 = new SnakePart(new Rect(8, 10, 0 ,0, "snakepart", "snakepart"), 5, this->map, NULL);
+  SnakePart *s2 = new SnakePart(new Rect(7, 10, 0 ,0, "snakepart", "snakepart"), 5, this->map, NULL);
+  this->queue.push_back(s);
+  this->queue.push_back(s1);
+  this->queue.push_back(s2);
+  this->map->addEntity(5, s);
+  this->map->addEntity(5, s1);
+  this->map->addEntity(5, s2);
 }
 
 Snake	*Snake::clone(Rect *pos, int type, Map *map, Rect *r)	const
@@ -143,3 +152,4 @@ std::map<std::string, IActionEvent *> Snake::generateEventListened()
   //  event["eat"] = ActionEvent(Snake::collide, this);
   return (events);
 }
+

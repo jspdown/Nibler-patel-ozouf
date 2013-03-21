@@ -55,3 +55,8 @@ void	HandleEvent::update(std::stack<std::string> &s)
 {
   this->listeners->update();
 }
+
+void	HandleEvent::init()
+{
+  this->listeners->init();
+}

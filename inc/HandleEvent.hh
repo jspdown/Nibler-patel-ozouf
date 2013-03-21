@@ -19,6 +19,7 @@ public:
 
   void	emit(const std::string &trame);
   void	update(std::stack<std::string> &s);
+  void	init();
 };
 
 #endif

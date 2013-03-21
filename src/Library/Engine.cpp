@@ -51,6 +51,7 @@ void	Engine::quit()
 void	Engine::run(Map &map)
 {
   map.setEngine(this);
+  map.getHandleEvent()->init();
   while (!(this->the_end))
     {
       this->lib->updateEvent(map.getEvent());
