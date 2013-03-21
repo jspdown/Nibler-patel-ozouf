@@ -72,27 +72,26 @@ void	Snake::move()
     this->pos->setPos(x, y - this->speed);
   else
     this->pos->setPos(x, y + this->speed);
+  
+  std::vector<std::string>	s_targets;
+  std::vector<std::string>	s_args;
+
+  s_targets.push_back(std::string("*"));
+  s_args = this->pos->posStr();  
+  this->map->getHandleEvent()->emit(Trame::buildTrame("collide",
+						     this->unique_id,
+						     s_targets,
+						     s_args));  
   this->updateQueue();
 }
 
 void	Snake::update()
 {
-  std::vector<std::string>	s_targets;
-  std::vector<std::string>	s_args;
-
-  s_targets.push_back(std::string("*"));
-
-  s_args = this->pos->posStr();
-  this->map->getHandleEvent()->emit(Trame::buildTrame("collide",
-						     this->unique_id,
-						     s_targets,
-						     s_args));
   this->move();
 }
 
 void	Snake::collide(const std::string &trame)
 {
-
   if (Trame::getTransmitter(trame) == this->unique_id)
     return ;
   std::vector<std::string> args = Trame::getArgs(trame);

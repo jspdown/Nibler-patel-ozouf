@@ -66,7 +66,6 @@ void	Engine::run(Map &map)
 	      this->lib->drawRect((*it)->getPos()->getPos(),
 			     (*it)->getRect()->getSize(),
 			     (*it)->getRect()->getTexture());
-	      Debug::write("rect", (*it)->getPos()->getPos().first, (*it)->getPos()->getPos().second);
 	      it++;
 	    }
 	}

@@ -13,10 +13,11 @@ class	Listener
   std::deque<Listener *>		childs;
   IEntity				*entity;
   std::map<std::string, IActionEvent *>	listened;
+  std::string				name;
 public:
   Listener(IEntity *e);
   ~Listener();
-  Listener(const Listener &other);
+  Listener(const Listener &other, const std::string &name);
   Listener	operator=(const Listener &other);
 
   void	addEvent(const std::string &name, IActionEvent *a);
@@ -29,6 +30,7 @@ public:
   void	update();
   bool	isListening(const std::string &name);
 
+  std::string	getName()	const;
   std::deque<Listener *>		getChild()	const;
   IEntity				*getEntity()	const;
   std::map<std::string, IActionEvent *>	getListened()	const;

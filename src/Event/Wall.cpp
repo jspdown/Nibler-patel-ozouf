@@ -24,8 +24,11 @@ Wall::Wall(const Wall &other):
 void	Wall::collide(const std::string &trame)
 {
   std::vector<std::string> args = Trame::getArgs(trame);
+  Debug::write(trame.c_str());
   if (args.size() == 4)
     {
+      Debug::write("SNAKE", Trame::toInt(args[0]), Trame::toInt(args[1]));
+      Debug::write("WALL", this->pos->getPos().first, this->pos->getPos().second);
       if (this->pos->is_inside(Rect(Trame::toInt(args[0]),
 				   Trame::toInt(args[1]),
 				   Trame::toInt(args[2]),

@@ -17,10 +17,10 @@ Listener::~Listener()
 
 }
 
-Listener::Listener(const Listener &other) :
-  childs(other.childs), entity(other.entity), listened(other.listened)
+Listener::Listener(const Listener &other, const std::string &name) :
+  childs(other.childs), entity(other.entity), listened(other.listened), name(name)
 {
-
+  
 }
 
 Listener	Listener::operator=(const Listener &other)
@@ -63,9 +63,10 @@ void	Listener::removeChild(Listener *l)
 
 bool	Listener::isListening(const std::string &name)
 {
-  std::map<std::string, IActionEvent *>::iterator	it = this->listened.find(name);
-  Debug::write(name.c_str());
-  return (it != this->listened.end());
+  for (std::map<std::string, IActionEvent *>::const_iterator it = this->listened.begin(); it != this->listened.end(); ++it)
+    if ((*it).first == name)
+      return (true);
+  return (false);
 }
 
 void	Listener::broadcast(const std::string&trame)
@@ -73,10 +74,13 @@ void	Listener::broadcast(const std::string&trame)
   Listener::AppliBroadcast	a(trame);
 
   if (this->entity && this->isListening(Trame::getName(trame)))
+    (*(this->listened[Trame::getName(trame)]))(trame);
+
+  for (unsigned int i = 0; i < this->childs.size(); ++i)
     {
-      (*(this->listened[Trame::getName(trame)]))(trame);
+      if (this->childs[i]->isListening(Trame::getName(trame)))
+	this->childs[i]->broadcast(trame);
     }
-  std::for_each(this->childs.begin(), this->childs.end(), a);
 }
 
 void	Listener::update()
@@ -117,9 +121,15 @@ void	Listener::AppliBroadcast::operator()(Listener *child)
 {
   if (child != 0)
     {
+      Debug::write(child->getName().c_str());
       if (child->isListening(Trame::getName(this->trame)))
 	{
 	  child->broadcast(this->trame);
 	}
     }
+}
+
+std::string	Listener::getName()	const
+{
+  return (this->name);
 }

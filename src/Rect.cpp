@@ -109,20 +109,17 @@ bool			Rect::is_inside(const Rect &other)
 std::vector<std::string>	Rect::posStr()	const
 {
   std::stringstream	ss;
+  std::stringstream	ss2;
   std::string		l;
   std::vector<std::string>	res;
 
   ss << this->pos.first;
   ss >> l;
   res.push_back(l);
-  ss << this->pos.second;
-  ss >> l;
+  ss2 << this->pos.second;
+  ss2 >> l;
   res.push_back(l);
-  ss << this->size.first;
-  ss >> l;
   res.push_back(l);
-  ss << this->size.second;
-  ss >> l;
   res.push_back(l);
   return (res);
 }
