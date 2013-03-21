@@ -72,9 +72,7 @@ void	Listener::broadcast(const std::string&trame)
   Listener::AppliBroadcast	a(trame);
 
   if (this->entity && this->isListening(Trame::getName(trame)))
-    {
-      (*(this->listened[Trame::getName(trame)]))(trame);
-    }
+    (*(this->listened[Trame::getName(trame)]))(trame);
   std::for_each(this->childs.begin(), this->childs.end(), a);
 }
 

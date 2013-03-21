@@ -49,7 +49,7 @@ void		NcursesLibrary::init(std::string const &texture_path, std::vector<std::str
 void		NcursesLibrary::drawRect(std::pair<int,int> const &pos, std::pair<int,int> const &size, std::string const &texture)
 {
   char	str[2];
-
+  
   str[1] = 0;
   str[0] = this->aff[texture].first;
   this->win.print(str, pos.first, pos.second);

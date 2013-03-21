@@ -50,7 +50,7 @@ IEntity				       *Map::getEntity(std::string const &line)
   ss >> y;
   ss >> width;
   ss >> height;
-  tmp = this->fact.newEntity(name, *(new Rect(x, y)), 0, this, new Rect(width, height));
+  tmp = this->fact.newEntity(name, *(new Rect(x, y)), 0, this, new Rect(width, height, 32, 32, "bite", "wall"));
   if (!tmp)
     return (0);
   this->addEntity(layer, tmp);
