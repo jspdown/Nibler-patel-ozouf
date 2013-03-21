@@ -2,6 +2,7 @@
 #include	<iostream>
 #include	"AEntity.hh"
 
+#include	"Debug.hh"
 int	AEntity::id = 0;
 
 AEntity::AEntity(const std::string &name, Rect *pos, int type, Map *map) :
