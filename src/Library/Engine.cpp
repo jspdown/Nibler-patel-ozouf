@@ -46,10 +46,10 @@ void	Engine::quit()
 
 void	Engine::run(Map &map)
 {
-  std::vector< std::list<IEntity*> > const &  toAff = map.getElements();
 
   while (1) // change to quit event
     {
+      std::vector< std::list<IEntity*> > const &  toAff = map.getElements();
        this->lib->updateEvent(map.getEvent());
        map.updateEvent();
        
