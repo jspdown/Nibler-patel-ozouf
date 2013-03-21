@@ -5,7 +5,7 @@
 // Login   <platel_k@epitech.net>
 //
 // Started on  Mon Mar 18 17:25:26 2013 kevin platel
-// Last update Thu Mar 21 09:43:25 2013 vink
+// Last update Thu Mar 21 14:54:37 2013 vink
 //
 
 #include <unistd.h>
@@ -53,7 +53,7 @@ void	Engine::run(Map &map)
       this->lib->updateEvent(map.getEvent());
       for (unsigned int i = 0; i < toAff.size(); ++i)
 	{
-	  
+
 	  map.updateEvent();
 	  std::list<IEntity*>::const_iterator it = toAff[i].begin();
 	  while (it != toAff[i].end())

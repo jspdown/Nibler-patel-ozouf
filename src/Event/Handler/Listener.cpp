@@ -1,6 +1,8 @@
 
 #include	<algorithm>
 #include	<iterator>
+#include "Debug.hh"
+
 #include	"Trame.hh"
 #include	"Listener.hh"
 
@@ -61,7 +63,10 @@ void	Listener::removeChild(Listener *l)
 
 bool	Listener::isListening(const std::string &name)
 {
+  // if (!this->listened.size())
+  //   return (false);
   std::map<std::string, IActionEvent *>::iterator	it = this->listened.find(name);
+  Debug::write(name.c_str());
   return (it != this->listened.end());
 }
 
@@ -69,9 +74,15 @@ void	Listener::broadcast(const std::string&trame)
 {
   Listener::AppliBroadcast	a(trame);
 
+  Debug::write("Start broad\n");
   if (this->entity && this->isListening(Trame::getName(trame)))
-    (*(this->listened[Trame::getName(trame)]))(trame);
+    {
+      Debug::write(std::string("pass isListen on " + trame).c_str());
+      (*(this->listened[Trame::getName(trame)]))(trame);
+    }
+  Debug::write(std::string("pass if on " + trame).c_str());
   std::for_each(this->childs.begin(), this->childs.end(), a);
+  Debug::write("end broad");
 }
 
 void	Listener::update()
