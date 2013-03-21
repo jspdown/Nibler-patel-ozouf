@@ -191,8 +191,9 @@ void ncurses::Window::setBorder(unsigned char top, unsigned char bottom, unsigne
 	this->blc, this->brc);
 }
 
-int	ncurses::Window::getKey()
+int	ncurses::Window::getKey(int timeout)
 {
+  wtimeout(this->win, timeout);
   return (wgetch(this->win));
 }
 

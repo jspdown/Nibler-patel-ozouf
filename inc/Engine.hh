@@ -14,7 +14,7 @@ class Engine
   Config const	*conf;
 public:
   Engine(std::string const &lib);
-  virtual ~Engine() {};
+  virtual ~Engine();
 
   void	init(Config const &conf);
   void	quit();

@@ -5,7 +5,7 @@
 // Login   <platel_k@epitech.net>
 //
 // Started on  Mon Mar 18 17:25:26 2013 kevin platel
-// Last update Wed Mar 20 21:20:58 2013 vink
+// Last update Thu Mar 21 09:16:19 2013 vink
 //
 
 #include <unistd.h>
@@ -24,6 +24,12 @@ Engine::Engine(std::string const &lib)
   if (new_lib == NULL)
     throw LibraryLoadError("Error when loding creation symbol");
   this->lib = new_lib();
+}
+
+Engine::~Engine()
+{
+  delete this->lib;
+  dlclose(this->dhandle);
 }
 
 void	Engine::init(Config const &conf)

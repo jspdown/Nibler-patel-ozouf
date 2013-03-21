@@ -57,7 +57,7 @@ namespace ncurses
     void	setCorner(unsigned char c);
     void	setCorner(unsigned char tlc, unsigned char trc, unsigned char blc, unsigned char brc);
 
-    int		getKey(); // get last key press on window
+    int		getKey(int timeout = -1); // get last key press on window
 
 
     // Print in window
