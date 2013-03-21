@@ -5,7 +5,7 @@
 
 #include	"Debug.hh"
 
-Wall::Wall(Rect &pos, int type, Map *map, Rect *tile) :
+Wall::Wall(Rect *pos, int type, Map *map, Rect *tile) :
   AStaticEntity("wall", pos, type, map, tile)
 {
 }
@@ -27,7 +27,7 @@ void	Wall::collide(const std::string &trame)
 
   if (args.size() == 4)
     {
-      if (this->pos.is_inside(Rect(Trame::toInt(args[0]),
+      if (this->pos->is_inside(Rect(Trame::toInt(args[0]),
 				   Trame::toInt(args[1]),
 				   Trame::toInt(args[2]),
 				   Trame::toInt(args[3]))))
@@ -55,7 +55,7 @@ void	Wall::init()
 
 }
 
-Wall *Wall::clone(Rect &pos, int type, Map *map, Rect *r)	const
+Wall *Wall::clone(Rect *pos, int type, Map *map, Rect *r)	const
 {
   return (new Wall(pos, type, map, r));
 }

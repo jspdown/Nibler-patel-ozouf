@@ -4,7 +4,7 @@
 
 int	AEntity::id = 0;
 
-AEntity::AEntity(const std::string &name, Rect &pos, int type, Map *map) :
+AEntity::AEntity(const std::string &name, Rect *pos, int type, Map *map) :
   map(map), name(name), pos(pos), type(type), unique_id(id)
 {
   ++id;
@@ -39,9 +39,9 @@ void	AEntity::state()	const
 	    << "] name = "
 	    << this->name
 	    << ", pos = ("
-	    << this->pos.getPos().first
+	    << this->pos->getPos().first
 	    << ","
-	    << this->pos.getPos().second
+	    << this->pos->getPos().second
 	    << "), type "
 	    << this->type
 	    << " ."
@@ -68,7 +68,7 @@ int			AEntity::getUniqueId()  	const
   return (this->unique_id);
 }
 
-Rect	AEntity::getPos()	const
+Rect	*AEntity::getPos()	const
 {
   return (this->pos);
 }
@@ -90,7 +90,7 @@ void	AEntity::setName(const std::string &name)
 {
   this->name = name;
 }
-void	AEntity::setPos(Rect &pos)
+void	AEntity::setPos(Rect *pos)
 {
   this->pos = pos;
 }

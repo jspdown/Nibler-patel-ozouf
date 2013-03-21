@@ -50,22 +50,25 @@ void	Engine::run(Map &map)
 
   while (1) // change to quit event
     {
-      this->lib->updateEvent(map.getEvent());
+       this->lib->updateEvent(map.getEvent());
+       map.updateEvent();
+       
       for (unsigned int i = 0; i < toAff.size(); ++i)
 	{
 	  
-	  map.updateEvent();
 	  std::list<IEntity*>::const_iterator it = toAff[i].begin();
 	  while (it != toAff[i].end())
 	    {
 	      (*it)->update();
+	      
 	      this->lib->drawRect((*it)->getRect()->getPos(),
 			     (*it)->getRect()->getSize(),
 			     (*it)->getRect()->getTexture());
+	      Debug::write("rect", (*it)->getRect()->getPos().first, (*it)->getRect()->getPos().second);
 	      it++;
 	    }
 	}
       this->lib->update();
-      usleep(this->conf->getWaitTime());
+       usleep(this->conf->getWaitTime());
     }
 }

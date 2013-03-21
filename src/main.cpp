@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
       texture.push_back("snakepart");
       texture.push_back("snake");
 
-      Config	conf(10,10, texture, "./ressource/ntexture/", 1, 1, 50000);
+      Config	conf(10,10, texture, "./ressource/ntexture/", 1, 1, 500000);
       Map		map(&conf, "./ressource/map/map-1.conf");
 
       eng.init(conf);

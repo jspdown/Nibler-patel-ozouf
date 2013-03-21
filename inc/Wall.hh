@@ -9,7 +9,7 @@
 class	Wall:	public	AStaticEntity
 {
 public:
-  Wall(Rect &pos, int type, Map *map, Rect *r);
+  Wall(Rect *pos, int type, Map *map, Rect *r);
   virtual ~Wall();
   Wall(const Wall &other);
   Wall	&operator=(const Wall &other);
@@ -18,7 +18,7 @@ public:
 
   virtual void	update();
   virtual void	init();
-  virtual Wall *clone(Rect &pos, int type, Map *map, Rect *r)	const;
+  virtual Wall *clone(Rect *pos, int type, Map *map, Rect *r)	const;
   virtual std::map<std::string, IActionEvent *> generateEventListened();
 };
 

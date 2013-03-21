@@ -5,7 +5,7 @@
 #include	"Debug.hh"
 
 TheGame::TheGame(Map *map):
-  AStaticEntity(std::string("theGame"), *(new Rect()), 0, map, new Rect()) 
+  AStaticEntity(std::string("theGame"), new Rect(), 0, map, new Rect()) 
 {
   
 }
@@ -39,7 +39,7 @@ void	TheGame::init()
   
 }
 
-TheGame *TheGame::clone(Rect &, int , Map *map, Rect *)	const
+TheGame *TheGame::clone(Rect *, int , Map *map, Rect *)	const
 {
   return (new TheGame(map));
 }

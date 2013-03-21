@@ -20,7 +20,7 @@ class	Snake: public	AStaticEntity
   std::vector<SnakePart *>	queue;
   int				speed;
 public:
-  Snake(Rect &pos, int type, Map *map, Rect *r);
+  Snake(Rect *pos, int type, Map *map, Rect *r);
   virtual ~Snake();
   
   void	move();
@@ -34,7 +34,7 @@ public:
 
   virtual void	update();
   virtual void	init();
-  virtual Snake *clone(Rect &pos, int type, Map *map, Rect *r)	const;
+  virtual Snake *clone(Rect *pos, int type, Map *map, Rect *r)	const;
 
   virtual std::map<std::string, IActionEvent *> generateEventListened();
 

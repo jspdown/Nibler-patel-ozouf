@@ -13,7 +13,7 @@ class	AAnimateEntity: public	AEntity
   std::pair<int, int>	unit_size;
 public:
   AAnimateEntity(const std::string &name,
-		 Rect	&pos,
+		 Rect	*pos,
 		 int type,
 		 Map *map,
 		 std::pair<int, int> unit_size,

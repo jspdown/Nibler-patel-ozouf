@@ -18,7 +18,7 @@ public:
 
   void		learnEntity(IEntity *n);
   void		unlearnEntity(IEntity *n);
-  IEntity*	newEntity(std::string const &name, Rect &pos, int type, Map *map, Rect *tile);
+  IEntity*	newEntity(std::string const &name, Rect *pos, int type, Map *map, Rect *tile);
 };
 
 #endif /* !__ENTITYFACTORY_H__ */
