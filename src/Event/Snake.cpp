@@ -10,6 +10,8 @@ Snake::Snake(Rect *pos, int type, Map *map, Rect *tile):
   AStaticEntity("snake", pos, type, map, tile)
 {
   this->speed = 1;
+  if (tile)
+    this->speed = tile->getPos().first;
   this->direction = Snake::TOP;
 }
 

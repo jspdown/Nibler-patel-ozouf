@@ -31,7 +31,8 @@ Map::Map(Config *conf, std::string const &filename)
     {
       for (int j = 0; j < this->size.second; ++j)
 	{
-	  tmp = this->fact.newEntity("floor", new Rect(i, j), 0, this, new Rect(10, 10, 32, 32, "bite", "wall"));
+	  tmp = this->fact.newEntity("floor", new Rect(i * conf->getTileSize().first, j * conf->getTileSize().second), 0, this,
+				     new Rect(conf->getTileSize().first, conf->getTileSize().second, 32, 32, "bite", "wall"));
 	  if (tmp)
 	    this->addEntity(0, tmp);
 	}
@@ -70,7 +71,8 @@ IEntity				       *Map::getEntity(std::string const &line)
   ss >> y;
   ss >> width;
   ss >> height;
-  tmp = this->fact.newEntity(name, new Rect(x, y), 0, this, new Rect(width, height, 32, 32, "bite", "wall"));
+  tmp = this->fact.newEntity(name, new Rect(x * conf->getTileSize().first, y * conf->getTileSize().second), 0, this,
+			     new Rect(conf->getTileSize().first, conf->getTileSize().second, 32, 32, "bite", "wall"));
   if (!tmp)
     return (0);
   this->addEntity(layer, tmp);
@@ -165,4 +167,9 @@ void					Map::setEngine(Engine *e)
 Engine					*Map::getEngine()	const
 {
   return (this->engine);
+}
+
+Config					*Map::getConf()
+{
+  return (this->conf);
 }
