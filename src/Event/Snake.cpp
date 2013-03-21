@@ -185,4 +185,3 @@ std::map<std::string, IActionEvent *> Snake::generateEventListened()
   events["eat"] = new ActionEvent<Snake>(&Snake::eat, this);
   return (events);
 }
-
