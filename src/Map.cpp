@@ -18,6 +18,7 @@ Map::Map(Config *conf, std::string const &filename)
   std::fstream file(filename.c_str());
   std::string	str;
   std::stringstream ss;
+  IEntity *tmp;
 
   this->conf = conf;
   this->event = event;
@@ -26,6 +27,15 @@ Map::Map(Config *conf, std::string const &filename)
   ss << str;
   ss >> this->size.first;
   ss >> this->size.second;
+  for (int i = 0; i < this->size.first; ++i)
+    {
+      for (int j = 0; j < this->size.second; ++j)
+	{
+	  tmp = this->fact.newEntity("floor", new Rect(i, j), 0, this, new Rect(10, 10, 32, 32, "bite", "wall"));
+	  if (tmp)
+	    this->addEntity(0, tmp);
+	}
+    }
   while (std::getline(file, str, '\n'))
     {
       this->getEntity(str);

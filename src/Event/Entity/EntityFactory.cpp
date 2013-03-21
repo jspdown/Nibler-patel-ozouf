@@ -5,12 +5,13 @@
 // Login   <kevin platel@epitech.net>
 //
 // Started on  Mon Mar 18 22:29:46 2013 vink
-// Last update Tue Mar 19 01:17:16 2013 vink
+// Last update Thu Mar 21 17:28:57 2013 kevin platel
 //
 
 #include <iostream>
 
 #include "Wall.hh"
+#include "Floor.hh"
 #include "SnakePart.hh"
 #include "Snake.hh"
 
@@ -21,6 +22,7 @@ EntityFactory::EntityFactory()
   this->learnEntity(new Snake(new Rect(), 0, 0, 0));
   this->learnEntity(new SnakePart(new Rect(), 0, 0, 0));
   this->learnEntity(new Wall(new Rect(), 0, 0, 0));
+  this->learnEntity(new Floor(new Rect(), 0, 0, 0));
 }
 
 EntityFactory::~EntityFactory()
