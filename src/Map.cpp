@@ -131,3 +131,9 @@ void					Map::setHandleEvent(HandleEvent *e)
 {
   this->event = e;
 }
+
+void					Map::updateEvent()
+{
+  while (!this->event_stack.empty())
+    this->event->emit(this->popEvent());
+}

@@ -2,8 +2,6 @@
 #include	<sstream>
 #include	"Trame.hh"
 
-#include	"Debug.hh"
-
 std::vector<std::string>	Trame::split(const std::string &s, char c)
 {
   std::vector<std::string>	root;
@@ -20,10 +18,7 @@ std::string	Trame::getName(const std::string& trame)
   std::vector<std::string>	s = Trame::split(trame, '|');
 
   if (s.size() != 4)
-    {
-      Debug::write(trame.c_str());
-      throw	Trame::TrameError("trame error, can't find a name", __LINE__);
-    }
+    throw	Trame::TrameError("trame error, can't find a name", __LINE__);
   return (s[0]);
 }
 
@@ -32,10 +27,7 @@ std::vector<std::string>	Trame::getTargets(const std::string& trame)
   std::vector<std::string>	s = Trame::split(trame, '|');
 
   if (s.size() != 4)
-    {
-      Debug::write("trame error");
-      throw	Trame::TrameError("trame error, can't find a targets", __LINE__);
-    }
+    throw	Trame::TrameError("trame error, can't find a targets", __LINE__);
   std::vector<std::string>	r = Trame::split(s[2], ':');
 
   return (r);
@@ -46,10 +38,7 @@ std::vector<std::string>	Trame::getArgs(const std::string& trame)
   std::vector<std::string>	s = Trame::split(trame, '|');
 
   if (s.size() != 4)
-    {
-      Debug::write("trame error");
-      throw	Trame::TrameError("trame error, can't find a args", __LINE__);
-    }
+    throw	Trame::TrameError("trame error, can't find a args", __LINE__);
   std::vector<std::string>	r = Trame::split(s[3], ':');
   return (r);
 }
@@ -60,10 +49,7 @@ int				Trame::getTransmitter(const std::string& trame)
   int				res;
 
   if (s.size() != 4)
-    {
-      Debug::write("trame error");
-      throw	Trame::TrameError("trame error, can't find a transmitter", __LINE__);
-    }
+    throw	Trame::TrameError("trame error, can't find a transmitter", __LINE__);
   std::stringstream	ss;
   ss << s[1];
   ss >> res;
@@ -92,10 +78,6 @@ std::string			Trame::buildTrame(const std::string &name,
   for (unsigned int i = 0; i < args.size(); ++i)
     buff(args[i]);
   buff.putSeparator('|');
-  // std::for_each(targets.begin(), targets.end(), buff);
-
-  // std::for_each(args.begin(), args.end(), buff);
-
   return (buff.getBuffer());
 }
 
@@ -111,7 +93,6 @@ int				Trame::toInt(const std::string &str)
 
 void	Trame::TrameBuffer::operator()(std::string s)
 {
-  Debug::write(s.c_str());
   this->buffer.append(s + std::string(":"));
 }
 

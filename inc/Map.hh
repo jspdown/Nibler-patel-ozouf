@@ -46,6 +46,7 @@ public:
   void					setAuxDisplay(int uid, std::deque<Rect*>&aux_display);
   HandleEvent*				getHandleEvent() const;
   void					setHandleEvent(HandleEvent *e);
+  void					updateEvent();
 };
 
 #endif /* !__MAP_H__ */

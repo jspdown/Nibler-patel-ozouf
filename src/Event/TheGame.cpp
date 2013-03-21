@@ -2,6 +2,8 @@
 #include	"ActionEvent.hpp"
 #include	"TheGame.hh"
 
+#include	"Debug.hh"
+
 TheGame::TheGame(Map *map):
   AStaticEntity(std::string("theGame"), *(new Rect()), 0, map, new Rect()) 
 {
@@ -24,7 +26,7 @@ void	TheGame::endOfGame(const std::string &)
 
 void	TheGame::quit(const std::string &)
 {
-  std::cout << "je quit" << std::endl;
+  Debug::write("quit");
 }
 
 void	TheGame::update()

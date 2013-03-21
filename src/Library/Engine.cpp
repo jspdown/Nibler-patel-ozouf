@@ -14,6 +14,7 @@
 #include "Engine.hh"
 
 #include	"Debug.hh"
+
 Engine::Engine(std::string const &lib)
 {
   ILibrary*	(*new_lib)();
@@ -50,29 +51,21 @@ void	Engine::run(Map &map)
   while (1) // change to quit event
     {
       this->lib->updateEvent(map.getEvent());
-      Debug::write("inside loop");
       for (unsigned int i = 0; i < toAff.size(); ++i)
 	{
-	  Debug::write("Layer");
+	  
+	  map.updateEvent();
 	  std::list<IEntity*>::const_iterator it = toAff[i].begin();
 	  while (it != toAff[i].end())
 	    {
-	      Debug::write("something to aff");
 	      (*it)->update();
-	      Debug::write("entity update");
-	      Debug::write((*it)->getRect()->getTexture().c_str());
 	      this->lib->drawRect((*it)->getRect()->getPos(),
 			     (*it)->getRect()->getSize(),
 			     (*it)->getRect()->getTexture());
-	      Debug::write("draw");
 	      it++;
 	    }
 	}
-      Debug::write("prepare lib update");
       this->lib->update();
-      Debug::write("lib update ok");
-      Debug::write("begin timer");
       usleep(this->conf->getWaitTime());
-      Debug::write("end timer");
     }
 }

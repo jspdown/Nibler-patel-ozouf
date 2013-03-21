@@ -19,29 +19,20 @@
 #include	"Debug.hh"
 int main(int argc, char *argv[])
 {
-  Debug::write("\n\n######################-begin-###############");
   if (argc == 2)
     {
-      Debug::write("args ok");
       std::vector<std::string> texture;
       Engine	eng(argv[1]);
-      Debug::write("init engine");
 
       texture.push_back("wall");
       texture.push_back("snakepart");
       texture.push_back("snake");
-      Debug::write("push des texture ok");
-      Config	conf(10,10, texture, "./ressource/ntexture/", 1, 1, 50000);
-      Debug::write("config ok");
-      Map		map(&conf, "./ressource/map/map-1.conf");
-      Debug::write("map ok");
 
-      Debug::write("prepare init");
+      Config	conf(10,10, texture, "./ressource/ntexture/", 1, 1, 50000);
+      Map		map(&conf, "./ressource/map/map-1.conf");
+
       eng.init(conf);
-      Debug::write("init ok");
-      Debug::write("prepare run");
       eng.run(map);
-      Debug::write("run ok");
 
       return (0);
     }

@@ -23,8 +23,6 @@ Wall::Wall(const Wall &other):
 
 void	Wall::collide(const std::string &trame)
 {
-  Debug::write("wall collide");
-	  
   std::vector<std::string> args = Trame::getArgs(trame);
 
   if (args.size() == 4)

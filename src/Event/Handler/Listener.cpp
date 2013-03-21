@@ -4,8 +4,6 @@
 #include	"Trame.hh"
 #include	"Listener.hh"
 
-#include	"Debug.hh"
-
 Listener::Listener(IEntity *e):
   entity(e)
 {
@@ -114,7 +112,6 @@ void	Listener::AppliBroadcast::operator()(Listener *child)
 {
   if (child != 0)
     {
-      Debug::write("child");
       if (child->isListening(Trame::getName(this->trame)))
 	{
 	  child->broadcast(this->trame);

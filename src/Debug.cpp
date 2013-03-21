@@ -5,7 +5,7 @@
 
 void	Debug::write(const char *str)
 {
-  std::fstream filestr ("debug.txt", std::fstream::in | std::fstream::out|std::fstream::app);
+  std::fstream filestr ("debug.txt", std::fstream::in | std::fstream::out|std::fstream::trunc);
 
   filestr << std::string(str) << std::endl;
   filestr.close();
