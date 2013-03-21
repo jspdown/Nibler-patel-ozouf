@@ -5,7 +5,7 @@
 // Login   <platel_k@epitech.net>
 //
 // Started on  Mon Mar 18 17:25:26 2013 kevin platel
-// Last update Thu Mar 21 09:16:19 2013 vink
+// Last update Thu Mar 21 09:43:25 2013 vink
 //
 
 #include <unistd.h>
@@ -29,7 +29,8 @@ Engine::Engine(std::string const &lib)
 Engine::~Engine()
 {
   delete this->lib;
-  dlclose(this->dhandle);
+  dlclose(this->dhandle)
+;
 }
 
 void	Engine::init(Config const &conf)
