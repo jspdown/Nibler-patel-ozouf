@@ -5,7 +5,7 @@
 // Login   <platel_k@epitech.net>
 //
 // Started on  Mon Mar 18 17:25:26 2013 kevin platel
-// Last update Thu Mar 21 15:23:29 2013 vink
+// Last update Thu Mar 21 15:28:14 2013 vink
 //
 
 #include <unistd.h>
@@ -62,9 +62,11 @@ void	Engine::run(Map &map)
 	  while (it != toAff[i].end())
 	    {
 	      (*it)->update();
-	      this->lib->drawRect((*it)->getRect()->getPos(),
-			     (*it)->getRect()->getSize(),
-			     (*it)->getRect()->getTexture());
+	      if ((*it)->getRect()->getTexture() == "snake")
+		std::cout << (*it)->getPos() << std::endl;
+	      //	      this->lib->drawRect((*it)->getRect()->getPos(),
+	      //		     (*it)->getRect()->getSize(),
+	      //		     (*it)->getRect()->getTexture());
 	      Debug::write("rect", (*it)->getRect()->getPos().first, (*it)->getRect()->getPos().second);
 	      it++;
 	    }

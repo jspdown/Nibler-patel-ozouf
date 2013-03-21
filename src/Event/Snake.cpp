@@ -66,7 +66,7 @@ void	Snake::move()
 {
   int	x = this->pos->getPos().first;
   int	y = this->pos->getPos().second;
-  
+
   if (this->direction == Snake::LEFT)
     this->pos->setPos(x - this->speed, y);
   else if (this->direction == Snake::RIGHT)
@@ -76,6 +76,7 @@ void	Snake::move()
   else
     this->pos->setPos(x, y + this->speed);
   this->updateQueue();
+  std::cout << "->" << this->pos << std::endl;
   Debug::write("snake", this->pos->getPos().first, this->pos->getPos().second);
 }
 
@@ -86,7 +87,7 @@ void	Snake::update()
 
   s_targets.push_back(std::string("*"));
 
-  s_args = this->pos->posStr();  
+  s_args = this->pos->posStr();
   Debug::write("before collide");
   this->map->getHandleEvent()->emit(Trame::buildTrame("collide",
 						     this->unique_id,
@@ -99,16 +100,16 @@ void	Snake::update()
 
 void	Snake::collide(const std::string &trame)
 {
-	  
+
   if (Trame::getTransmitter(trame) == this->unique_id)
     return ;
   std::vector<std::string> args = Trame::getArgs(trame);
 
   if (args.size() == 4)
     {
-      if (this->pos->is_inside(Rect(Trame::toInt(args[0]), 
-				    Trame::toInt(args[1]), 
-				    Trame::toInt(args[2]), 
+      if (this->pos->is_inside(Rect(Trame::toInt(args[0]),
+				    Trame::toInt(args[1]),
+				    Trame::toInt(args[2]),
 				    Trame::toInt(args[3]))))
 	{
 	  std::vector<std::string>	s_targets;
