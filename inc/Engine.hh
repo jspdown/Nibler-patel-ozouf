@@ -5,6 +5,7 @@
 #include <dlfcn.h>
 #include <exception>
 #include "ILibrary.hh"
+#include "Map.hh"
 #include "Config.hh"
 
 class	Map;

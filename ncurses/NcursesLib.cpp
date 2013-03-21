@@ -5,7 +5,7 @@
 // Login   <kevin platel@epitech.net>
 //
 // Started on  Mon Mar 18 15:54:42 2013 vink
-// Last update Thu Mar 21 12:38:19 2013 kevin platel
+// Last update Thu Mar 21 16:56:17 2013 kevin platel
 //
 
 #include <utility>
@@ -52,7 +52,7 @@ void		NcursesLibrary::drawRect(std::pair<int,int> const &pos, std::pair<int,int>
 
   str[1] = 0;
   if (this->aff.find(texture) != this->aff.end())
-    str[0] = this->aff[texture]->second;
+    str[0] = (this->aff[texture]).first;
   else
     str[0] = 'U';
   this->win.print(str, pos.first, pos.second);

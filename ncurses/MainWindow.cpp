@@ -5,7 +5,7 @@
 // Login   <kevin platel@epitech.net>
 //
 // Started on  Mon Mar 18 14:36:41 2013 vink
-// Last update Thu Mar 21 09:25:45 2013 vink
+// Last update Thu Mar 21 16:53:52 2013 kevin platel
 //
 
 #include "MainWindow.hh"
@@ -27,11 +27,6 @@ ncurses::MainWindow::MainWindow()
 
 ncurses::MainWindow::~MainWindow()
 {
-  while (!this->sub_win.empty())
-    {
-      delete this->sub_win.front();
-      this->sub_win.pop_front();
-    }
   clrtoeol();
   endwin();
 }
