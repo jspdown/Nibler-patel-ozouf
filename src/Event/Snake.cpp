@@ -25,7 +25,6 @@ void	Snake::setDirection(e_dir d)
 
 void	Snake::move_left(const std::string &)
 {
-  Debug::write("left");
   if (this->direction == Snake::LEFT)
     setDirection(Snake::BOTTOM);
   else if (this->direction == Snake::RIGHT)
@@ -38,7 +37,6 @@ void	Snake::move_left(const std::string &)
 
 void	Snake::move_right(const std::string &)
 {
-  Debug::write("right");
   if (this->direction == Snake::LEFT)
     setDirection(Snake::TOP);
   else if (this->direction == Snake::RIGHT)
@@ -75,7 +73,6 @@ void	Snake::move()
   else
     this->pos->setPos(x, y + this->speed);
   this->updateQueue();
-  Debug::write("snake", this->pos->getPos().first, this->pos->getPos().second);
 }
 
 void	Snake::update()
@@ -86,14 +83,11 @@ void	Snake::update()
   s_targets.push_back(std::string("*"));
 
   s_args = this->pos->posStr();
-  Debug::write("before collide");
   this->map->getHandleEvent()->emit(Trame::buildTrame("collide",
 						     this->unique_id,
 						     s_targets,
 						     s_args));
-  Debug::write("before move");
   this->move();
-  Debug::write("after move");
 }
 
 void	Snake::collide(const std::string &trame)

@@ -63,8 +63,6 @@ void	Listener::removeChild(Listener *l)
 
 bool	Listener::isListening(const std::string &name)
 {
-  // if (!this->listened.size())
-  //   return (false);
   std::map<std::string, IActionEvent *>::iterator	it = this->listened.find(name);
   Debug::write(name.c_str());
   return (it != this->listened.end());
