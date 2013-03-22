@@ -5,7 +5,7 @@
 // Login   <kevin platel@epitech.net>
 //
 // Started on  Mon Mar 18 15:54:42 2013 vink
-// Last update Fri Mar 22 16:32:17 2013 vink
+// Last update Fri Mar 22 16:42:43 2013 vink
 //
 
 #include <utility>
@@ -60,8 +60,11 @@ void		NcursesLibrary::drawRect(std::pair<int,int> const &pos, std::pair<int,int>
     str[0] = (this->aff[texture]).first;
   else
     str[0] = 'U';
-  //this->win.print(str, COLOR_PAIR((this->aff[texture]).second), pos.first, pos.second);
-  this->win.print(str, pos.second, pos.first);
+
+  if (can_change_color() == TRUE)
+    this->win.print(str, COLOR_PAIR((this->aff[texture]).second), pos.second, pos.first);
+  else
+    this->win.print(str, pos.second, pos.first);
 }
 
 void		NcursesLibrary::quit()
