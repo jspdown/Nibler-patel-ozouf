@@ -28,7 +28,7 @@ ncurses::Window::Window(size_t posX, size_t posY, size_t height, size_t width,
   if (has_colors() != FALSE)
     {
       start_color();
-      init_pair(1, forground, background);
+      this->ind_color = ncurses::MainWindow::getColor(forground, background);
     }
   //  this->setBorder(' ');
 }
@@ -42,7 +42,7 @@ ncurses::Window::~Window()
 
 void	ncurses::Window::printColor(bool set) const
 {
-  if (has_colors() != false)
+  if (has_colors() != FALSE)
     {
       if (set)
 	wattron(this->win, COLOR_PAIR(this->ind_color));

@@ -20,6 +20,7 @@ SRC	=	$(EVENT_HANDLER)HandleEvent.cpp \
 		$(EVENT_ENTITY)AAnimateEntity.cpp \
 		$(SRC_PATH)Map.cpp \
 		$(SRC_PATH)Rect.cpp \
+		$(SRC_PATH)utils.cpp \
 		$(SRC_PATH)Config.cpp \
 		$(EVENT)Snake.cpp \
 		$(EVENT)SnakePart.cpp \
