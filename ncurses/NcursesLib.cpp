@@ -5,7 +5,7 @@
 // Login   <kevin platel@epitech.net>
 //
 // Started on  Mon Mar 18 15:54:42 2013 vink
-// Last update Thu Mar 21 19:21:40 2013 kevin platel
+// Last update Fri Mar 22 14:26:59 2013 vink
 //
 
 #include <utility>
@@ -30,13 +30,18 @@ void		NcursesLibrary::init(std::string const &texture_path, std::vector<std::str
 {
   char	c;
   int	col;
+  char	a;
 
   for (unsigned int i = 0; i < texture.size(); i++)
     {
       std::pair<char, int> tmp;
-      col = ncurses::MainWindow::getColor(COLOR_RED, COLOR_RED);
       std::ifstream file((texture_path + texture[i]).c_str(), std::ios::in);
       c = file.get();
+      if (file)
+	a = file.get();
+      else
+	a = 0;
+      col = ncurses::MainWindow::getColor(a, a);
       tmp.first = c;
       tmp.second = col;
       (this->aff)[texture[i]] = tmp;
@@ -55,7 +60,7 @@ void		NcursesLibrary::drawRect(std::pair<int,int> const &pos, std::pair<int,int>
     str[0] = (this->aff[texture]).first;
   else
     str[0] = 'U';
-  this->win.print(str, pos.first, pos.second);
+  this->win.print(str, COLOR_PAIR((this->aff[texture]).second), pos.first, pos.second);
 }
 
 void		NcursesLibrary::quit()

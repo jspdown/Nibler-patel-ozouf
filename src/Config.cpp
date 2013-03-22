@@ -9,25 +9,40 @@
 //
 
 #include <iostream>
-#include "Config.hh"
+#include <vector>
+#include <fstream>
+#include <sstream>
 
-Config::Config(int width, int height, std::vector<std::string> &texture, std::string const &texture_path, int width_tile, int height_tile, unsigned int wait_time)
+#include "Config.hh"
+#include "utils.hh"
+
+Config::Config(int width, int height, std::vector<std::string> &texture, std::string const &texture_path, int width_tile, int height_tile, unsigned int wait_time, std::string const &lib)
 {
+  std::stringstream ss;
+  std::vector<std::string>	r;
+
+  r = split_string(lib, "./_-");
   this->map_size.first = width;
   this->map_size.second = height;
   this->texture = texture;
-  this->texture_path = texture_path;
-  this->tile_size.first = width_tile;
-  this->tile_size.second = height_tile;
+  this->texture_path = texture_path  + r.at(r.size() - 2) + "/";
+  std::fstream file((texture_path + r.at(r.size() - 2) + ".conf").c_str(), std::ios::in);
+  file >> this->tile_size.first;
+  file >> this->tile_size.second;
   this->waitTime = wait_time;
 }
 
-Config::Config(std::pair<int,int> &size, std::vector<std::string> &texture, std::string const &texture_path, std::pair<int,int> &tile_size, unsigned int wait_time)
+Config::Config(std::pair<int,int> &size, std::vector<std::string> &texture, std::string const &texture_path, std::pair<int,int> &tile_size, unsigned int wait_time, std::string const &lib)
 {
+  std::vector<std::string>	r;
+
+  r = split_string(lib, "./_-");
   this->map_size = size;
   this->texture = texture;
-  this->texture_path = texture_path;
-  this->tile_size = tile_size;
+  this->texture_path = texture_path  + r.at(r.size() - 2) + "/";
+  std::ifstream file((texture_path + r.at(r.size() - 2) + ".conf").c_str(), std::ios::in);
+  file >> this->tile_size.first;
+  file >> this->tile_size.second;
   this->waitTime = wait_time;
 }
 
