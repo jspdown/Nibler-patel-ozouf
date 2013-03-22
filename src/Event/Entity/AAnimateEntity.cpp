@@ -39,7 +39,7 @@ void		AAnimateEntity::nextFrame()
   this->offset = 0;
 }
 
-Rect	*AAnimateEntity::getRect()	const
+Rect	const *AAnimateEntity::getRect()	const
 {
   return (this->frame[this->offset]);
 }

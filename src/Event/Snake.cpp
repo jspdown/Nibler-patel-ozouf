@@ -12,7 +12,7 @@ Snake::Snake(Rect *pos, int type, Map *map, Rect *tile):
   this->speed = 1;
   if (tile)
     this->speed = tile->getPos().first;
-  this->direction = Snake::TOP;
+  this->direction = TOP;
 }
 Snake::~Snake()
 {
@@ -26,38 +26,46 @@ void	Snake::setDirection(e_dir d)
 
 void	Snake::move_right(const std::string &)
 {
-  if (this->direction == Snake::LEFT)
-    setDirection(Snake::BOTTOM);
-  else if (this->direction == Snake::RIGHT)
-    setDirection(Snake::TOP);
-  else if (this->direction == Snake::TOP)
-    setDirection(Snake::LEFT);
+  if (this->direction == LEFT)
+    setDirection(BOTTOM);
+  else if (this->direction == RIGHT)
+    setDirection(TOP);
+  else if (this->direction == TOP)
+    setDirection(LEFT);
   else
-    setDirection(Snake::RIGHT);
+    setDirection(RIGHT);
 }
 
 void	Snake::move_left(const std::string &)
 {
-  if (this->direction == Snake::LEFT)
-    setDirection(Snake::TOP);
-  else if (this->direction == Snake::RIGHT)
-    setDirection(Snake::BOTTOM);
-  else if (this->direction == Snake::TOP)
-    setDirection(Snake::RIGHT);
+  if (this->direction == LEFT)
+    setDirection(TOP);
+  else if (this->direction == RIGHT)
+    setDirection(BOTTOM);
+  else if (this->direction == TOP)
+    setDirection(RIGHT);
   else
-    setDirection(Snake::LEFT);
+    setDirection(LEFT);
 }
 
 void	Snake::updateQueue()
 {
   std::pair<int, int>	prev = this->pos->getPos();
   std::pair<int, int>	tmp;
+
+  e_dir	prev_dir = this->getDir();
+  e_dir	tmp_dir;
   for (unsigned int i = 0; i < this->queue.size(); ++i)
     {
       tmp = this->queue[i]->getPos()->getPos();
       this->queue[i]->getPos()->setPos(prev);
+      tmp_dir = this->queue[i]->getDir();
+      this->queue[i]->setDir(tmp_dir);
+      prev_dir = tmp_dir;
       prev = tmp;
     }
+  // for (unsigned int i = 1; i < this->queue.size() - 1; ++i)
+  //   this->queue[i]->checkCorner(this->queue[i - 1]->getPos(), this->queue[i + 1]->getPos());
 }
 
 void	Snake::move()
@@ -68,17 +76,18 @@ void	Snake::move()
   int	tmpx, tmpy;
 
   this->updateQueue();
-  if (this->direction == Snake::LEFT)
+  
+  if (this->direction == LEFT)
     {
       tmpx = x - this->speed;
       tmpy = y;
     }
-  else if (this->direction == Snake::RIGHT)
+  else if (this->direction == RIGHT)
     {
       tmpx = x + this->speed;
       tmpy = y;
     }
-  else if (this->direction == Snake::TOP)
+  else if (this->direction == TOP)
     {
       tmpx = x;
       tmpy = y - this->speed;
@@ -151,7 +160,7 @@ void	Snake::addPart()
     }
 }
 
-void	Snake::eat(const std::string &trame)
+void	Snake::eat(const std::string &)
 {
   this->addPart();
 }
@@ -159,9 +168,12 @@ void	Snake::eat(const std::string &trame)
 void	Snake::init()
 {
   // a ameliorer
-  SnakePart *s = new SnakePart(new Rect(9, 10, 0 ,0, "snakepart", "snakepart"), 5, this->map, NULL);
-  SnakePart *s1 = new SnakePart(new Rect(8, 10, 0 ,0, "snakepart", "snakepart"), 5, this->map, NULL);
-  SnakePart *s2 = new SnakePart(new Rect(7, 10, 0 ,0, "snakepart", "snakepart"), 5, this->map, NULL);
+  SnakePart *s = new SnakePart(new Rect(9, 10, 0 ,0, "snakepart-top", "snakepart-top"), 5, this->map, NULL);
+  SnakePart *s1 = new SnakePart(new Rect(8, 10, 0 ,0, "snakepar-top", "snakepart-top"), 5, this->map, NULL);
+  SnakePart *s2 = new SnakePart(new Rect(7, 10, 0 ,0, "snakepart-top", "snakepart-top"), 5, this->map, NULL);
+  s->setDir(TOP);
+  s->setDir(TOP);
+  s->setDir(TOP);
   this->queue.push_back(s);
   this->queue.push_back(s1);
   this->queue.push_back(s2);
@@ -184,4 +196,9 @@ std::map<std::string, IActionEvent *> Snake::generateEventListened()
   events["right"] = new ActionEvent<Snake>(&Snake::move_right, this);
   events["eat"] = new ActionEvent<Snake>(&Snake::eat, this);
   return (events);
+}
+
+e_dir	Snake::getDir()	const
+{
+  return (this->direction);
 }

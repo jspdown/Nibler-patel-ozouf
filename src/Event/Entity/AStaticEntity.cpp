@@ -27,7 +27,7 @@ AStaticEntity	&AStaticEntity::operator=(const AStaticEntity &other)
   return (*this);
 }
 
-Rect const	*AStaticEntity::getRect()	const
+Rect	const *AStaticEntity::getRect() const
 {
   return (&this->rect);
 }

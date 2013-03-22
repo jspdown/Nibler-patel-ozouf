@@ -10,6 +10,7 @@
 
 class AStaticEntity : public AEntity
 {
+protected:
   Rect	rect;
 public:
   AStaticEntity(const std::string &name, Rect *pos, int type, Map *map, Rect *tile);
@@ -17,7 +18,7 @@ public:
   AStaticEntity(const AStaticEntity &other);
   AStaticEntity	&operator=(const AStaticEntity &other);
 
-  virtual Rect const	*getRect()	const;
+  virtual Rect 	const *getRect() const ;
 };
 
 #endif

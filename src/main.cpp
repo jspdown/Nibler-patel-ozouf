@@ -25,7 +25,17 @@ int main(int argc, char *argv[])
       Engine	eng(argv[1]);
 
       texture.push_back("wall");
-      texture.push_back("snakepart");
+      //      texture.push_back("snakepart");
+      
+      texture.push_back("snakepart-left");
+      texture.push_back("snakepart-right");
+      texture.push_back("snakepart-top");
+      texture.push_back("snakepart-bottom");
+      texture.push_back("snakepart-corner1");
+      texture.push_back("snakepart-corner2");
+      texture.push_back("snakepart-corner3");
+      texture.push_back("snakepart-corner4");
+
       texture.push_back("snake");
       texture.push_back("floor");
       texture.push_back("food");
