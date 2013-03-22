@@ -76,34 +76,19 @@ void	SnakePart::setDir(e_dir dir)
     this->rect.setTexture("snakepart-bottom");
 }
 
-bool	SnakePart::getCorner(int x1, int x2, int y1, int y2, int x1_test, int y1_test, int x2_test, int y2_test)
+void	SnakePart::checkCorner(e_dir a, SnakePart *p)
 {
-  if ((x1 == this->pos->getPos().first + x1_test && y1 == this->pos->getPos().second + y1_test &&
-       x2 == this->pos->getPos().first + x2_test && y2 == this->pos->getPos().second + y2_test) ||
-      (x1 == this->pos->getPos().first + x2_test && y1 == this->pos->getPos().second + y2_test &&
-       x2 == this->pos->getPos().first + x1_test && y2 == this->pos->getPos().second + y1_test))
-    return (true);
-  return (false);
+  e_dir	b = this->getDir();
+
+  if ((a == BOTTOM && b == LEFT) || (a == RIGHT && b == TOP))
+    p->rect.setTexture("snakepart-top-right");
+  else if ((a == TOP && b == RIGHT) || (a == LEFT && b == BOTTOM))
+    p->rect.setTexture("snakepart-right-top");
+  else if ((a == BOTTOM && b == RIGHT) || (a == LEFT && b == TOP))
+    p->rect.setTexture("snakepart-top-left");
+  else if ((a == RIGHT && b == BOTTOM) || (a == TOP && b == LEFT))
+    p->rect.setTexture("snakepart-left-top");
 }
-
-void	SnakePart::checkCorner(Rect *before, Rect *after)
-{
-  int	x1 = before->getPos().first;
-  int	y1 = before->getPos().second;
-
-  int	x2 = after->getPos().first;
-  int	y2 = after->getPos().second;
-
-  if (getCorner(x1, x2, y1, y2, 0, -1, -1, 0))
-    this->pos->setTexture("snakepart-corner1");
-  else if (getCorner(x1, x2, y1, y2, -1, 0, 0, 1))
-    this->pos->setTexture("snakepart-corner2");
-  else if (getCorner(x1, x2, y1, y2, 1, 0, 0, 1))
-    this->pos->setTexture("snakepart-corner3");
-  else if (getCorner(x1, x2, y1, y2, 0, -1, 1, 0))
-    this->pos->setTexture("snakepart-corner4");
-}
-
 e_dir	SnakePart::getDir()	const
 {
   return (this->direction);

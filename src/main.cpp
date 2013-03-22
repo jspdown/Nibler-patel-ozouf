@@ -30,10 +30,11 @@ int main(int argc, char *argv[])
       texture.push_back("snakepart-right");
       texture.push_back("snakepart-top");
       texture.push_back("snakepart-bottom");
-      texture.push_back("snakepart-corner1");
-      texture.push_back("snakepart-corner2");
-      texture.push_back("snakepart-corner3");
-      texture.push_back("snakepart-corner4");
+
+      texture.push_back("snakepart-top-right");
+      texture.push_back("snakepart-right-top");
+      texture.push_back("snakepart-top-left");
+      texture.push_back("snakepart-left-top");
 
       texture.push_back("snake");
       texture.push_back("floor");

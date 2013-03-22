@@ -12,7 +12,7 @@ Snake::Snake(Rect *pos, int type, Map *map, Rect *tile):
   this->speed = 1;
   if (tile)
     this->speed = tile->getPos().first;
-  this->direction = TOP;
+  this->direction = BOTTOM;
 }
 Snake::~Snake()
 {
@@ -24,7 +24,7 @@ void	Snake::setDirection(e_dir d)
   this->direction = d;
 }
 
-void	Snake::move_right(const std::string &)
+void	Snake::move_left(const std::string &)
 {
   if (this->direction == LEFT)
     setDirection(BOTTOM);
@@ -36,7 +36,7 @@ void	Snake::move_right(const std::string &)
     setDirection(RIGHT);
 }
 
-void	Snake::move_left(const std::string &)
+void	Snake::move_right(const std::string &)
 {
   if (this->direction == LEFT)
     setDirection(TOP);
@@ -60,12 +60,16 @@ void	Snake::updateQueue()
       tmp = this->queue[i]->getPos()->getPos();
       this->queue[i]->getPos()->setPos(prev);
       tmp_dir = this->queue[i]->getDir();
-      this->queue[i]->setDir(tmp_dir);
+      this->queue[i]->setDir(prev_dir);
       prev_dir = tmp_dir;
       prev = tmp;
     }
-  // for (unsigned int i = 1; i < this->queue.size() - 1; ++i)
-  //   this->queue[i]->checkCorner(this->queue[i - 1]->getPos(), this->queue[i + 1]->getPos());
+  prev_dir = this->getDir();
+  for (unsigned int i = 1; i < this->queue.size(); ++i)
+    {
+      this->queue[i]->checkCorner(prev_dir, this->queue[i - 1]);
+      prev_dir = this->queue[i]->getDir();
+    }
 }
 
 void	Snake::move()
@@ -111,6 +115,7 @@ void	Snake::move()
   for (unsigned int i = 0; i < this->queue.size(); ++i)
     this->queue[i]->collide(trame);
   this->pos->setPos(tmpx, tmpy);
+  
 }
 
 void	Snake::update()
@@ -149,6 +154,7 @@ void	Snake::addPart()
   if (this->queue.size() > 0)
     {
       SnakePart	*n = new SnakePart(new Rect(this->queue[this->queue.size() - 1]->getPos()->getPos().first, this->queue[this->queue.size() - 1]->getPos()->getPos().second), 0, this->map, new Rect());
+      n->setDir(this->queue[this->queue.size() - 1]->getDir());
       this->map->addEntity(5, n);
       this->queue.push_back(n);
     }
@@ -168,12 +174,12 @@ void	Snake::eat(const std::string &)
 void	Snake::init()
 {
   // a ameliorer
-  SnakePart *s = new SnakePart(new Rect(9, 10, 0 ,0, "snakepart-top", "snakepart-top"), 5, this->map, NULL);
-  SnakePart *s1 = new SnakePart(new Rect(8, 10, 0 ,0, "snakepar-top", "snakepart-top"), 5, this->map, NULL);
-  SnakePart *s2 = new SnakePart(new Rect(7, 10, 0 ,0, "snakepart-top", "snakepart-top"), 5, this->map, NULL);
-  s->setDir(TOP);
-  s->setDir(TOP);
-  s->setDir(TOP);
+  SnakePart *s = new SnakePart(new Rect(10, 9, 0 ,0), 5, this->map, 0);
+  SnakePart *s1 = new SnakePart(new Rect(10, 8, 0 ,0), 5, this->map, 0);
+  SnakePart *s2 = new SnakePart(new Rect(10, 7, 0 ,0), 5, this->map, 0);
+  s->setDir(BOTTOM);
+  s1->setDir(BOTTOM);
+  s2->setDir(BOTTOM);
   this->queue.push_back(s);
   this->queue.push_back(s1);
   this->queue.push_back(s2);

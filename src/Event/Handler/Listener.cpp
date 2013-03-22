@@ -133,7 +133,6 @@ void	Listener::AppliBroadcast::operator()(Listener *child)
 {
   if (child != 0)
     {
-      Debug::write(child->getName().c_str());
       if (child->isListening(Trame::getName(this->trame)))
 	{
 	  child->broadcast(this->trame);

@@ -60,7 +60,8 @@ void		NcursesLibrary::drawRect(std::pair<int,int> const &pos, std::pair<int,int>
     str[0] = (this->aff[texture]).first;
   else
     str[0] = 'U';
-  this->win.print(str, COLOR_PAIR((this->aff[texture]).second), pos.first, pos.second);
+  //this->win.print(str, COLOR_PAIR((this->aff[texture]).second), pos.first, pos.second);
+  this->win.print(str, pos.second, pos.first);
 }
 
 void		NcursesLibrary::quit()

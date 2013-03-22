@@ -18,13 +18,11 @@ public:
   virtual void	init();
   void	setDir(e_dir dir);
   e_dir	getDir()	const;
-  void	checkCorner(Rect *before, Rect *after);
+  void	checkCorner(e_dir b, SnakePart *p);
   virtual SnakePart *clone(Rect *pos, int type, Map *map, Rect *r)	const;
   virtual std::map<std::string, IActionEvent *> generateEventListened();
 
   void	collide(const std::string &trame);
-private:
-  bool	getCorner(int, int, int, int, int, int, int, int);
 };
 
 #endif

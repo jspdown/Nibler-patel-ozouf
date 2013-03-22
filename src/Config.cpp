@@ -16,7 +16,7 @@
 #include "Config.hh"
 #include "utils.hh"
 
-Config::Config(int width, int height, std::vector<std::string> &texture, std::string const &texture_path, int width_tile, int height_tile, unsigned int wait_time, std::string const &lib)
+Config::Config(int width, int height, std::vector<std::string> &texture, std::string const &texture_path, int, int, unsigned int wait_time, std::string const &lib)
 {
   std::stringstream ss;
   std::vector<std::string>	r;
@@ -32,7 +32,7 @@ Config::Config(int width, int height, std::vector<std::string> &texture, std::st
   this->waitTime = wait_time;
 }
 
-Config::Config(std::pair<int,int> &size, std::vector<std::string> &texture, std::string const &texture_path, std::pair<int,int> &tile_size, unsigned int wait_time, std::string const &lib)
+Config::Config(std::pair<int,int> &size, std::vector<std::string> &texture, std::string const &texture_path, std::pair<int,int> &, unsigned int wait_time, std::string const &lib)
 {
   std::vector<std::string>	r;
 
