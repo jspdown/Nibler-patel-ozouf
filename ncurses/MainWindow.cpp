@@ -5,7 +5,7 @@
 // Login   <kevin platel@epitech.net>
 //
 // Started on  Mon Mar 18 14:36:41 2013 vink
-// Last update Fri Mar 22 16:40:43 2013 vink
+// Last update Fri Mar 22 18:31:59 2013 vink
 //
 
 #include "MainWindow.hh"
@@ -23,13 +23,6 @@ ncurses::MainWindow::MainWindow()
   noecho();
   keypad(stdscr, TRUE);
   curs_set(0);
-  init_color(COLOR_RED, 700, 0, 0);
-  init_color(COLOR_BLACK, 0, 0, 0);
-  init_color(COLOR_WHITE, 700, 700, 700);
-  init_color(COLOR_BLACK, 0, 0, 0);
-  init_color(COLOR_GREEN, 0, 700, 0);
-  init_color(COLOR_BLUE, 0, 0, 700);
-  init_color(COLOR_YELLOW, 0, 700, 700);
 }
 
 ncurses::MainWindow::~MainWindow()

@@ -5,7 +5,7 @@
 // Login   <kevin platel@epitech.net>
 //
 // Started on  Mon Mar 18 15:54:42 2013 vink
-// Last update Fri Mar 22 16:42:43 2013 vink
+// Last update Fri Mar 22 18:34:25 2013 vink
 //
 
 #include <utility>
@@ -20,6 +20,13 @@
 
 NcursesLibrary::NcursesLibrary()
 {
+  init_color(COLOR_RED, 1000, 400, 400);
+  init_color(COLOR_BLACK, 0, 0, 0);
+  init_color(COLOR_WHITE, 1000, 1000, 1000);
+  init_color(COLOR_BLACK, 0, 0, 0);
+  init_color(COLOR_GREEN, 0, 1000, 0);
+  init_color(COLOR_BLUE, 0, 0, 1000);
+  init_color(COLOR_YELLOW, 0, 1000, 1000);
 }
 
 NcursesLibrary::~NcursesLibrary()
