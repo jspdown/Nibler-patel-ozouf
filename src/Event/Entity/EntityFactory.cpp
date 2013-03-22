@@ -21,7 +21,6 @@
 EntityFactory::EntityFactory()
 {
   this->learnEntity(new Snake(new Rect(), 0, 0, 0));
-  this->learnEntity(new SnakePart(new Rect(), 0, 0, 0));
   this->learnEntity(new Wall(new Rect(), 0, 0, 0));
   this->learnEntity(new Floor(new Rect(), 0, 0, 0));
   this->learnEntity(new Food(new Rect(), 0, 0, 0));

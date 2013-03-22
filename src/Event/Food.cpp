@@ -8,6 +8,8 @@
 // Last update Thu Mar 21 19:21:48 2013 kevin platel
 //
 
+#include <sys/time.h>
+
 #include	"ActionEvent.hpp"
 #include	"Trame.hh"
 #include	"Food.hh"
@@ -32,12 +34,43 @@ Food::Food(const Food &other):
 
 void	Food::update()
 {
-
+  
 }
 
 void	Food::init()
 {
+  struct timeval	time;
+  gettimeofday(&time,NULL);
 
+  srand((time.tv_sec * 1000) + (time.tv_usec / 1000));
+}
+
+void	Food::setRandPos()
+{
+  bool	done = false;
+  int	x, y;
+
+  while (!done)
+    {
+      bool	nice = true;
+      x = rand() % this->map->getConf()->getMapSize().first;
+      y = rand() % this->map->getConf()->getMapSize().second;
+
+      Debug::write("plop", this->map->getElements().size());
+      for (unsigned int i = 0; i < this->map->getElements().size(); ++i)
+	{
+	  for (std::list<IEntity *>::const_iterator it = this->map->getElements()[i].begin(); 
+	       it != this->map->getElements()[i].end(); ++it)
+	    {
+	      if ((*it)->getName() == "snake" || (*it)->getName() == "wall")
+		if ((*it)->getPos()->getPos().first == x && (*it)->getPos()->getPos().second == y)
+		  nice = false;
+	    }
+	}
+      if (nice == true)
+	done = true;
+    }
+  this->pos->setPos(x, y);
 }
 
 void	Food::collide(const std::string &trame)
@@ -51,20 +84,30 @@ void	Food::collide(const std::string &trame)
 				    Trame::toInt(args[2]),
 				    Trame::toInt(args[3]))))
 	{
-	  std::vector<std::string>	s_targets;
-	  std::vector<std::string>	s_args;
-	  s_targets.push_back(std::string("snake"));
-	  s_args.push_back(std::string("1"));
+	  {
+	    std::vector<std::string>	s_targets;
+	    std::vector<std::string>	s_args;
+	    s_targets.push_back(std::string("snake"));
+	    s_args.push_back(std::string("1"));
+	    
+	    this->map->getHandleEvent()->emit(Trame::buildTrame("eat",
+								this->unique_id,
+								s_targets,
+								s_args));
+	  }
+	  {
+	    std::vector<std::string>	s_targets;
+	    std::vector<std::string>	s_args;
+	    s_targets.push_back(std::string("thegame"));
+	    s_args.push_back(std::string("1"));
+	    
+	    this->map->getHandleEvent()->emit(Trame::buildTrame("earnspoints",
+								this->unique_id,
+								s_targets,
+								s_args));
+	  }
 	  
-	  this->map->getHandleEvent()->emit(Trame::buildTrame("eat",
-							     this->unique_id,
-							     s_targets,
-							     s_args));
-	  Debug::write("PPPPP");
-	  this->map->getHandleEvent()->getListeners()->removeChild(map->getHandleEvent()->getListeners(), this);
-	  Debug::write("AAA");
-	  this->map->delEntity(this);
-	  Debug::write("BBB");
+	  this->setRandPos();
 	}
     }
 }
