@@ -5,7 +5,7 @@
 // Login   <kevin platel@epitech.net>
 //
 // Started on  Mon Mar 18 15:54:42 2013 vink
-// Last update Fri Mar 22 14:26:59 2013 vink
+// Last update Fri Mar 22 16:32:17 2013 vink
 //
 
 #include <utility>
@@ -41,7 +41,7 @@ void		NcursesLibrary::init(std::string const &texture_path, std::vector<std::str
 	a = file.get();
       else
 	a = 0;
-      col = ncurses::MainWindow::getColor(a, a);
+      col = ncurses::MainWindow::getColor(a, COLOR_BLACK);
       tmp.first = c;
       tmp.second = col;
       (this->aff)[texture[i]] = tmp;
