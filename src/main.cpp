@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
       texture.push_back("floor");
       texture.push_back("food");
 
-      Config	conf(10,10, texture, "./ressource/stexture/", 32, 32, 500000);
+      Config	conf(10,10, texture, "./ressource/ntexture/", 1, 1, 500000);
       Map		map(&conf, "./ressource/map/map-1.conf");
 
       eng.init(conf);

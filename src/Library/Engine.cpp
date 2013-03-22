@@ -70,8 +70,11 @@ void	Engine::run(Map &map)
 	      it++;
 	    }
 	}
-      this->lib->update();
-      usleep(this->conf->getWaitTime());
+      if (!(this->the_end))
+	{
+	  this->lib->update();
+	  usleep(this->conf->getWaitTime());
+	}
     }
 }
 

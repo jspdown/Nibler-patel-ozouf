@@ -139,7 +139,7 @@ void	Snake::addPart()
 {
   if (this->queue.size() > 0)
     {
-      SnakePart	*n = new SnakePart(new Rect(), 0, this->map, new Rect());
+      SnakePart	*n = new SnakePart(new Rect(this->queue[this->queue.size() - 1]->getPos()->getPos().first, this->queue[this->queue.size() - 1]->getPos()->getPos().second), 0, this->map, new Rect());
       this->map->addEntity(5, n);
       this->queue.push_back(n);
     }
