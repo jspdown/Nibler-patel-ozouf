@@ -70,6 +70,7 @@ IEntity				       *Map::getEntity(std::string const &line)
   int	width;
   int	height;
   int	layer;
+  std::string	reset_texture("");
   IEntity *tmp;
 
   ss << line;
@@ -79,8 +80,12 @@ IEntity				       *Map::getEntity(std::string const &line)
   ss >> y;
   ss >> width;
   ss >> height;
-  tmp = this->fact.newEntity(name, new Rect(x, y), 0, this,
-			     new Rect(conf->getTileSize().first, conf->getTileSize().second, 32, 32, "bite", "wall"));
+
+  
+  Rect *r = new Rect(conf->getTileSize().first, conf->getTileSize().second, 32, 32, "", "");
+  Rect *r2 = new Rect(x, y, 32, 32, "", "");
+  tmp = this->fact.newEntity(name, r2, 0, this, r);
+
   if (!tmp)
     return (0);
   this->addEntity(layer, tmp);

@@ -69,11 +69,6 @@ void	Engine::run(Map &map)
 	      this->lib->drawRect((*it)->getPos()->getPos(),
 				  (*it)->getRect()->getSize(),
 				  (*it)->getRect()->getTexture(), (*it)->getRect()->getStr());
-	      if ((*it)->getName() == "snakepart" || (*it)->getName() == "snake")
-		{
-		  Debug::write((*it)->getName().c_str());
-		  Debug::write((*it)->getRect()->getTexture().c_str(), (*it)->getRect()->getSize().first, (*it)->getRect()->getSize().second);
-		}
 	      it++;
 	    }
 	}

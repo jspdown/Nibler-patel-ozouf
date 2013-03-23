@@ -22,6 +22,7 @@ public:
   virtual SnakePart *clone(Rect *pos, int type, Map *map, Rect *r)	const;
   virtual std::map<std::string, IActionEvent *> generateEventListened();
 
+  void	checkQueue(e_dir a);
   void	collide(const std::string &trame);
 };
 

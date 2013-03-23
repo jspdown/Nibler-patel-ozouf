@@ -24,12 +24,23 @@ int main(int argc, char *argv[])
       std::vector<std::string> texture;
 
       texture.push_back("wall");
+      texture.push_back("wall2");
       //      texture.push_back("snakepart");
       
       texture.push_back("snakepart-left");
       texture.push_back("snakepart-right");
       texture.push_back("snakepart-top");
       texture.push_back("snakepart-bottom");
+
+      texture.push_back("snakepart-queue-left");
+      texture.push_back("snakepart-queue-right");
+      texture.push_back("snakepart-queue-top");
+      texture.push_back("snakepart-queue-bottom");
+
+      texture.push_back("snake-left");
+      texture.push_back("snake-right");
+      texture.push_back("snake-top");
+      texture.push_back("snake-bottom");
 
       texture.push_back("snakepart-top-right");
       texture.push_back("snakepart-right-top");

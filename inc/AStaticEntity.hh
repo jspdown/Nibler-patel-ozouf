@@ -19,6 +19,7 @@ public:
   AStaticEntity	&operator=(const AStaticEntity &other);
 
   virtual Rect 	const *getRect() const ;
+  virtual void	setTexture(const std::string &t);
 };
 
 #endif

@@ -10,9 +10,8 @@ Snake::Snake(Rect *pos, int type, Map *map, Rect *tile):
   AStaticEntity("snake", pos, type, map, tile)
 {
   this->speed = 1;
-  if (tile)
-    this->speed = tile->getPos().first;
   this->direction = BOTTOM;
+  this->rect.setTexture("snake-bottom");
 }
 Snake::~Snake()
 {
@@ -22,6 +21,14 @@ Snake::~Snake()
 void	Snake::setDirection(e_dir d)
 {
   this->direction = d;
+  if (d == LEFT)
+    this->rect.setTexture("snake-left");
+  else if (d == RIGHT)
+    this->rect.setTexture("snake-right");
+  else if (d == TOP)
+    this->rect.setTexture("snake-top");
+  else
+    this->rect.setTexture("snake-bottom");
 }
 
 void	Snake::move_left(const std::string &)
@@ -70,6 +77,7 @@ void	Snake::updateQueue()
       this->queue[i]->checkCorner(prev_dir, this->queue[i - 1]);
       prev_dir = this->queue[i]->getDir();
     }
+  this->queue[this->queue.size() - 1]->checkQueue(this->queue[this->queue.size() - 1]->getDir());
 }
 
 void	Snake::move()

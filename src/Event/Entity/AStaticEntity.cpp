@@ -31,3 +31,8 @@ Rect	const *AStaticEntity::getRect() const
 {
   return (&this->rect);
 }
+
+void	AStaticEntity::setTexture(const std::string &t)
+{
+  this->rect.setTexture(t);
+}

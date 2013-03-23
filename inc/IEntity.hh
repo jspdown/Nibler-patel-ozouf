@@ -22,6 +22,8 @@ public:
   virtual const std::string	&getName() const = 0;
   virtual IEntity *clone(Rect *pos, int type, Map *map, Rect *r) const = 0;
   virtual std::map<std::string, IActionEvent *>	generateEventListened() = 0;
+
+  virtual void	setTexture(const std::string &t) = 0;
 };
 
 #endif

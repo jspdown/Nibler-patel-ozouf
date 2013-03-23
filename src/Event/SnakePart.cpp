@@ -93,3 +93,16 @@ e_dir	SnakePart::getDir()	const
 {
   return (this->direction);
 }
+
+void	SnakePart::checkQueue(e_dir a)
+{
+  if (a == LEFT)
+    this->rect.setTexture("snakepart-queue-left");
+  else if (a == RIGHT)
+    this->rect.setTexture("snakepart-queue-right");
+  else if (a == TOP)
+    this->rect.setTexture("snakepart-queue-top");
+  else if (a == BOTTOM)
+    this->rect.setTexture("snakepart-queue-bottom");
+
+}
