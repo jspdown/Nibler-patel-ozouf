@@ -36,7 +36,7 @@ void	Wall::collide(const std::string &trame)
 	  s_targets.push_back(std::string("theGame"));
 	  s_args.push_back(std::string("collide with a wall"));
 
-	  this->map->getHandleEvent()->emit(Trame::buildTrame(/*"endOfGame"*/ "quit",
+	  this->map->getHandleEvent()->emit(Trame::buildTrame("endofgame",
 							     this->unique_id,
 							     s_targets,
 							     s_args));

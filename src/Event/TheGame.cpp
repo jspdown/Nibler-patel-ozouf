@@ -3,7 +3,7 @@
 #include	"Trame.hh"
 #include	"ActionEvent.hpp"
 #include	"TheGame.hh"
-
+#include	"Wall.hh"
 #include	"Debug.hh"
 
 TheGame::TheGame(Map *map):
@@ -18,12 +18,10 @@ TheGame::~TheGame()
 
 void	TheGame::endOfGame(const std::string &)
 {
-  std::deque<Rect *>	menu;
-
   Debug::write("endOfGame");
-  menu.push_back(new Rect(50, 50, 500, 500, "", "wall"));
-  menu.push_back(new Rect(150, 150, 150, 150, "Game Over", "snake"));
-  this->map->setAuxDisplay(this->unique_id, menu);
+  std::cout << "GAME OVER" << std::endl << "score: " << this->score << std::endl;
+  this->quit("lolal");
+
 }
 
 void	TheGame::earnsPoints(const std::string &trame)
@@ -37,19 +35,19 @@ void	TheGame::earnsPoints(const std::string &trame)
       ss << args[0];
       ss >> value;
   
+      if (this->score % 3 == 2)
+	this->map->getConf()->setWaitTime(this->map->getConf()->getWaitTime() / 2);
       this->score += value;
     }
 }
 
 void	TheGame::quit(const std::string &)
 {
-  Debug::write("quit");
   this->map->getEngine()->setTheEnd(true);
 }
 
 void	TheGame::update()
 {
-  
 }
 
 void	TheGame::init()

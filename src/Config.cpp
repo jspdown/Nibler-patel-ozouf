@@ -80,3 +80,8 @@ void				Config::setSize(int x, int y)
   this->map_size.first = x;
   this->map_size.second = y;
 }
+
+void	Config::setWaitTime(unsigned int w)
+{
+  this->waitTime = w;
+}

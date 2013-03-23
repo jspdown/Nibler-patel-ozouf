@@ -69,7 +69,6 @@ void	Food::setRandPos()
       if (nice == true)
 	done = true;
     }
-  std::cout << "x y " << x << " " << y << " " <<this->map->getConf()->getMapSize().first << " " << this->map->getConf()->getMapSize().second << std::endl;
   this->pos->setPos(x, y);
 }
 

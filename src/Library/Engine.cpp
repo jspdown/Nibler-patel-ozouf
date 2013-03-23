@@ -20,7 +20,6 @@ Engine::Engine(std::string const &lib)
   ILibrary*	(*new_lib)();
 
   this->lib = NULL;
-  std::cout << lib << std::endl;
   this->dhandle = dlopen(lib.c_str(), RTLD_LAZY);
   if (this->dhandle == NULL)
     throw LibraryLoadError("Error when loding library : " + std::string(dlerror()));
@@ -28,7 +27,6 @@ Engine::Engine(std::string const &lib)
   if (new_lib == NULL)
     throw LibraryLoadError("Error when loading creation symbol");
   this->lib = new_lib();
-  std::cout << "Library loaded." << std::endl;
   this->the_end = false;
 }
 
@@ -68,7 +66,8 @@ void	Engine::run(Map &map)
 	      (*it)->update();
 	      this->lib->drawRect((*it)->getPos()->getPos(),
 				  (*it)->getRect()->getSize(),
-				  (*it)->getRect()->getTexture(), (*it)->getRect()->getStr());
+				  (*it)->getRect()->getTexture(),
+				  (*it)->getRect()->getStr());
 	      it++;
 	    }
 	}

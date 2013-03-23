@@ -25,6 +25,7 @@ public:
   unsigned int			getWaitTime() const;
 
   void				setSize(int x, int y);
+  void				setWaitTime(unsigned int w);
 };
 
 #endif /* !__CONFIG_H__ */
