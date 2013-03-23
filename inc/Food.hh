@@ -20,6 +20,7 @@ public:
   virtual std::map<std::string, IActionEvent *> generateEventListened();
 
   void	collide(const std::string &trame);
+  void	setRandPos();
 };
 
 

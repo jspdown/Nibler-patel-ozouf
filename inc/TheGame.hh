@@ -7,12 +7,14 @@
 
 class	TheGame: public AStaticEntity
 {
+  int	score;
 public:
   TheGame(Map *map);
   virtual ~TheGame();
 
   void	endOfGame(const std::string &trame);
   void	quit(const std::string &trame);
+  void	earnsPoints(const std::string &trame);
 
   virtual void	update();
   virtual void	init();

@@ -5,7 +5,7 @@
 // Login   <platel_k@epitech.net>
 //
 // Started on  Mon Mar 18 17:25:26 2013 kevin platel
-// Last update Fri Mar 22 22:06:33 2013 vink
+// Last update Sat Mar 23 15:08:05 2013 vink
 //
 
 #include <unistd.h>
@@ -26,7 +26,7 @@ Engine::Engine(std::string const &lib)
     throw LibraryLoadError("Error when loding library : " + std::string(dlerror()));
   new_lib = reinterpret_cast<ILibrary *(*)()>(dlsym(dhandle, "create_lib"));
   if (new_lib == NULL)
-    throw LibraryLoadError("Error when loding creation symbol");
+    throw LibraryLoadError("Error when loading creation symbol");
   this->lib = new_lib();
   this->the_end = false;
 }
