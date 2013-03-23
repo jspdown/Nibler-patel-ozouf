@@ -17,7 +17,7 @@ public:
   virtual void	init() = 0;
   virtual void	update() = 0;
   virtual void	state() const = 0; // debug methode
-  virtual Rect const	*getRect() const = 0;
+  virtual Rect	const *getRect() const = 0;
   virtual Rect const	*getPos() const = 0;
   virtual const std::string	&getName() const = 0;
   virtual IEntity *clone(Rect *pos, int type, Map *map, Rect *r) const = 0;

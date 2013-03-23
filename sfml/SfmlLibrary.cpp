@@ -33,13 +33,16 @@ void	SfmlLibrary::init(std::string const &texture_path, std::vector<std::string>
     }
 }
 
-void	SfmlLibrary::drawRect(std::pair<int,int> const &pos, std::pair<int,int> const &size, std::string const &texture)
+void	SfmlLibrary::drawRect(std::pair<int,int> const &pos, std::pair<int,int> const &size, std::string const &texture, std::string const &str)
 {
   sf::Sprite s(*((this->aff)[texture]));
+  sf::Text t(str);
 
   s.setPosition(pos.first, pos.second);
   s.setTextureRect(sf::IntRect(0, 0, size.first, size.second));
+  t.setPosition(pos.first, pos.second);
   this->mWin.draw(s);
+  this->mWin.draw(t);
 }
 
 void	SfmlLibrary::reload(std::string const &texture_path, std::vector<std::string> const &texture)
@@ -49,12 +52,26 @@ void	SfmlLibrary::reload(std::string const &texture_path, std::vector<std::strin
 
 void		SfmlLibrary::updateEvent(std::stack<std::string> &e)
 {
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-    e.push("left|id|snake||");
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-    e.push("right|id|snake||");
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
-    e.push("quit|id|thegame||");
+  while (this->mWin.pollEvent(this->event))
+    {
+      if (this->event.type == sf::Event::KeyPressed)
+	{
+	  if (this->event.key.code == (sf::Keyboard::Left))
+	    e.push("left|id|snake||");
+	  if (this->event.key.code == (sf::Keyboard::Right))
+	    e.push("right|id|snake||");
+	  if (this->event.key.code == (sf::Keyboard::Q))
+	    e.push("quit|id|thegame||");
+	  if (this->event.key.code == (sf::Keyboard::Escape))
+	    e.push("quit|id|thegame||");
+	}
+    }
+  // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+  //   e.push("left|id|snake||");
+  // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+  //   e.push("right|id|snake||");
+  // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+  //   e.push("quit|id|thegame||");
 }
 
 void		SfmlLibrary::update()

@@ -27,9 +27,9 @@ Map::Map(Config *conf, std::string const &filename)
   ss << str;
   ss >> this->size.first;
   ss >> this->size.second;
-  for (int i = 0; i < this->size.first; ++i)
+  for (int i = 0; i < this->size.second; ++i)
     {
-      for (int j = 0; j < this->size.second; ++j)
+      for (int j = 0; j < this->size.first; ++j)
 	{
 	  tmp = this->fact.newEntity("floor", 
 				     new Rect(i * conf->getTileSize().first, 

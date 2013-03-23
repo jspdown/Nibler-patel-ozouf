@@ -5,7 +5,7 @@
 // Login   <kevin platel@epitech.net>
 //
 // Started on  Mon Mar 18 22:29:46 2013 vink
-// Last update Thu Mar 21 19:36:42 2013 kevin platel
+// Last update Fri Mar 22 19:36:55 2013 vink
 //
 
 #include <iostream>
@@ -21,7 +21,6 @@
 EntityFactory::EntityFactory()
 {
   this->learnEntity(new Snake(new Rect(), 0, 0, 0));
-  this->learnEntity(new SnakePart(new Rect(), 0, 0, 0));
   this->learnEntity(new Wall(new Rect(), 0, 0, 0));
   this->learnEntity(new Floor(new Rect(), 0, 0, 0));
   this->learnEntity(new Food(new Rect(), 0, 0, 0));

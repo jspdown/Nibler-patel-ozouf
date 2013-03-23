@@ -5,7 +5,7 @@
 // Login   <kevin platel@epitech.net>
 //
 // Started on  Mon Mar 18 15:54:42 2013 vink
-// Last update Fri Mar 22 18:34:25 2013 vink
+// Last update Fri Mar 22 22:09:03 2013 vink
 //
 
 #include <utility>
@@ -58,7 +58,7 @@ void		NcursesLibrary::init(std::string const &texture_path, std::vector<std::str
   this->mWin.addWindow(&this->win);
 }
 
-void		NcursesLibrary::drawRect(std::pair<int,int> const &pos, std::pair<int,int> const &size, std::string const &texture)
+void		NcursesLibrary::drawRect(std::pair<int,int> const &pos, std::pair<int,int> const &size, std::string const &texture, std::string const &s)
 {
   char	str[2];
 
@@ -67,10 +67,15 @@ void		NcursesLibrary::drawRect(std::pair<int,int> const &pos, std::pair<int,int>
     str[0] = (this->aff[texture]).first;
   else
     str[0] = 'U';
+
   if (can_change_color() == TRUE)
-    this->win.print(str, COLOR_PAIR((this->aff[texture]).second), pos.first, pos.second);
+    this->win.print(s, COLOR_PAIR((this->aff[texture]).second), pos.second, pos.first);
   else
-    this->win.print(str, pos.first, pos.second);
+    this->win.print(s, pos.second, pos.first);
+  if (can_change_color() == TRUE)
+    this->win.print(str, COLOR_PAIR((this->aff[texture]).second), pos.second, pos.first);
+  else
+    this->win.print(str, pos.second, pos.first);
 }
 
 void		NcursesLibrary::quit()

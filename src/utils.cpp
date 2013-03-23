@@ -25,7 +25,7 @@ std::vector<std::string> split_string(const std::string &s, char delim)
   return elems;
 }
 
-static std::vector<std::string> rec_split_string(const std::string &s, const std::string &delim, int n)
+static std::vector<std::string> rec_split_string(const std::string &s, const std::string &delim, unsigned int n)
 {
   std::vector<std::string>	res;
   std::vector<std::string>	tot_res;
@@ -37,7 +37,7 @@ static std::vector<std::string> rec_split_string(const std::string &s, const std
       return (res);
     }
   res = split_string(s, delim.at(n));
-  for (int i = 0; i < res.size(); ++i)
+  for (unsigned int i = 0; i < res.size(); ++i)
     {
       res_aux = rec_split_string(res[i], delim, n+1);
       if (res_aux.size())

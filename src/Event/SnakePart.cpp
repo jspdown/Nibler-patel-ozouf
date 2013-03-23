@@ -8,7 +8,7 @@
 SnakePart::SnakePart(Rect *pos, int type, Map *map, Rect *r):
   AStaticEntity("snakepart", pos, type, map, r)
 {
-
+  this->direction = TOP;
 }
 
 SnakePart::~SnakePart()
@@ -61,4 +61,35 @@ std::map<std::string, IActionEvent *> SnakePart::generateEventListened()
   std::map<std::string, IActionEvent *>	events;
   events["collide"] = new ActionEvent<SnakePart>(&SnakePart::collide, this);
   return (events);
+}
+
+void	SnakePart::setDir(e_dir dir)
+{
+  this->direction = dir;
+  if (dir == LEFT)
+    this->rect.setTexture("snakepart-left");
+  else if (dir == RIGHT)
+    this->rect.setTexture("snakepart-right");
+  else if (dir == TOP)
+    this->rect.setTexture("snakepart-top");
+  else
+    this->rect.setTexture("snakepart-bottom");
+}
+
+void	SnakePart::checkCorner(e_dir a, SnakePart *p)
+{
+  e_dir	b = this->getDir();
+
+  if ((a == BOTTOM && b == LEFT) || (a == RIGHT && b == TOP))
+    p->rect.setTexture("snakepart-top-right");
+  else if ((a == TOP && b == RIGHT) || (a == LEFT && b == BOTTOM))
+    p->rect.setTexture("snakepart-right-top");
+  else if ((a == BOTTOM && b == RIGHT) || (a == LEFT && b == TOP))
+    p->rect.setTexture("snakepart-top-left");
+  else if ((a == RIGHT && b == BOTTOM) || (a == TOP && b == LEFT))
+    p->rect.setTexture("snakepart-left-top");
+}
+e_dir	SnakePart::getDir()	const
+{
+  return (this->direction);
 }

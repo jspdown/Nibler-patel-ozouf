@@ -21,7 +21,7 @@ public:
 		 unsigned int nbr_frame);
   virtual ~AAnimateEntity();
 
-  virtual Rect	*getRect()	const;
+  virtual Rect	const *getRect()	const;
   void		nextFrame();
 
   class	DeleteFrame

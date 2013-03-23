@@ -5,7 +5,7 @@
 // Login   <platel_k@epitech.net>
 //
 // Started on  Mon Mar 18 17:25:26 2013 kevin platel
-// Last update Thu Mar 21 17:06:12 2013 kevin platel
+// Last update Fri Mar 22 22:06:33 2013 vink
 //
 
 #include <unistd.h>
@@ -20,9 +20,10 @@ Engine::Engine(std::string const &lib)
   ILibrary*	(*new_lib)();
 
   this->lib = NULL;
+  std::cout << lib << std::endl;
   this->dhandle = dlopen(lib.c_str(), RTLD_LAZY);
   if (this->dhandle == NULL)
-    throw LibraryLoadError("Error when loding library");
+    throw LibraryLoadError("Error when loding library : " + std::string(dlerror()));
   new_lib = reinterpret_cast<ILibrary *(*)()>(dlsym(dhandle, "create_lib"));
   if (new_lib == NULL)
     throw LibraryLoadError("Error when loding creation symbol");
@@ -65,8 +66,11 @@ void	Engine::run(Map &map)
 	    {
 	      (*it)->update();
 	      this->lib->drawRect((*it)->getPos()->getPos(),
-			     (*it)->getRect()->getSize(),
-			     (*it)->getRect()->getTexture());
+				  (*it)->getRect()->getSize(),
+				  (*it)->getRect()->getTexture(),
+				  (*it)->getRect()->getStr());
+	      if ((*it)->getName() == "snake")
+		Debug::write((*it)->getName().c_str(), (*it)->getPos()->getPos().first, (*it)->getPos()->getPos().second);
 	      it++;
 	    }
 	}
