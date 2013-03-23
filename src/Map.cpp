@@ -34,13 +34,13 @@ Map::Map(Config *conf, std::string const &filename)
 	{
 	  tmp = this->fact.newEntity("floor",
 				     new Rect(i,
-					      j,
-				     0,
-				     this,
-				     new Rect(conf->getTileSize().first,
-					      conf->getTileSize().second,
-					      32,
-					      32));
+					      j),
+					      0,
+					      this,
+					      new Rect(conf->getTileSize().first,
+						       conf->getTileSize().second,
+						       32,
+						       32));
 	  if (tmp)
 	    this->addEntity(0, tmp);
 	}
