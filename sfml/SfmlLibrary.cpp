@@ -38,7 +38,7 @@ void	SfmlLibrary::drawRect(std::pair<int,int> const &pos, std::pair<int,int> con
   sf::Sprite s(*((this->aff)[texture]));
   sf::Text t(str);
 
-  s.setPosition(pos.first, pos.second);
+  s.setPosition(pos.first * size.first, pos.second * size.second);
   s.setTextureRect(sf::IntRect(0, 0, size.first, size.second));
   t.setPosition(pos.first, pos.second);
   this->mWin.draw(s);
@@ -66,12 +66,6 @@ void		SfmlLibrary::updateEvent(std::stack<std::string> &e)
 	    e.push("quit|id|thegame||");
 	}
     }
-  // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-  //   e.push("left|id|snake||");
-  // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-  //   e.push("right|id|snake||");
-  // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
-  //   e.push("quit|id|thegame||");
 }
 
 void		SfmlLibrary::update()
