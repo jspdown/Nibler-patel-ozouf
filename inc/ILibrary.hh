@@ -12,7 +12,7 @@ class ILibrary
 public:
   virtual ~ILibrary() {};
 
-  virtual void		drawRect(std::pair<int,int> const &pos, std::pair<int,int> const &size, std::string const &texture) = 0;
+  virtual void		drawRect(std::pair<int,int> const &pos, std::pair<int,int> const &size, std::string const &texture, std::string const &str) = 0;
   virtual void		init(std::string const &texture_path, std::vector<std::string> const &texture) = 0;
   virtual void		update() = 0;
   virtual void		quit() = 0;
