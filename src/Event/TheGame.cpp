@@ -34,7 +34,7 @@ void	TheGame::earnsPoints(const std::string &trame)
     {
       std::stringstream	ss;
       int		value;
-      ss << args[1];
+      ss << args[0];
       ss >> value;
   
       this->score += value;

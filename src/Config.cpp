@@ -74,3 +74,9 @@ unsigned int			Config::getWaitTime() const
 {
   return (this->waitTime);
 }
+
+void				Config::setSize(int x, int y)
+{
+  this->map_size.first = x;
+  this->map_size.second = y;
+}

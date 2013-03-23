@@ -8,7 +8,7 @@
 SnakePart::SnakePart(Rect *pos, int type, Map *map, Rect *r):
   AStaticEntity("snakepart", pos, type, map, r)
 {
-  this->direction = TOP;
+  this->direction = BOTTOM;
 }
 
 SnakePart::~SnakePart()

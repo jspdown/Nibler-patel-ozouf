@@ -23,6 +23,8 @@ public:
   std::string			getTexturePath() const;
   std::pair<int,int>		getTileSize() const;
   unsigned int			getWaitTime() const;
+
+  void				setSize(int x, int y);
 };
 
 #endif /* !__CONFIG_H__ */

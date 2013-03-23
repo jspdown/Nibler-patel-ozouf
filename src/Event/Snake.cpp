@@ -153,14 +153,26 @@ void	Snake::addPart()
 {
   if (this->queue.size() > 0)
     {
-      SnakePart	*n = new SnakePart(new Rect(this->queue[this->queue.size() - 1]->getPos()->getPos().first, this->queue[this->queue.size() - 1]->getPos()->getPos().second), 0, this->map, new Rect());
+      SnakePart	*n = new SnakePart(
+				   new Rect(this->queue[this->queue.size() - 1]->getPos()->getPos().first,
+					    this->queue[this->queue.size() - 1]->getPos()->getPos().second,
+					    32,32)
+				   , 5, 
+				   this->map, 
+				   new Rect(32, 32, 32, 32));
       n->setDir(this->queue[this->queue.size() - 1]->getDir());
       this->map->addEntity(5, n);
       this->queue.push_back(n);
     }
   else
     {
-      SnakePart	*n = new SnakePart(new Rect(this->pos->getPos().first, this->pos->getPos().second + 1), 0, this->map, new Rect());
+      SnakePart	*n = new SnakePart(new Rect(this->pos->getPos().first,
+					    this->pos->getPos().second + 1, 0, 0), 
+				   5, 
+				   this->map, 
+				   new Rect(this->rect.getSize().first, 
+					    this->rect.getSize().second, 0, 0));
+										
       this->map->addEntity(5, n);
       this->queue.push_back(n);
     }
@@ -174,18 +186,22 @@ void	Snake::eat(const std::string &)
 void	Snake::init()
 {
   // a ameliorer
-  SnakePart *s = new SnakePart(new Rect(10, 9, 0 ,0), 5, this->map, 0);
-  SnakePart *s1 = new SnakePart(new Rect(10, 8, 0 ,0), 5, this->map, 0);
-  SnakePart *s2 = new SnakePart(new Rect(10, 7, 0 ,0), 5, this->map, 0);
+  SnakePart *s = new SnakePart(new Rect(10, 9), 5, this->map, new Rect(this->rect.getSize().first,
+									       this->rect.getSize().second));
+  SnakePart *s1 = new SnakePart(new Rect(10, 8), 5, this->map, new Rect(this->rect.getSize().first, 
+										this->rect.getSize().second));
+										
+  SnakePart *s2 = new SnakePart(new Rect(10, 7), 5, this->map, new Rect(this->rect.getSize().first, 
+										this->rect.getSize().second));
   s->setDir(BOTTOM);
   s1->setDir(BOTTOM);
   s2->setDir(BOTTOM);
-  this->queue.push_back(s);
-  this->queue.push_back(s1);
-  this->queue.push_back(s2);
   this->map->addEntity(5, s);
   this->map->addEntity(5, s1);
   this->map->addEntity(5, s2);
+  this->queue.push_back(s);
+  this->queue.push_back(s1);
+  this->queue.push_back(s2);
 }
 
 Snake	*Snake::clone(Rect *pos, int type, Map *map, Rect *r)	const

@@ -55,8 +55,7 @@ void	Food::setRandPos()
       bool	nice = true;
       x = rand() % this->map->getConf()->getMapSize().first;
       y = rand() % this->map->getConf()->getMapSize().second;
-
-      Debug::write("plop", this->map->getElements().size());
+      
       for (unsigned int i = 0; i < this->map->getElements().size(); ++i)
 	{
 	  for (std::list<IEntity *>::const_iterator it = this->map->getElements()[i].begin(); 
@@ -70,6 +69,7 @@ void	Food::setRandPos()
       if (nice == true)
 	done = true;
     }
+  std::cout << "x y " << x << " " << y << " " <<this->map->getConf()->getMapSize().first << " " << this->map->getConf()->getMapSize().second << std::endl;
   this->pos->setPos(x, y);
 }
 
