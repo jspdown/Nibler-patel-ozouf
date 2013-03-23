@@ -1,4 +1,6 @@
 
+#include	<sstream>
+#include	"Trame.hh"
 #include	"ActionEvent.hpp"
 #include	"TheGame.hh"
 
@@ -29,7 +31,14 @@ void	TheGame::earnsPoints(const std::string &trame)
   std::vector<std::string> args = Trame::getArgs(trame);
 
   if (args.size() == 1)
-    this->score += args[0];
+    {
+      std::stringstream	ss;
+      int		value;
+      ss << args[1];
+      ss >> value;
+  
+      this->score += value;
+    }
 }
 
 void	TheGame::quit(const std::string &)

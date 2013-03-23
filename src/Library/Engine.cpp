@@ -22,10 +22,10 @@ Engine::Engine(std::string const &lib)
   this->lib = NULL;
   this->dhandle = dlopen(lib.c_str(), RTLD_LAZY);
   if (this->dhandle == NULL)
-    throw LibraryLoadError("Error when loding library");
+    throw LibraryLoadError("Error when loading library");
   new_lib = reinterpret_cast<ILibrary *(*)()>(dlsym(dhandle, "create_lib"));
   if (new_lib == NULL)
-    throw LibraryLoadError("Error when loding creation symbol");
+    throw LibraryLoadError("Error when loading creation symbol");
   this->lib = new_lib();
   this->the_end = false;
 }

@@ -15,7 +15,7 @@ INC	=	-I $(INC_PATH) -I ./
 
 CC	=	g++
 
-CPPFLAGS	+=	$(INC) -g -O3 -W -Wall -Wextra -fPIC -lsfml-graphics -lsfml-window -lsfml-system
+CPPFLAGS	+= $(INC) -g -O3 -W -Wall -fPIC  -Wextra  -lsfml-graphics -lsfml-window -lsfml-system
 
 # Rules
 
