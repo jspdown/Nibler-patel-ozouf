@@ -38,7 +38,7 @@ void	AllegroLibrary::init(std::string const &texture_path, std::vector<std::stri
 {
   for (unsigned int i = 0; i < texture.size(); i++)
     {
-      ALLEGRO_BITMAP *img = al_load_bitmap((texture_path + texture[i] + ".bmp").c_str());
+      ALLEGRO_BITMAP *img = al_load_bitmap((texture_path + texture[i] + ".png").c_str());
       if (img)
 	(this->aff)[texture[i]] = img;
     }
