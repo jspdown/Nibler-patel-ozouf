@@ -5,12 +5,22 @@
 // Login   <platel_k@epitech.net>
 //
 // Started on  Sat Mar  9 16:27:20 2013 kevin platel
-// Last update Fri Mar 22 13:48:09 2013 vink
+// Last update Sun Mar 24 15:28:31 2013 vink
 //
 
 #include <iostream>
 #include <vector>
 #include <sstream>
+
+int	str_to_int(std::string const &str)
+{
+  int	nb;
+  std::stringstream ss;
+
+  ss << str;
+  ss >> nb;
+  return (nb);
+}
 
 std::vector<std::string> split_string(const std::string &s, char delim)
 {

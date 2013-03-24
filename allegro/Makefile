@@ -15,7 +15,7 @@ INC	=	-I $(INC_PATH) -I ./
 
 CC	=	g++
 
-CPPFLAGS	+=	$(INC) -g -O3 -W -Wall -Wextra -fPIC -L ./allegro-5.0.9/Build/lib/ -lallegro -lallegro_image
+CPPFLAGS	+=	$(INC) -g -O3 -W -Wall -Wextra -fPIC -lallegro -lallegro_image
 
 # Rules
 

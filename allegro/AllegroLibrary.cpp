@@ -22,7 +22,7 @@ AllegroLibrary::AllegroLibrary()
     throw ConfigLoadError("Fail to init key");
   this->event_queue = al_create_event_queue();
   al_register_event_source(this->event_queue, al_get_keyboard_event_source());
-  this->display = al_create_display(640, 480);
+  this->display = al_create_display(800, 600);
   if (!this->display)
     throw ConfigLoadError("Error : can't create display");
 
@@ -36,29 +36,30 @@ AllegroLibrary::~AllegroLibrary()
 
 void	AllegroLibrary::init(std::string const &texture_path, std::vector<std::string> const &texture)
 {
-  int	a;
   for (unsigned int i = 0; i < texture.size(); i++)
     {
       ALLEGRO_BITMAP *img = al_load_bitmap((texture_path + texture[i] + ".bmp").c_str());
-      if (!img)
-	throw TextureError("Failed to load : " + texture_path + texture[i] + ".bmp");
-      (this->aff)[texture[i]] = img;
+      if (img)
+	(this->aff)[texture[i]] = img;
     }
 }
 
-void	AllegroLibrary::drawRect(std::pair<int,int> const &pos, std::pair<int,int> const &size, std::string const &texture, std::string const &str)
+void	AllegroLibrary::drawRect(std::pair<int,int> const &pos, std::pair<int,int> const &size, std::string const &texture, std::string const &)
 {
-  al_draw_bitmap_region(this->aff[texture],0,0,size.first, size.second, pos.first * size.first ,pos.second * size.second, 0);
+  if (this->aff[texture])
+    al_draw_bitmap_region(this->aff[texture],0,0,size.first, size.second, pos.first * size.first ,pos.second * size.second, 0);
 }
 
 void	AllegroLibrary::reload(std::string const &texture_path, std::vector<std::string> const &texture)
 {
+  this->init(texture_path, texture);
 }
 
 void		AllegroLibrary::updateEvent(std::stack<std::string> &e)
 {
   ALLEGRO_EVENT ev;
   ALLEGRO_TIMEOUT timeout;
+
   al_init_timeout(&timeout, 0.06);
   al_wait_for_event_until(this->event_queue, &ev, &timeout);
   if(ev.type == ALLEGRO_EVENT_KEY_DOWN)

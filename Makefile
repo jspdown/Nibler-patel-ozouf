@@ -46,6 +46,9 @@ CPPFLAGS	+=	-Wall -W $(INC) -g -ldl
 # Rules
 
 all:	$(NAME)
+	make -C sfml
+	make -C allegro
+	make -C ncurses
 
 %.$(OBJ_EXT): %.$(SRC_EXT)
 	$(CC) -o $@ -c $< $(INC) $(CPPFLAGS)
@@ -55,9 +58,15 @@ $(NAME):	$(OBJ)
 
 clean:
 	rm -f $(OBJ)
+	make clean -C sfml
+	make clean -C allegro
+	make clean -C ncurses
 
 fclean:	clean
 	rm -f $(NAME)
+	make fclean -C sfml
+	make fclean -C allegro
+	make fclean -C ncurses
 
 re:	fclean	all
 
