@@ -81,7 +81,7 @@ IEntity				       *Map::getEntity(std::string const &line)
   ss >> width;
   ss >> height;
 
-  
+
   Rect *r = new Rect(conf->getTileSize().first, conf->getTileSize().second, 32, 32, "", "");
   Rect *r2 = new Rect(x, y, 32, 32, "", "");
   tmp = this->fact.newEntity(name, r2, 0, this, r);

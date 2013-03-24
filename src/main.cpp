@@ -5,7 +5,7 @@
 // Login   <kevin platel@epitech.net>
 //
 // Started on  Mon Mar 18 22:07:15 2013 vink
-// Last update Fri Mar 22 13:49:35 2013 vink
+// Last update Sun Mar 24 15:32:11 2013 vink
 //
 
 #include <iostream>
@@ -19,14 +19,12 @@
 #include	"Debug.hh"
 int main(int argc, char *argv[])
 {
-  if (argc == 2)
+  if (argc >= 4)
     {
       std::vector<std::string> texture;
 
       texture.push_back("wall");
-      texture.push_back("wall2");
-      //      texture.push_back("snakepart");
-      
+
       texture.push_back("snakepart-left");
       texture.push_back("snakepart-right");
       texture.push_back("snakepart-top");
@@ -51,12 +49,30 @@ int main(int argc, char *argv[])
       texture.push_back("floor");
       texture.push_back("food");
 
-      Config	conf(10,10, texture, "./ressource/", 1, 1, 500000, argv[1]);
-      Map		map(&conf, "./ressource/map/map-1.conf");
-      Engine	eng(argv[1]);
-      eng.init(conf);
-      eng.run(map);
-
+      try
+	{
+	  Config	conf(10,10, texture, "./ressource/", 1, 1, 500000, argv[3]);
+	  Map		map(&conf, (argc >= 5 ? argv[4] : "./ressource/map/map-1.conf"));
+	  Engine	eng(argv[3]);
+	  eng.init(conf);
+	  eng.run(map);
+	}
+      catch (LibraryLoadError &e)
+	{
+	  std::cerr << "Library Error : " << e.what() << std::endl;
+	}
+      catch (ConfigLoadError &e)
+	{
+	  std::cerr << "Configuration Error : " << e.what() << std::endl;
+	}
+      catch (TextureError &e)
+	{
+	  std::cerr << "Texture Error : " << e.what() << std::endl;
+	}
+      catch (...)
+	{
+	  std::cerr << "Unexcepted Error occurred" << std::endl;
+	}
       return (0);
     }
   std::cout << "Usage: " << argv[0] << " lib.so" << std::endl;

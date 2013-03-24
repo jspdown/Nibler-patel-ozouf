@@ -21,6 +21,12 @@ SfmlLibrary::SfmlLibrary()
 
 SfmlLibrary::~SfmlLibrary()
 {
+  std::map<std::string, sf::Texture*>::iterator it = this->aff.begin();
+
+  for (; it != this->aff.end();it++)
+    {
+      delete ((*it).second);
+    }
 }
 
 void	SfmlLibrary::init(std::string const &texture_path, std::vector<std::string> const &texture)
@@ -28,8 +34,10 @@ void	SfmlLibrary::init(std::string const &texture_path, std::vector<std::string>
   for (unsigned int i = 0; i < texture.size(); i++)
     {
       sf::Texture *tmp = new sf::Texture();
-      tmp->loadFromFile(texture_path + texture[i]);
-      (this->aff)[texture[i]] = tmp;
+      if (tmp->loadFromFile(texture_path + texture[i]))
+	(this->aff)[texture[i]] = tmp;
+      else
+	throw TextureError("Failed to load : " + texture_path + texture[i]);
     }
 }
 

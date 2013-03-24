@@ -24,20 +24,26 @@ class ConfigLoadError : public std::exception
 {
   std::string	       msg;
 public:
-  ConfigLoadError(std::string const &msg, std::string const &func, std::string const &line);
-  virtual ~ConfigLoadError() throw();
+  ConfigLoadError(std::string const &msg)
+    : msg(msg)
+  {
+  }
+  virtual ~ConfigLoadError() throw() {};
 
-  virtual const char	*what() const throw();
+  virtual const char	*what() const throw() { return this->msg.c_str(); };
 };
 
-class DrawError : public std::exception
+class TextureError : public std::exception
 {
   std::string		msg;
 public:
-  DrawError(std::string const &msg, std::string const &func, std::string const &line);
-  virtual ~DrawError() throw();
+  TextureError(std::string const &msg)
+    : msg(msg)
+  {
+  }
+  virtual ~TextureError() throw() {};
 
-  virtual const char	*what() const throw();
+  virtual const char	*what() const throw() { return this->msg.c_str(); };
 };
 
 #endif /* !__ILIBRARY_H__ */
