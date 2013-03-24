@@ -5,7 +5,7 @@
 // Login   <kevin platel@epitech.net>
 //
 // Started on  Mon Mar 18 22:07:15 2013 vink
-// Last update Sun Mar 24 15:32:11 2013 vink
+// Last update Sun Mar 24 16:46:20 2013 vink
 //
 
 #include <iostream>
@@ -75,6 +75,6 @@ int main(int argc, char *argv[])
 	}
       return (0);
     }
-  std::cout << "Usage: " << argv[0] << " lib.so" << std::endl;
+  std::cout << "Usage: " << argv[0] << " width height lib.so" << std::endl;
   return (1);
 }
